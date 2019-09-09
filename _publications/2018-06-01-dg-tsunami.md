@@ -10,6 +10,8 @@ citation: 'Bonev, Boris; Hesthaven, Jan S.; Giraldo, Francis X.; Kopera, Michal 
 ---
 This paper is about Tsunami simulations using a Discontinuous Galerkin method for the Spherical Shallow Water Equations. We present a method that is well-balanced even when wetting-drying and dynamically adaptive meshing is considered. We demonstrate this using large-scale tsunami simulations such as the 2011 Tohoku tsunami. Results are compared to real-world measurements.
 
+[![Watch the video](https://bonevbs.github.io/files/tohoku_prev.png)](https://bonevbs.github.io/files/tohoku.mp4)  
+
 [Download paper here](https://infoscience.epfl.ch/record/232449?ln=en)
 
 Recommended citation: Bonev, Boris; Hesthaven, Jan S.; Giraldo, Francis X.; Kopera, Michal A. (2018). &quot;Paper Title Number 1.&quot; <i>Journal of Computational Physics</i>. 362, 425-448.
