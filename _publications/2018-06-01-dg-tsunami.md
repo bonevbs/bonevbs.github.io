@@ -6,7 +6,7 @@ excerpt: 'This paper is about Tsunami simulations using a Discontinuous Galerkin
 date: 2018-06-01
 venue: 'Journal of Computational Physics'
 paperurl: 'http://dx.doi.org/10.1016/j.jcp.2018.02.008'
-citation: 'Bonev, Boris; Hesthaven, Jan S.; Giraldo, Francis X.; Kopera, Michal A. (2018). &quot;Paper Title Number 1.&quot; <i>Journal of Computational Physics</i>. 362, 425-448.'
+citation: 'Bonev, Boris; Hesthaven, Jan S.; Giraldo, Francis X.; Kopera, Michal A. (2018). &quot;Discontinuous Galerkin scheme for the spherical shallow water equations with applications to tsunami modeling and prediction.&quot; <i>Journal of Computational Physics</i>. 362, 425-448.'
 ---
 This paper is about Tsunami simulations using a Discontinuous Galerkin method for the Spherical Shallow Water Equations. We present a method that is well-balanced even when wetting-drying and dynamically adaptive meshing is considered. We demonstrate this using large-scale tsunami simulations such as the 2011 Tohoku tsunami. Results are compared to real-world measurements.
 
@@ -16,4 +16,4 @@ This paper is about Tsunami simulations using a Discontinuous Galerkin method fo
 
 [Download paper here](https://infoscience.epfl.ch/record/232449?ln=en)
 
-Recommended citation: Bonev, Boris; Hesthaven, Jan S.; Giraldo, Francis X.; Kopera, Michal A. (2018). &quot;Paper Title Number 1.&quot; <i>Journal of Computational Physics</i>. 362, 425-448.
+Recommended citation: Bonev, Boris; Hesthaven, Jan S.; Giraldo, Francis X.; Kopera, Michal A. (2018). "Discontinuous Galerkin scheme for the spherical shallow water equations with applications to tsunami modeling and prediction"; <i>Journal of Computational Physics</i>. 362, 425-448.
