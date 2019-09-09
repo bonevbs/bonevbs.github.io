@@ -11,9 +11,10 @@ redirect_from:
 
 Education
 ======
-* B.S. in GitHub, GitHub University, 2012
-* M.S. in Jekyll, GitHub University, 2014
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
+* B.S. in Aerospace Engineering, University of Stuttgart, 2009-2013
+* B.S. in Physics, University of Stuttgart, 2011-2015
+* M.S. in Aerospace Engineering, University of Stuttgart, 2013-2015
+#* Ph.D in Applied Mathematics, EPFL (expected)
 
 Work experience
 ======
