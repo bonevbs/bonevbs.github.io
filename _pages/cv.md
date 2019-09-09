@@ -15,16 +15,6 @@ Education
 * B.S. in Physics, University of Stuttgart, 2011-2015
 * M.S. in Aerospace Engineering, University of Stuttgart, 2013-2015
 #* Ph.D in Applied Mathematics, EPFL
-
-Work experience
-======
-* Spring 2012: Research Assistant
-  * German Aerospace Center (DLR) in Stuttgart
-  * Task: Experimental setup for simulating space conditions in a thermal vacuum chamber
-
-* 2010-2012: Student Supervision
-  * Aerospace Lab in Herrenberg, Germany
-  * Voluntary work as supervisor for students building a micro- satellite
   
 Skills
 ======
@@ -52,6 +42,16 @@ Teaching
   <ul>{% for post in site.teaching %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
+  
+Test
+-----
+* Spring 2012: Research Assistant
+  * German Aerospace Center (DLR) in Stuttgart
+  * Task: Experimental setup for simulating space conditions in a thermal vacuum chamber
+
+* 2010-2012: Student Supervision
+  * Aerospace Lab in Herrenberg, Germany
+  * Voluntary work as supervisor for students building a micro- satellite
   
 Service and leadership
 ======
