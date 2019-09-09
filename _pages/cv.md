@@ -14,7 +14,6 @@ Education
 * B.S. in Aerospace Engineering, University of Stuttgart, 2009-2013
 * B.S. in Physics, University of Stuttgart, 2011-2015
 * M.S. in Aerospace Engineering, University of Stuttgart, 2013-2015
-#* Ph.D in Applied Mathematics, EPFL
   
 Skills
 =====
