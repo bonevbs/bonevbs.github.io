@@ -14,19 +14,17 @@ Education
 * B.S. in Aerospace Engineering, University of Stuttgart, 2009-2013
 * B.S. in Physics, University of Stuttgart, 2011-2015
 * M.S. in Aerospace Engineering, University of Stuttgart, 2013-2015
-#* Ph.D in Applied Mathematics, EPFL (expected)
+#* Ph.D in Applied Mathematics, EPFL
 
 Work experience
 ======
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+* Spring 2012: Research Assistant
+  * German Aerospace Center (DLR) in Stuttgart
+  * Task: Experimental setup for simulating space conditions in a thermal vacuum chamber
 
-* Fall 2015: Research Assistant
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* 2010-2012: Student Supervision
+  * Aerospace Lab in Herrenberg, Germany
+  * Voluntary work as supervisor for students building a micro- satellite
   
 Skills
 ======
