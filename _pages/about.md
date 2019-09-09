@@ -12,7 +12,7 @@ This is Boris Bonev's home on the web. This site is currently under construction
 
 In the meantime check out some of my tsunami simulations. For more info, check out the publications page.
 
-[![Watch the video](https://bonevbs.github.io/files/amr_showcase_prev.png){width=250px}](https://bonevbs.github.io/files/amr_showcase.mp4)
+[![Watch the video](https://bonevbs.github.io/files/amr_showcase_prev.png){width=20px}](https://bonevbs.github.io/files/amr_showcase.mp4)
 
 [![Watch the video](https://bonevbs.github.io/files/tohoku_prev.png =250x)](https://bonevbs.github.io/files/tohoku.mp4)  
 
