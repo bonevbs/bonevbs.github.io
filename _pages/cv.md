@@ -27,6 +27,7 @@ Skills
   * English, Japanese (fluent)
   * French (currently living in francophone Switzerland)
   * Spanish (A2)
+* Latex, Word, Solidworks...
 * analytical and problem-oriented thinking
 
 Publications
