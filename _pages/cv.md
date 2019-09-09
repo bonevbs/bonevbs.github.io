@@ -26,7 +26,7 @@ Skills
   * German, Bulgarian (natively)
   * English, Japanese (fluent)
   * French (currently living in francophone Switzerland)
-  * Spanish
+  * Spanish (A2)
 * analytical and problem-oriented thinking
 
 Publications
@@ -36,19 +36,19 @@ Publications
   {% endfor %}</ul>
   
 Talks
------
+=====
   <ul>{% for post in site.talks %}
     {% include archive-single-talk-cv.html %}
   {% endfor %}</ul>
   
 Teaching
------
+=====
   <ul>{% for post in site.teaching %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
   
 Work Experience
------
+=====
 * Spring 2012: Research Assistant
   * German Aerospace Center (DLR) in Stuttgart
   * Task: Experimental setup for simulating space conditions in a thermal vacuum chamber
@@ -57,6 +57,6 @@ Work Experience
   * Aerospace Lab in Herrenberg, Germany
   * Voluntary work as supervisor for students building a micro- satellite
   
-Service and leadership
------
-* Currently signed in to 43 different slack teams
+#Service and leadership
+#=====
+#* 
