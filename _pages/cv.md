@@ -50,12 +50,12 @@ Teaching
 Work Experience
 =====
 * Spring 2012: Research Assistant
-  * German Aerospace Center (DLR) in Stuttgart
+  * [German Aerospace Center (DLR)](https://www.dlr.de/dlr/desktopdefault.aspx/tabid-10176/) in Stuttgart
   * Task: Experimental setup for simulating space conditions in a thermal vacuum chamber
 
 * 2010-2012: Student Supervision
-  * Aerospace Lab in Herrenberg, Germany
-  * Voluntary work as supervisor for students building a micro- satellite
+  * [Aerospace Lab](https://aerospace-lab.de) in Herrenberg, Germany
+  * Voluntary work as supervisor for students with the goal of building a Cubesat
   
 Service and leadership
 =====
