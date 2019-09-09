@@ -8,9 +8,9 @@ redirect_from:
   - /about.html
 ---
 
-This is Boris Bonev's home on the web. This site is currently under construction. More will follow.
+Hi, this is my home on the web. It is currently under construction. More will follow.
 
-In the meantime check out some of my tsunami simulations. For more info, check out the publications page.
+In the meantime, you can check out some of my tsunami simulations. For more info, go to the publications page.
 
 [![Watch the video](https://bonevbs.github.io/files/amr_showcase_prev.png)](https://bonevbs.github.io/files/amr_showcase.mp4) 
 [![Watch the video](https://bonevbs.github.io/files/tohoku_prev.png)](https://bonevbs.github.io/files/tohoku.mp4)  
