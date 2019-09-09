@@ -10,7 +10,7 @@ redirect_from:
 {% include base_path %}
 
 Education
------
+=====
 * B.S. in Aerospace Engineering, University of Stuttgart, 2009-2013
 * B.S. in Physics, University of Stuttgart, 2011-2015
 * M.S. in Aerospace Engineering, University of Stuttgart, 2013-2015
@@ -26,7 +26,7 @@ Skills
 * Skill 3
 
 Publications
------
+=====
   <ul>{% for post in site.publications %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
@@ -43,7 +43,7 @@ Teaching
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
   
-Test
+Work Experience
 -----
 * Spring 2012: Research Assistant
   * German Aerospace Center (DLR) in Stuttgart
