@@ -57,6 +57,6 @@ Work Experience
   * Aerospace Lab in Herrenberg, Germany
   * Voluntary work as supervisor for students building a micro- satellite
   
-#Service and leadership
-#=====
-#* 
+Service and leadership
+=====
+* Review of scientific articles
