@@ -10,14 +10,14 @@ redirect_from:
 {% include base_path %}
 
 Education
-======
+-----
 * B.S. in Aerospace Engineering, University of Stuttgart, 2009-2013
 * B.S. in Physics, University of Stuttgart, 2011-2015
 * M.S. in Aerospace Engineering, University of Stuttgart, 2013-2015
 #* Ph.D in Applied Mathematics, EPFL
   
 Skills
-======
+-----
 * Skill 1
 * Skill 2
   * Sub-skill 2.1
@@ -26,19 +26,19 @@ Skills
 * Skill 3
 
 Publications
-======
+-----
   <ul>{% for post in site.publications %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
   
 Talks
-======
+-----
   <ul>{% for post in site.talks %}
     {% include archive-single-talk-cv.html %}
   {% endfor %}</ul>
   
 Teaching
-======
+-----
   <ul>{% for post in site.teaching %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
@@ -54,5 +54,5 @@ Test
   * Voluntary work as supervisor for students building a micro- satellite
   
 Service and leadership
-======
+-----
 * Currently signed in to 43 different slack teams
