@@ -17,13 +17,17 @@ Education
 #* Ph.D in Applied Mathematics, EPFL
   
 Skills
------
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+=====
+* Coding:
+  * Matlab, Julia, Python
+  * C, Fortran, C++
+  * Mathematica
+* more languages include:
+  * German, Bulgarian (natively)
+  * English, Japanese (fluent)
+  * French (currently living in francophone Switzerland)
+  * Spanish
+* analytical and problem-oriented thinking
 
 Publications
 =====
