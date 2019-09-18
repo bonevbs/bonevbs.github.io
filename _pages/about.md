@@ -10,7 +10,7 @@ redirect_from:
 
 Hi, this is my home on the web. We could've been freezing fishes, but somehow we made it both here. So let me introduce myself.
 
-I am Boris, Physicist, Aerospace Engineer and hopefully a Mathematician soon. This website is intended to be a collection of all the things that are of interest to me. Apart from the obvious ones there are Paleontology, Algorithms, Economics, AI, Music and many more.
+I am Boris, Physicist, Aerospace Engineer and hopefully a Mathematician soon. This website is intended to be a collection of all the things that are of interest to me. Apart from the obvious ones, there are Paleontology, Algorithms, Economics, AI, Music and many more.
 
 Who knows? Maybe I might start a blog.
 
