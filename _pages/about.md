@@ -8,7 +8,9 @@ redirect_from:
   - /about.html
 ---
 
-Hi, this is my home on the web. It is currently under construction. More will follow.
+Hi, this is my home on the web. We could've been freezing fishes, but somehow we made it both here. So let me introduce myself: I am Boris a Physicist and Aerospace Engineer who is I currently pursuing a PhD in Mathematics. This website is intended to be a collection of all the things that are of interest to me. Among them are Paleontology, Maths, Economics, AI, Music and many more.
+
+Who knows? Maybe I might start a blog.
 
 In the meantime, you can check out some of my tsunami simulations. For more info, go to the publications page.
 
