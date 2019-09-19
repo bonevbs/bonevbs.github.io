@@ -8,9 +8,9 @@ redirect_from:
   - /about.html
 ---
 
-Hi, this is my home on the web. We could've been freezing fishes, but somehow we made it both here. So let me introduce myself.
+Hi, this is my home on the web. It all seems like a big coincidence. We could have been freezing fish but somehow we made it here. So let me introduce myself.
 
-I am Boris, Physicist, Aerospace Engineer and hopefully a Mathematician soon. This website is intended to be a collection of all the things that are of interest to me. Apart from the obvious ones, there are Paleontology, Algorithms, Economics, AI, Music and many more.
+I am Boris, Physicist, Aerospace Engineer and hopefully a Mathematician soon. This website is intended to be a collection of all things that interest me. Apart from the obvious ones, there are Paleontology, Algorithms, Economics, AI, Music and many more.
 
 As of now the website is still under construction. In the meantime, you can check out some of my tsunami simulations. For more info, go to the publications page.
 
