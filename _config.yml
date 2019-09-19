@@ -7,7 +7,7 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Freezing Fishes"
+title                    : "-"
 title_separator          : "-"
 name                     : &name "Boris Bonev"
 description              : &description "A website about my personal interests."
