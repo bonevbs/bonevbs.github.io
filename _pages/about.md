@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-Hi, this is my home on the web. My name is Boris, I am a Physicist, an Aerospace Engineer and most recently a PhD the field of Applied Mathematics. This site is intended to be a collection of all things that interest me. Hopefully, one day I will get to that.
+Hi, this is my home on the web. My name is Boris, I am a Physicist, an Aerospace Engineer and most recently a PhD in the field of Applied Mathematics. This site is intended to be a collection of all things that interest me. Hopefully, one day I will get to that.
 
 As of now, the website is still under construction. In the meantime, you can check out some of my tsunami simulations. For more info, check out the publications page.
 
