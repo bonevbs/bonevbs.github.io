@@ -15,8 +15,10 @@ As of now, the website is still under construction. In the meantime, you can che
 [![Watch the video](https://bonevbs.github.io/files/amr_showcase_prev.png)](https://bonevbs.github.io/files/amr_showcase.mp4) 
 [![Watch the video](https://bonevbs.github.io/files/tohoku_prev.png)](https://bonevbs.github.io/files/tohoku.mp4)
 
-[Download paper here](https://infoscience.epfl.ch/record/232449?ln=en)
+[Find the paper here](https://infoscience.epfl.ch/record/232449?ln=en)
 
 Still here? My most recent work includes some cool pictures of harmonic functions on a guitar:
 
 ![Helmholtz solutions on a guitar](https://bonevbs.github.io/files/guitars_hprecon.png)
+
+[Find the paper here](https://infoscience.epfl.ch/record/279971?ln=en)
