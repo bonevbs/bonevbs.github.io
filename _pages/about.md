@@ -12,8 +12,10 @@ Hi, this is my home on the web. My name is Boris, I am a Physicist, an Aerospace
 
 As of now, the website is still under construction. In the meantime, you can check out some of my tsunami simulations. For more info, go to the publications page.
 
+<center>
 [![Watch the video](https://bonevbs.github.io/files/amr_showcase_prev.png)](https://bonevbs.github.io/files/amr_showcase.mp4) 
 [![Watch the video](https://bonevbs.github.io/files/tohoku_prev.png)](https://bonevbs.github.io/files/tohoku.mp4)
+</center>
 
 [Download paper here](https://infoscience.epfl.ch/record/232449?ln=en)
 
