@@ -7,10 +7,10 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : ""
+title                    : "Boris Bonev"
 title_separator          : "-"
 name                     : &name "Boris Bonev"
-description              : &description "A website about my personal interests."
+description              : &description "My personal website."
 url                      : https://bonevbs.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "bonevbs/bonevbs.github.io"
@@ -82,7 +82,7 @@ analytics:
 author:
   name             : "Boris Bonev"
   avatar           : "boris.png"
-  bio              : "Engineering, then Physics and now Maths."
+  bio              : "Engineering, Physics and Applied Maths."
   location         : "Lausanne, Switzerland"
   employer         :
   pubmed           :
