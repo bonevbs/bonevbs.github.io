@@ -24,4 +24,5 @@ Still here? My most recent work includes some cool pictures of harmonic function
 [Find the paper here](https://infoscience.epfl.ch/record/279971?ln=en)
 
 Also, check out my library for HSS matrices here:
+
 [![HssMatrices.jl](https://raw.githubusercontent.com/bonevbs/HssMatrices.jl/main/img/plotranks.svg)](https://github.com/bonevbs/HssMatrices.jl)
