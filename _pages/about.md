@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-Hi, I am a researcher in the field of Applied Mathematics with special interest in Numerical Linear Algebra, PDEs and Statistical Learning. In other words, I like numerical algorithms that are applicable to real-world problems. I have previous studied Physics and Aerospace engineering. Currently I ma pursuing a PhD in Applied Mathematics with Prof. Jan S. Hesthaven. This site is intended to be a collection of all things that interest me. Hopefully, one day I will get to that.
+Hi, I am a PhD researcher in the field of Applied Mathematics with special interest in Numerical Linear Algebra, PDEs and Statistical/Machine Learning. In other words, I like numerical algorithms that are applicable to solving challenging problems in Science and Technology. I have previous studied Physics and Aerospace engineering. Currently, I am pursuing a PhD in Applied Mathematics with Prof. Jan S. Hesthaven. This site is intended to show off some of my work. Unfortunately, I rarely get to update it. Please feel free to check out my other social links.
 
 As of now, the website is still under construction. In the meantime, you can check out some of my tsunami simulations. For more info, check out the publications page.
 
