@@ -7,7 +7,19 @@ redirect_from:
   - /research.html
 ---
 
-This will be about my research.
+# Research
+
+My research interests broadly revolve arounds mathematical algorithms. In particular, I am interested in *Machine Learning*, *Numerical Linear Algebra* and *Numerical algorithms for PDEs*. Duting 
+
+## Work on sparse direct solvers for wave problems
+
+As part of my PhD thesis work, I have worked on direct solvers for wave problems, which aim to solve sparse linear systems of the form
+$$
+A x = b,
+$$
+efficiently. This is done by exploiting physical properties of the underlying problem, which are encoded in the matrix $A$. More precisely, we use so-called *hierarchical matrices* to compress the dense fill-in that arises when matrices 
+
+## Work on Discontinuous Galerkin methods for Tsunami simulations
 
 As of now, the website is still under construction. In the meantime, you can check out some of my tsunami simulations. For more info, check out the publications page.
 
