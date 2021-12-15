@@ -22,3 +22,17 @@ You can install HssMatrices with the built in package manager by running
 ```julia
 (@v1.6) pkg> add HssMatrices
 ```
+
+## Extensions to nodal-dg
+
+[nodal-dg](https://github.com/tcew/nodal-dg) is a Matlab library for nodal discontinuous Galerkin methods, originally written by Jan S. Hesthaven and Tim Warburton. [nodal-dg-extensions]() exteds its capabilities to continuous Galerkin methods. It makes heavy use of the original discontinuous Galerkin datastructures for triangular meshes and extends them by adding a mapping which keeps track of duplicated points, which in the continuous Galerkin framework have to be mapped onto a single point. The resulting library is useful for research and development settings, especially if switching between discontinuous and continuous Galerkin methods is necessary, or, if arbitrary order continuous Galerkin methods are of interest.
+
+[![helmholtz_plot1](/files/nodal-dg-plot1.png)]()
+
+As of now, the extension includes the following features:
+* High-order continuous Galerkin (CG/FEM) method on triangular meshes using the nodal-dg datastructures
+* DG method for the high-contrast Poisson problem
+* IPDG method for linear elasticity in 2D
+* Routines for generating a nested dissection for the structured elimination of the resulting matrices
+* Plotting routines designed to visualize the results
+* Test routines designed to check behaviour under h- and p-refinement
