@@ -1,11 +1,24 @@
 ---
-layout: archive
 title: "CV"
+excerpt: "CV"
 permalink: /cv/
 author_profile: true
 redirect_from:
   - /resume
 ---
+
+## Experiences
+### PhD in Applied Mathematics
+*Ecole Polytechnique Federale de Lausanne (EPFL), 2017-2021*
+
+### Research Associate in Machine Learning
+*TU Munich, 2016-2017*
+
+### BSc, Physics
+*University of Stuttgart, 2011-2015*
+
+### MSc & BSc, Aerospace Engineering
+*University of Stuttgart, 2009-2015*
 
 {% include base_path %}
 
