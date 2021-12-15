@@ -7,23 +7,21 @@ redirect_from:
   - /research.html
 ---
 
-# Research
-
-My research interests broadly revolve arounds mathematical algorithms. In particular, I am interested in *Machine Learning*, *Numerical Linear Algebra* and *Numerical algorithms for PDEs*. Duting 
+My research interests broadly revolve arounds mathematical algorithms. In particular, I am interested in *Machine Learning*, *Numerical Linear Algebra* and *Numerical algorithms for PDEs*. You can find out about my work on the latter two in [my PhD dissertation](https://bonevbs.github.io/files/dissertation.pdf)
 
 ## Work on sparse direct solvers for wave problems
 
 As part of my PhD thesis work, I have worked on direct solvers for wave problems, which aim to solve sparse linear systems of the form
-$$
-A x = b,
-$$
+
+$$A x = b,$$
+
 efficiently. This is done by exploiting physical properties of the underlying problem, which are encoded in the matrix $A$. More precisely, we use so-called *hierarchical matrices* to compress the dense fill-in that arises when matrices 
 
 ## Work on Discontinuous Galerkin methods for Tsunami simulations
 
 As of now, the website is still under construction. In the meantime, you can check out some of my tsunami simulations. For more info, check out the publications page.
 
-[![Watch the video](https://bonevbs.github.io/files/amr_showcase_prev.png)](https://bonevbs.github.io/files/amr_showcase.mp4) 
+[![Watch the video](https://bonevbs.github.io/files/amr_showcase_prev.png)](/files/amr_showcase.mp4) 
 [![Watch the video](https://bonevbs.github.io/files/tohoku_prev.png)](https://bonevbs.github.io/files/tohoku.mp4)
 
 [Find the paper here](https://infoscience.epfl.ch/record/232449?ln=en)
