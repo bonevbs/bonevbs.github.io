@@ -7,7 +7,7 @@ redirect_from:
   - /research.html
 ---
 
-My research interests broadly revolve arounds mathematical algorithms. In particular, I am interested in *Machine Learning*, *Numerical Linear Algebra* and *Numerical algorithms for PDEs*. You can find out about my work on the latter two in [my PhD dissertation](https://infoscience.epfl.ch/record/288711/files/EPFL_TH8641.pdf)
+My research interests broadly revolve arounds mathematical algorithms. In particular, I am interested in *Machine Learning*, *Numerical Linear Algebra* and *Numerical algorithms for PDEs*. You can find out about my work in [my PhD dissertation](https://infoscience.epfl.ch/record/288711/files/EPFL_TH8641.pdf) and on [my Google scholar page]().
 
 ## Sparse direct solvers for wave problems
 
@@ -28,10 +28,3 @@ As of now, the website is still under construction. In the meantime, you can che
 
 [Find the paper here](https://infoscience.epfl.ch/record/232449?ln=en)
 
-Still here? My most recent work includes some cool pictures of harmonic functions on a guitar:
-
-
-
-Also, check out my library for HSS matrices here:
-
-[![HssMatrices.jl](https://raw.githubusercontent.com/bonevbs/HssMatrices.jl/main/img/plotranks.svg)](https://github.com/bonevbs/HssMatrices.jl)
