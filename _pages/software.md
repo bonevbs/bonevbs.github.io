@@ -7,7 +7,7 @@ redirect_from:
   - /software.html
 ---
 
-I enjoy writing software and making it available, so it may benefit others. Some projects that are publicly avaiable and which I am proud of are listed here. A full list is available on [my GitHub page](https://github.com/bonevbs).
+I enjoy writing software and making it available, so it may benefit others. Some projects that are publicly avaiable and which I am proud of are listed here. A complete list is available on [my GitHub page](https://github.com/bonevbs).
 
 ## HssMatrices.jl
 
