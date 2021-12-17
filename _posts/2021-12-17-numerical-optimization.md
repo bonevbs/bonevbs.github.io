@@ -107,7 +107,7 @@ plot_minimizier(objective_function)
 
 
     
-![png](numerical_optimization_files/numerical_optimization_8_0.png)
+![png](files/numerical_optimization_8_0.png)
     
 
 
