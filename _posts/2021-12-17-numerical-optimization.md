@@ -17,17 +17,17 @@ We consider convex problems with sufficient regularity, such that gradient infor
 ### Taylor's theorem
 
 Suppose that $f: \mathbb{R}^d \rightarrow \mathbb{R}$  is continuously differentiable and that $p \in \mathbb{R}^d$. Then, we have that
-$$
-f(x+p) = f(x) + \nabla f(x + tp)^T p,
-$$
+
+$$f(x+p) = f(x) + \nabla f(x + tp)^T p,$$
+
 for some $t \in (0,1)$. Furthermore, if $f$ is twice continuously differentiable,
-$$
-\nabla f(x+p) = \nabla f(x) + \int_0^1 \nabla^2 f(x+tp) p\;\mathrm{d}t,
-$$
+
+$$\nabla f(x+p) = \nabla f(x) + \int_0^1 \nabla^2 f(x+tp) p\;\mathrm{d}t,$$
+
 which implies
-$$
-f(x+p) = f(x) + \nabla f(x)^T p + \frac{1}{2}p^T \nabla^2 f(x+tp) p,
-$$
+
+$$f(x+p) = f(x) + \nabla f(x)^T p + \frac{1}{2}p^T \nabla^2 f(x+tp) p,$$
+
 for some $t \in (0,1)$.
 
 Here, we have introduced the vector-valued gradient $\nabla f$ and the $d \times d$ Hessian matrix $\nabla^2 f$.
@@ -111,7 +111,7 @@ plot_minimizier(objective_function)
 
 
     
-![png](files/numerical_optimization_8_0.png)
+![png](/_posts/files/numerical_optimization_8_0.png)
     
 
 
