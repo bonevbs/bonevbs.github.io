@@ -102,7 +102,7 @@ plot_minimizier(objective_function)
 
 
     
-![png](files/posts/numerical_optimization_9_0.png)
+![png](/files/posts/numerical_optimization_9_0.png)
     
 
 
@@ -156,7 +156,7 @@ def backtrack(f, x0, p0, alpha, tau=0.5, c=0.5):
 
 In other words, we start out with a certain step size $\alpha$ and decrease it iteratively as long as $f(x_0) - f(x_0 + \alpha p_0) \geq \alpha c ||p_0||^2$ is satisfied. $\tau \in (0,1)$ and $c \in (0,1)$ are some control parameters, which determine the behavior of the method. $\tau \in (0,1)$ is some shrinkage parameter, which controls the decay of $\alpha$, which is replaced by $\tau \alpha$ at each iteration. The parameter controls the maximal step size, as $\alpha$ will satisfy
 
-$$f(x_0 + \alpha p_0) \leq f(x_0) + \alpha c ||p_0||^2,$$
+$$f(x_0 + \alpha p_0) \leq f(x_0) + \alpha c | |p_0| |^2,$$
 
 which is also known as the Armijo–Goldstein condition (insert reference and say something about convergence).
 
@@ -234,7 +234,7 @@ plot_minimizier(objective_function, bounds=bounds, trace=trace)
 
 
     
-![png](files/posts/numerical_optimization_19_0.png)
+![png](/files/posts/numerical_optimization_19_0.png)
     
 
 
@@ -270,7 +270,7 @@ plot_minimizier(objective_function, bounds=bounds, trace=trace)
 
 
     
-![png](files/posts/numerical_optimization_23_0.png)
+![png](/files/posts/numerical_optimization_23_0.png)
     
 
 
