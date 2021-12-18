@@ -1,5 +1,5 @@
 ---
-title: 'ML 101 - Numerical Optimization, an introduction with Python'
+title: 'Numerical optimization, an introduction with Python'
 date: 2021-12-17
 permalink: /posts/numerical-optimization/
 tags:
