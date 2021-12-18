@@ -1,16 +1,15 @@
 ---
-title: 'Numerical Optimization'
+title: 'ML 101 - Numerical Optimization, an introduction with Python'
 date: 2021-12-17
 permalink: /posts/numerical-optimization/
 tags:
-  - cool posts
-  - category1
-  - category2
+  - Numerical optimization
+  - Machine Learning
+  - Python
+  - PyTorch
 ---
 
-This is a sample blog post. Lorem ipsum I can't remember the rest of lorem ipsum and don't have an internet connection right now. Testing testing testing this blog post. Blog posts are cool.
-
-# Numerical Optimization
+This is the first post in a series of posts that I am planning to write on the topic of machine learning. This article introduces fundamental algorithms in numerical optimization. For now, this is the Gradient Descent and Netwon algorithm. I might extend it with momentum based methods and conjugate gradient methods in the future.
 
 ## Introduction
 
@@ -154,11 +153,7 @@ def backtrack(f, x0, p0, alpha, tau=0.5, c=0.5):
 
 ```
 
-In other words, we start out with a certain step size $\alpha$ and decrease it iteratively as long as
-
-$$f(x_0) - f(x_0 + \alpha p_0) \geq \alpha c ||p_0||^2$$
-
-is satisfied. $\tau \in (0,1)$ and $c \in (0,1)$ are some control parameters, which determine the behavior of the method. $\tau \in (0,1)$ is some shrinkage parameter, which controls the decay of $\alpha$, which is replaced by $\tau \alpha$ at each iteration. The parameter controls the maximal step size, as $\alpha$ will satisfy
+In other words, we start out with a certain step size $\alpha$ and decrease it iteratively as long as $f(x_0) - f(x_0 + \alpha p_0) \geq \alpha c ||p_0||^2 $ is satisfied. $\tau \in (0,1)$ and $c \in (0,1)$ are some control parameters, which determine the behavior of the method. $\tau \in (0,1)$ is some shrinkage parameter, which controls the decay of $\alpha$, which is replaced by $\tau \alpha$ at each iteration. The parameter controls the maximal step size, as $\alpha$ will satisfy
 
 $$f(x_0 + \alpha p_0) \leq f(x_0) + \alpha c ||p_0||^2,$$
 
