@@ -102,7 +102,7 @@ plot_minimizier(objective_function)
 
 
     
-![png](numerical_optimization_files/numerical_optimization_9_0.png)
+![png](files/posts/numerical_optimization_9_0.png)
     
 
 
@@ -234,7 +234,7 @@ plot_minimizier(objective_function, bounds=bounds, trace=trace)
 
 
     
-![png](numerical_optimization_files/numerical_optimization_19_0.png)
+![png](files/posts/numerical_optimization_19_0.png)
     
 
 
@@ -270,7 +270,7 @@ plot_minimizier(objective_function, bounds=bounds, trace=trace)
 
 
     
-![png](numerical_optimization_files/numerical_optimization_23_0.png)
+![png](files/posts/numerical_optimization_23_0.png)
     
 
 
@@ -337,7 +337,7 @@ plot_minimizier(objective_function, bounds=bounds, trace=trace)
 
 
     
-![png](numerical_optimization_files/numerical_optimization_27_0.png)
+![png](files/posts/numerical_optimization_27_0.png)
     
 
 
@@ -357,7 +357,7 @@ plot_minimizier(objective_function, bounds=bounds, trace=trace)
 
 
     
-![png](numerical_optimization_files/numerical_optimization_29_0.png)
+![png](files/posts/numerical_optimization_29_0.png)
     
 
 
@@ -365,15 +365,6 @@ The Newton method converges to the desired solution in only two iterations, comp
 
 Some algorithms try to alleviate the former problem of having to form the Hessian by only approximating it. This can be done in the gradient descent approach, by keeping track of the chenge in the descent direction and using this information to approximate the Hessian. The latter problem of insufficient regularity can be addressed by switching between line search approaches and trust region methods depending on the local smoothness of $f$.
 
-## Analogy to linear systems
-
-Coming from numerical linear algebra, I couldn't resist to introduce some linear algebra. A central problem of numerical linear algebra is the solution of linear systems of the form $Ax = b$, where $A \in \mathbb{R}^{m \times m}$ and $x, b \in \mathbb{R}^m$. We note that in this formulation, the problem may have either exactly one solution, infinitely many, or none at all. We can re-cast this problem by defining the objective function
-
-$$f(x) = x^T A x - 2 x^T b.$$
-
-
-
-... Why is this interesting? There are numberous algorithms for the solution of linear systems. It is only reasonable that some of them may therefore be understood as minimization algorithms with respect to $f$, therefore giving us alternative optimization algorithms.
 
 ## Conclusion
 
