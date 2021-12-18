@@ -341,7 +341,7 @@ plot_minimizier(objective_function, bounds=bounds, trace=trace)
 
 
     
-![png](images/posts/numerical_optimization_27_0.png)
+![png](/images/posts/numerical_optimization_27_0.png)
     
 
 
@@ -361,7 +361,7 @@ plot_minimizier(objective_function, bounds=bounds, trace=trace)
 
 
     
-![png](images/posts/numerical_optimization_29_0.png)
+![png](/images/posts/numerical_optimization_29_0.png)
     
 
 
