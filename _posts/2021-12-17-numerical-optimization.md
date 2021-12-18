@@ -281,7 +281,7 @@ The previous problem nicely illustrated the need for a smarter choice of the des
 
 $$f(x+p) = f(x) + \nabla f(x)^T p + \frac{1}{2} p^T \, \nabla^2 f(x) \, p + \mathcal{O}(||p||^3).$$
 
-By differentiating this with respect to $p$ and setting the result to zero, we find $p^*$, which minimizes this quadratic form. $p^*$ satisfies
+By differentiating this with respect to $p$ and setting the result to zero, we find $p^{*}$, which minimizes this quadratic form. $p^{*}$ satisfies
 
 $$\nabla^2 f(x) \, p^* = - \nabla f(x),$$
 
