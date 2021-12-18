@@ -153,11 +153,11 @@ def backtrack(f, x0, p0, alpha, tau=0.5, c=0.5):
 
 ```
 
-In other words, we start out with a certain step size $\alpha$ and decrease it iteratively as long as $f(x_0) - f(x_0 + \alpha p_0) \geq \alpha c ||p_0||^2 $ is satisfied. $\tau \in (0,1)$ and $c \in (0,1)$ are some control parameters, which determine the behavior of the method. $\tau \in (0,1)$ is some shrinkage parameter, which controls the decay of $\alpha$, which is replaced by $\tau \alpha$ at each iteration. The parameter controls the maximal step size, as $\alpha$ will satisfy
+In other words, we start out with a certain step size $\alpha$ and decrease it iteratively until the condition
 
 $$f(x_0 + \alpha p_0) \leq f(x_0) + \alpha c ||p_0||^2,$$
 
-which is also known as the Armijo–Goldstein condition (insert reference and say something about convergence).
+is satisfied. $\tau \in (0,1)$ and $c \in (0,1)$ are some control parameters, which determine the behavior of the method. $\tau \in (0,1)$ is some shrinkage parameter, which controls the decay of $\alpha$, which is replaced by $\tau \alpha$ at each iteration. The parameter controls the maximal step size, as $\alpha$ will satisfy the above condition, which is also known as the Armijo–Goldstein condition (insert reference and say something about convergence).
 
 Now that we have a method for choosing a step size, we can proceed by iteratively updating
 
