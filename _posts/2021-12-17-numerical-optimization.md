@@ -289,7 +289,7 @@ which can be solved to obtain $\hat{p} = - (\nabla^2 f(x))^{-1} \nabla f(x)$.
 
 ### Newton method
 
-This gives rise to the Newton method. At each iteration, we compute the local quadratic approximation to $f$ and set $x_{k+1} = x_{k} + p_k^*$ to be the minimizer of this local approximation. Coincidentally, this is equivalent tothe application of *Newton's method for root-finding* to the Gradient $\nabla f(x)$, as we are essentially looking for a root of $\nabla f(x)$.
+This gives rise to the Newton method. At each iteration, we compute the local quadratic approximation to $f$ and set $x_{k+1} = x_{k} + \hat{p}_k$ to be the minimizer of this local approximation. Coincidentally, this is equivalent tothe application of *Newton's method for root-finding* to the Gradient $\nabla f(x)$, as we are essentially looking for a root of $\nabla f(x)$.
 
 
 
