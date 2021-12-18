@@ -9,7 +9,7 @@ tags:
   - PyTorch
 ---
 
-This is the first post in a series of posts that I am planning to write on the topic of machine learning. This article introduces fundamental algorithms in numerical optimization. For now, this is the Gradient Descent and Netwon algorithm. I might extend it with momentum based methods and conjugate gradient methods in the future.
+This is the first post in a series of posts that I am planning to write on the topic of machine learning. This article introduces fundamental algorithms in numerical optimization. For now, this is the Gradient Descent and Netwon algorithm. I might extend it with momentum based methods and conjugate gradient methods in the future. All of the posts are essentially Jupyter notebooks that I will publish in [this repository](https://github.com/bonevbs/ml_notebooks).
 
 ## Introduction
 
