@@ -237,7 +237,7 @@ plot_minimizier(objective_function, bounds=bounds, trace=trace)
     
 
 
-Very good! We can see that the updates are parallel to the gradient and move in the direction of steepest descent as we expected. Moreover, we observe that the step sizes $\alpha_k$ seem to be chosen reasonably, such that the method converges to the minimum. In fact, the Armillo-Goldstein condition with the chosen parameter is sufficient to guarantee convergence for a strictly convex function (insert ref.).
+Very good! We can see that the updates are parallel to the gradient and move in the direction of steepest descent as we expected. Moreover, we observe that the step sizes $\alpha_k$ seem to be chosen reasonably, such that the method converges to the minimum. In fact, the Armillo-Goldstein condition with the chosen parameter is sufficient to guarantee convergence for a strictly convex function.
 
 Let us now try another example, the Rosenbrock function $f(x_1, x_2) = (1-x_1)^2 + 100 (x_2 - x_1^2)^2$, which is a pathological example, with a narrow, curved valley. This proves to be difficult for gradient descent methods. Let us define the function and apply gradient descent:
 
