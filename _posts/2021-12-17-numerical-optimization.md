@@ -1,5 +1,5 @@
 ---
-title: 'An introduction to numerical optimization with Python'
+title: 'An introduction to numerical optimization with Python (Part 1)'
 date: 2021-12-17
 permalink: /posts/numerical-optimization/
 tags:
