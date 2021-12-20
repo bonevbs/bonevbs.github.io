@@ -319,7 +319,6 @@ def newton_method(f, x0):
     x.requires_grad = True
     f.zero_grad()
     k += 1
-  # compute the Wolfe condition
   return trace
 
 objective_function = quadratic_form(d)
