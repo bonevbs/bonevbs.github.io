@@ -32,6 +32,13 @@ I enjoy writing software and making it available, so it may benefit others. Some
     </tr>  -->
 </table>
 
+You can install `torch-harmonics` by running
+```bash
+git clone git@github.com:NVIDIA/torch-harmonics.git
+pip install ./torch_harmonics
+```
+
+
 <!-- [![torch-harmonics](https://raw.githubusercontent.com/NVIDIA/torch-harmonics/main/images/logo/logo.png)](https://github.com/NVIDIA/torch-harmonics) -->
 
 ## HssMatrices.jl
