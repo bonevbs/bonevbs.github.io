@@ -21,9 +21,9 @@ I enjoy writing software and making it available, so it may benefit others. Some
 
 <table border="0" cellspacing="0" cellpadding="0">
     <tr>
-        <td><img src="https://raw.githubusercontent.com/NVIDIA/torch-harmonics/main/images/zonal_jet.gif"  width="240"></td>
-        <td><img src="https://raw.githubusercontent.com/NVIDIA/torch-harmonics/main/images/ginzburg-landau.gif"  width="240"></td>
-        <td><img src="https://raw.githubusercontent.com/NVIDIA/torch-harmonics/main/images/allen-cahn.gif"  width="240"></td>
+        <td><img src="https://media.githubusercontent.com/media/NVIDIA/torch-harmonics/main/images/zonal_jet.gif"  width="240"></td>
+        <td><img src="https://media.githubusercontent.com/media/NVIDIA/torch-harmonics/main/images/ginzburg-landau.gif"  width="240"></td>
+        <td><img src="https://media.githubusercontent.com/media/NVIDIA/torch-harmonics/main/images/allen-cahn.gif"  width="240"></td>
     </tr> 
 <!--     <tr>
         <td style="text-align:center; border-style : hidden!important;">Shallow Water Eqns.</td>
