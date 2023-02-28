@@ -12,13 +12,21 @@ I enjoy writing software and making it available, so it may benefit others. Some
 ## torch-harmonics
 
 <a href="https://github.com/NVIDIA/torch-harmonics">
-<p align="center">
+<p align="left">
     <img src="https://raw.githubusercontent.com/NVIDIA/torch-harmonics/main/images/logo/logo.png"  width="568">
 </p>
 </a>
 
 `torch_harmonics` is a differentiable implementation of the Spherical Harmonic transform in PyTorch. It uses quadrature to compute the projection onto the associated Legendre polynomials and FFTs for the projection onto the harmonic basis. This algorithm tends to outperform others with better asymptotic scaling for most practical purposes.
 
+<p align="left">
+    <img src="https://media.githubusercontent.com/media/NVIDIA/torch-harmonics/main/images/zonal_jet.gif"  width="568">
+    <img src="https://media.githubusercontent.com/media/NVIDIA/torch-harmonics/main/images/ginzburg-landau.gif"  width="568">
+    <img src="https://media.githubusercontent.com/media/NVIDIA/torch-harmonics/main/images/allen-cahn.gif"  width="568">
+</p>
+
+
+<!-- 
 <table border="0" cellspacing="0" cellpadding="0">
     <tr>
         <td><img src="https://media.githubusercontent.com/media/NVIDIA/torch-harmonics/main/images/zonal_jet.gif"  width="240"></td>
@@ -30,7 +38,7 @@ I enjoy writing software and making it available, so it may benefit others. Some
         <td style="text-align:center; border-style : hidden!important;">Ginzburg-Landau Eqn.</td>
         <td style="text-align:center; border-style : hidden!important;">Allen-Cahn Eqn.</td>
     </tr>  -->
-</table>
+</table> -->
 
 You can install `torch-harmonics` by running
 ```bash
