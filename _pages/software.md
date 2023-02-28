@@ -9,6 +9,10 @@ redirect_from:
 
 I enjoy writing software and making it available, so it may benefit others. Some projects that are publicly avaiable and which I am proud of are listed here. A complete list is available on [my GitHub page](https://github.com/bonevbs).
 
+## torch-harmonics
+
+[![torch-harmonics](https://raw.githubusercontent.com/NVIDIA/torch-harmonics/blob/main/images/logo/logo.png)](https://github.com/NVIDIA/torch-harmonics)
+
 ## HssMatrices.jl
 
 [![Build status (Github Actions)](https://github.com/bonevbs/HssMatrices.jl/workflows/CI/badge.svg)](https://github.com/bonevbs/HssMatrices.jl/actions)
