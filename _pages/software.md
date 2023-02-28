@@ -12,9 +12,9 @@ I enjoy writing software and making it available, so it may benefit others. Some
 ## torch-harmonics
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/NVIDIA/torch-harmonics/blob/main/images/logo/logo.png"  width="568">
+    <img src="https://raw.githubusercontent.com/NVIDIA/torch-harmonics/main/images/logo/logo.png"  width="568">
 </p>
-[![torch-harmonics](https://raw.githubusercontent.com/NVIDIA/torch-harmonics/blob/main/images/logo/logo.png)](https://github.com/NVIDIA/torch-harmonics)
+[![torch-harmonics](https://raw.githubusercontent.com/NVIDIA/torch-harmonics/main/images/logo/logo.png)](https://github.com/NVIDIA/torch-harmonics)
 
 ## HssMatrices.jl
 
