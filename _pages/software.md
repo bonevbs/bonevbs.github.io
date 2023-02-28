@@ -20,9 +20,9 @@ I enjoy writing software and making it available, so it may benefit others. Some
 `torch_harmonics` is a differentiable implementation of the Spherical Harmonic transform in PyTorch. It uses quadrature to compute the projection onto the associated Legendre polynomials and FFTs for the projection onto the harmonic basis. This algorithm tends to outperform others with better asymptotic scaling for most practical purposes.
 
 <p align="left">
-     <img src="https://media.githubusercontent.com/media/NVIDIA/torch-harmonics/main/images/zonal_jet.gif"  width="256">
-     <img src="https://media.githubusercontent.com/media/NVIDIA/torch-harmonics/main/images/ginzburg-landau.gif"  width="256">
-     <img src="https://media.githubusercontent.com/media/NVIDIA/torch-harmonics/main/images/allen-cahn.gif"  width="256">
+     <img src="https://media.githubusercontent.com/media/NVIDIA/torch-harmonics/main/images/zonal_jet.gif"  width="238">
+     <img src="https://media.githubusercontent.com/media/NVIDIA/torch-harmonics/main/images/ginzburg-landau.gif"  width="238">
+     <img src="https://media.githubusercontent.com/media/NVIDIA/torch-harmonics/main/images/allen-cahn.gif"  width="238">
  </p>
 
 
