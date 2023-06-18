@@ -7,7 +7,7 @@ redirect_from:
   - /software.html
 ---
 
-Some projects that are publicly avaiable are listed here. More van be found on [my GitHub page](https://github.com/bonevbs).
+Some projects that are publicly avaiable are listed here. More can be found on [my GitHub page](https://github.com/bonevbs).
 
 ## torch-harmonics
 
