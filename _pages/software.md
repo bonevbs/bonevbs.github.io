@@ -7,7 +7,7 @@ redirect_from:
   - /software.html
 ---
 
-I enjoy writing software and making it available, so it may benefit others. Some projects that are publicly avaiable and which I am proud of are listed here. A complete list is available on [my GitHub page](https://github.com/bonevbs).
+Some projects that are publicly avaiable are listed here. More van be found on [my GitHub page](https://github.com/bonevbs).
 
 ## torch-harmonics
 
@@ -17,19 +17,32 @@ I enjoy writing software and making it available, so it may benefit others. Some
 </p>
 </a> -->
 
-[torch_harmonics](https://github.com/NVIDIA/torch-harmonics) is a differentiable implementation of the Spherical Harmonic transform in PyTorch. It uses quadrature to compute the projection onto the associated Legendre polynomials and FFTs for the projection onto the harmonic basis. This algorithm tends to outperform others with better asymptotic scaling for most practical purposes.
+
+[![Build status (Github Actions)](https://github.com/NVIDIA/torch-harmonics/actions/workflows/tests.yml/badge.svg)](https://github.com/NVIDIA/torch-harmonics/actions/workflows/tests.yml)
+[![pypi](https://img.shields.io/pypi/v/torch_harmonics)](https://pypi.org/project/torch_harmonics/)
+
+`torch-harmonics` is a differentiable implementation of the Spherical Harmonic transform in PyTorch. It was originally implemented to enable Spherical Fourier Neural Operators (SFNO). It uses quadrature rules to compute the projection onto the associated Legendre polynomials and FFTs for the projection onto the harmonic basis. This algorithm tends to outperform others with better asymptotic scaling for most practical purposes.
+
+`torch-harmonics` uses PyTorch primitives to implement these operations, making it fully differentiable. Moreover, the quadrature can be distributed onto multiple ranks making it spatially distributed.
+
+`torch-harmonics` has been used to implement a variety of differentiable PDE solvers which generated the animations below. Moreover, it has enabled the development of Spherical Fourier Neural Operators (SFNOs)
 
 <p align="left">
+     <img src="https://media.githubusercontent.com/media/NVIDIA/torch-harmonics/main/images/sfno.gif"  width="238">
      <img src="https://media.githubusercontent.com/media/NVIDIA/torch-harmonics/main/images/zonal_jet.gif"  width="238">
-     <img src="https://media.githubusercontent.com/media/NVIDIA/torch-harmonics/main/images/ginzburg-landau.gif"  width="238">
      <img src="https://media.githubusercontent.com/media/NVIDIA/torch-harmonics/main/images/allen-cahn.gif"  width="238">
  </p>
 
+```
+pip install torch-harmonics
+```
 
-You can install `torch-harmonics` by running
-```bash
+Build in your environment using the Python package:
+
+```
 git clone git@github.com:NVIDIA/torch-harmonics.git
-pip install ./torch_harmonics
+cd torch-harmonics
+pip install -e .
 ```
 
 ## HssMatrices.jl
@@ -45,6 +58,11 @@ You can install HssMatrices with the built in package manager by running
 ```julia
 (@v1.6) pkg> add HssMatrices
 ```
+
+## HierarchicalSolvers.jl
+
+Hierarchical solvers is an approximate sparse direct solver, entirely written in Julia. It can run in superlinear complexity as approximate solver employing lowrank and hierarchically structured low-rank (HSS) matrices to compress Gauss transforms and Schur complements. As such it can be utilzed as a preconditioner.
+
 
 ## Extensions to nodal-dg
 
