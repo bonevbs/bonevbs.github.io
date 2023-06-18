@@ -61,7 +61,7 @@ You can install HssMatrices with the built in package manager by running
 
 ## HierarchicalSolvers.jl
 
-Hierarchical solvers is an approximate sparse direct solver, entirely written in Julia. It can run in superlinear complexity as approximate solver employing lowrank and hierarchically structured low-rank (HSS) matrices to compress Gauss transforms and Schur complements. As such it can be utilzed as a preconditioner.
+[Hierarchical solvers](https://github.com/bonevbs/HierarchicalSolvers.jl) is an approximate sparse direct solver, entirely written in Julia. It can run in superlinear complexity as approximate solver employing lowrank and hierarchically structured low-rank (HSS) matrices to compress Gauss transforms and Schur complements. As such it can be utilzed as a preconditioner.
 
 
 ## Extensions to nodal-dg
