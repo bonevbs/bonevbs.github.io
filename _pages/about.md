@@ -16,7 +16,7 @@ profile:
 news: true  # includes a list of news items
 latest_posts: true  # includes a list of the newest posts
 selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true  # includes social icons at the bottom of the page
+social: false # includes social icons at the bottom of the page
 ---
 
 Welcome! I am a ML/AI Engineer at NVIDIA working on Machine Learning and Numerical Algorithms. The prospect of applying mathematics, algorithms and physics to tackle the great challenges facing us today is what gets me out of bed everyday.
