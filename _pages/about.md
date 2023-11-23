@@ -2,12 +2,12 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: <a href='https://research.nvidia.com/person/boris-bonev'>NVIDIA Research</a>. Zurich, Switzerland
 
 profile:
-  align: right
+  align: left
   image: prof_pic.jpg
-  image_circular: false # crops the image to make it circular
+  image_circular: true # crops the image to make it circular
   more_info: >
     <p>555 your office number</p>
     <p>123 your address street</p>
@@ -19,8 +19,11 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+Welcome! I am a ML/AI Engineer at NVIDIA working on Machine Learning and Numerical Algorithms. The prospect of applying mathematics, algorithms and physics to tackle the great challenges facing us today is what gets me out of bed everyday.
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+I earned my [Ph.D. in Applied Mathematics](/files/thesis_compressed.pdf) from [EPFL](https://www.epfl.ch) under the supervision of [Prof. Jan S. Hesthaven](https://www.epfl.ch/labs/mcss/members/hesthaven/). Prior to that, I have obtained degrees in both Physics and in Aerospace Engineering. My [academic research](/research) focuses on computational methods for scientific applications. Check out [publications](/publications) and [software](/software) for more.
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+In the past, I have been fortunate to work, collaborate and learn from some truly awesome people. These include: [Anima Anandkumar](https://www.eas.caltech.edu/people/anima), [Maximilian Baust](https://mbaust.github.io), [Frank Giraldo](https://frankgiraldo.wixsite.com/mysite), [Mahya Hajihassanpour](https://mahyahhp.github.io/projects/), [Jan S. Hesthaven](https://www.epfl.ch/labs/mcss/members/hesthaven/), [Christian Hundt](https://scholar.google.com/citations?hl=en&user=jcoDb5gAAAAJ), [Karthik Kashinath](https://scholar.google.com/citations?user=sNMCgVwAAAAJ&hl=en), [Michal Kopera](https://www.boisestate.edu/computing/directory/faculty-directory-2/michal-kopera/), [Thorsten Kurth](https://scholar.google.com/citations?user=dGa1CFkAAAAJ&hl=en), [Jaideep Pathak](https://scholar.google.com/citations?user=cevw0gkAAAAJ&hl=en), [Lukas Prantl](https://ge.in.tum.de/about/lukas-prantl/), [Nils Thuerey](https://ge.in.tum.de/about/n-thuerey/)
+
+
+If you want to get in touch, feel free to contact ma via mail or connect with me on [LinkedIn](https://www.linkedin.com/in/bonevbs/).
