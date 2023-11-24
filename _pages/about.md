@@ -6,7 +6,7 @@ subtitle: <a href='https://research.nvidia.com/person/boris-bonev'>NVIDIA Resear
 
 profile:
   align: right
-  image: prof_pic.jpg
+  image: boris.jpg
   image_circular: true # crops the image to make it circular
   more_info: >
     hi
