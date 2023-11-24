@@ -1,8 +1,10 @@
 ---
+layout: page
 permalink: /research/
-title: "Research"
-excerpt: "Research"
-author_profile: true
+title: research
+description: research interests
+nav: true
+nav_order: 3
 redirect_from: 
   - /research.html
 ---
