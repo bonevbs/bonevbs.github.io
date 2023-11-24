@@ -81,8 +81,8 @@ analytics:
 # Site Author
 author:
   name             : "Boris Bonev"
-  avatar           : "boris.png"
-  bio              : "PhD in Applied Mathematics. Passionate about algorithms, machine learning, physics and of course, maths."
+  avatar           : "boris.jpg"
+  bio              : "ML Research Scientist @ NVIDIA. Background in Applied Mathematics and Physics."
   location         : "Zurich, Switzerland"
   employer         :
   pubmed           :
