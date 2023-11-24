@@ -1,6 +1,7 @@
 ---
 layout: post
-title: 'A visual exploration of Gaussian Processes and Infinite Neural Networks'
+title: A visual exploration of Gaussian Processes and Infinite Neural Networks
+description: A visual exploration of Gaussian processes
 date: 2022-04-18
 permalink: /posts/gaussian-processes/
 tags:

@@ -1,6 +1,7 @@
 ---
 layout: post
-title: 'An introduction to numerical optimization with Python (Part 1)'
+title: An introduction to numerical optimization with Python (Part 1)
+description: A visual exploration of first and second-order optimization methods with PyTorch
 date: 2021-12-17
 permalink: /posts/numerical-optimization/
 tags:
