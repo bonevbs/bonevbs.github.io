@@ -4,7 +4,7 @@ permalink: /research/
 title: research
 description: research interests
 nav: true
-nav_order: 3
+nav_order: 2
 redirect_from: 
   - /research.html
 ---
