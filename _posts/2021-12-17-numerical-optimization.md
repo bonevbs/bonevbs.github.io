@@ -103,7 +103,7 @@ plot_minimizier(objective_function)
 
 
     
-![png](/images/posts/numerical_optimization_9_0.png)
+![png](/blog/images/numerical_optimization_9_0.png)
     
 
 
@@ -235,7 +235,7 @@ plot_minimizier(objective_function, bounds=bounds, trace=trace)
 
 
     
-![png](/images/posts/numerical_optimization_19_0.png)
+![png](/blog/images/numerical_optimization_19_0.png)
     
 
 
@@ -271,7 +271,7 @@ plot_minimizier(objective_function, bounds=bounds, trace=trace)
 
 
     
-![png](/images/posts/numerical_optimization_23_0.png)
+![png](/blog/images/numerical_optimization_23_0.png)
     
 
 
@@ -337,7 +337,7 @@ plot_minimizier(objective_function, bounds=bounds, trace=trace)
 
 
     
-![png](/images/posts/numerical_optimization_27_0.png)
+![png](/blog/images/numerical_optimization_27_0.png)
     
 
 
@@ -357,7 +357,7 @@ plot_minimizier(objective_function, bounds=bounds, trace=trace)
 
 
     
-![png](/images/posts/numerical_optimization_29_0.png)
+![png](/blog/images/numerical_optimization_29_0.png)
     
 
 
