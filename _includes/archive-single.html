@@ -28,20 +28,24 @@
     
     <table>
       <tr>
-        <h2 class="archive__item-title" itemprop="headline">
-          {% if post.link %}
-            <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
-          {% else %}
-            <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
-          {% endif %}
-        </h2>
+        <td>
+        </td>
+        <td>
+          <h2 class="archive__item-title" itemprop="headline">
+            {% if post.link %}
+              <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
+            {% else %}
+              <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
+            {% endif %}
+          </h2>
+        </td>
       </tr>
       <tr>
-        {% if post.thumbnail %}
-          <td>
-            <img src="{{ post.thumbnail }}" style="float:left; padding: 0px 15px 0px 0px" width="200px" alt="">
-          </td>
-        {% endif %}
+        <td>
+          {% if post.thumbnail %}
+              <img src="{{ post.thumbnail }}" style="float:left; padding: 0px 15px 0px 0px" width="200px" alt="">
+          {% endif %}
+        </tr>
         
         <td>
           {% if post.read_time %}
