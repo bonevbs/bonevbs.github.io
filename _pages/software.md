@@ -9,6 +9,20 @@ redirect_from:
 
 Some projects that are publicly avaiable are listed here. More can be found on [my GitHub page](https://github.com/bonevbs).
 
+## makani
+
+[![tests](https://github.com/NVIDIA/makani/actions/workflows/tests.yml/badge.svg)](https://github.com/NVIDIA/makani/actions/workflows/tests.yml)
+
+Makani (the Hawaiian word for wind 🍃🌺) is an experimental library designed to enable the research and development of machine-learning based weather and climate models in PyTorch.
+
+<div align="center">
+<img src="https://github.com/NVIDIA/makani/blob/main/images/sfno_rollout.gif"  height="388px">
+</div>
+
+Makani was started by engineers and researchers at NVIDIA and NERSC to train [FourCastNet](https://github.com/NVlabs/FourCastNet), a deep-learning based weather prediction model.
+
+Makani is a research code built for massively parallel training of weather and climate prediction models on 100+ GPUs and to enable the development of the next generation of weather and climate models. Among others, Makani was used to train [Spherical Fourier Neural Operators (SFNO)](https://developer.nvidia.com/blog/modeling-earths-atmosphere-with-spherical-fourier-neural-operators/) and [Adaptive Fourier Neural Operators (AFNO)](https://arxiv.org/abs/2111.13587) on the ERA5 dataset. Makani is written in [PyTorch](https://pytorch.org) and supports various forms of model- and data-parallelism, asynchronous loading of data, unpredicted channels, autoregressive training and much more.
+
 ## torch-harmonics
 
 <!-- <a href="https://github.com/NVIDIA/torch-harmonics">
