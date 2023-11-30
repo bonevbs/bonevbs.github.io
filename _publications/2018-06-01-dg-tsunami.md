@@ -2,7 +2,7 @@
 title: "Discontinuous Galerkin scheme for the spherical shallow water equations with applications to tsunami modeling and prediction"
 collection: publications
 permalink: /publications/2018-06-01-dg-tsunami
-excerpt: 'This paper is about Tsunami simulations using a Discontinuous Galerkin method for the Spherical Shallow Water Equations. We present a method that is well-balanced even when wetting-drying and dynamically adaptive meshing is considered. We demonstrate this using large-scale tsunami simulations such as the 2011 Tohoku tsunami. Results are compared to real-world measurements.'
+excerpt: 'A novel well-balanced Discontinuous Galerkin scheme for the spherical shallow water equations. We present physically consistent wetting-drying schemes, which seamlessly handle dry areas and can be used with arbitrary order and adaptively refined meshes.'
 date: 2018-06-01
 venue: 'Journal of Computational Physics'
 paperurl: 'http://dx.doi.org/10.1016/j.jcp.2018.02.008'
