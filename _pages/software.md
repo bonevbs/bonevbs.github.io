@@ -53,7 +53,7 @@ pip install -e .
 Makani (the Hawaiian word for wind 🍃🌺) is an experimental library designed to enable the research and development of machine-learning based weather and climate models in PyTorch.
 
 <div align="center">
-<img src="https://github.com/NVIDIA/makani/blob/main/images/sfno_rollout.gif"  height="388px">
+<img src="https://github.com/NVIDIA/modulus-makani/blob/main/images/sfno_rollout.gif?raw=true"  height="388px">
 </div>
 
 Makani was started by engineers and researchers at NVIDIA and NERSC to train [FourCastNet](https://github.com/NVlabs/FourCastNet), a deep-learning based weather prediction model.
