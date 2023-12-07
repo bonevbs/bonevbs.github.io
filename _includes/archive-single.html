@@ -18,14 +18,13 @@
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
     {% if include.type == "grid" and teaser %}
       <div class="archive__item-teaser">
-        <img src="{{ teaser }}" style="float:left; padding: 0px 15px 0px 0px" width="200px" alt="">
-        <!-- <img src=
+        <img src=
           {% if teaser contains "://" %}
             "{{ teaser }}"
           {% else %}
             "{{ teaser | prepend: "/images/" | prepend: base_path }}"
           {% endif %}
-          alt=""> -->
+          alt="">
       </div>
     {% endif %}
 
@@ -43,6 +42,10 @@
     
     {% if post.read_time %}
       <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> {% include read-time.html %}</p>
+    {% endif %}
+
+    {% if post.authors %}
+      <p>{{ post.dauthors }} </p>
     {% endif %}
 
         {% if post.collection == 'teaching' %}

@@ -1,8 +1,8 @@
 ---
 title: "Discontinuous Galerkin scheme for the spherical shallow water equations with applications to tsunami modeling and prediction"
+authors: "Bonev, Boris; Hesthaven, Jan S.; Giraldo, Francis X.; Kopera, Michal A."
 collection: publications
 permalink: /publications/2018-06-01-dg-tsunami
-excerpt: 'A novel well-balanced Discontinuous Galerkin scheme for the spherical shallow water equations. We present physically consistent wetting-drying schemes, which seamlessly handle dry areas and can be used with arbitrary order and adaptively refined meshes.'
 date: 2018-06-01
 venue: 'Journal of Computational Physics'
 paperurl: 'http://dx.doi.org/10.1016/j.jcp.2018.02.008'
