@@ -1,8 +1,8 @@
 ---
 title: "Generating Liquid Simulations with Deformation-aware Neural Networks"
+authors: "Prantl, Lukas; Bonev, Boris; Thuerey Nils"
 collection: publications
 permalink: /publication/2018-09-28-liquid-deformation-networks
-excerpt: 'A deformation-based method using neural networks to generate liquid simulations on the fly. Space-time datasets are used to learn deformation networks which can reconstruct fluid fields for novel parameters. The method is efficient and can be run in real-time on a smartphone.'
 date: 2018-09-28
 venue: 'International Conference on Learning Representations (ICLR)'
 paperurl: 'https://openreview.net/pdf?id=HyeGBj09Fm'

@@ -1,8 +1,8 @@
 ---
 title: "A hierarchical preconditioner for wave problems in quasilinear complexity"
+authors: "Bonev, Boris; Hesthaven, Jan S."
 collection: publications
 permalink: /publications/2020-09-07-hierarchical-preconditioner
-excerpt: 'My most recent work is on hierarchical preconditioners for wave problems. These methods exploit a nested-dissection type hierarchy and hierarchical matrices to compute an approximate factorization to a matrix efficiently.'
 date: 2020-09-07
 venue: 'SIAM: Journal on Scientific Computing'
 paperurl: 'https://infoscience.epfl.ch/record/279971/files/article.pdf'
