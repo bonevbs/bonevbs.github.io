@@ -69,6 +69,9 @@
       {% if post.slides %}
         <a href="/download/{{ page.slug }}_slides.pdf" style="text-decoration: none"><i class="far fa-file-pdf" aria-hidden="true"></i> Slides</a>&nbsp;&nbsp;
       {% endif %}
+      {% if post.video %}
+        <a href="{{ post.video }}" style="text-decoration: none"><i class="fas fa-fw fa-film" aria-hidden="true"></i> Video</a>&nbsp;&nbsp;
+      {% endif %}
       {% if post.citation %}
         <a href="/download/{{ page.slug }}.bib" style="text-decoration: none"><i class="fas fa-fw fa-quote-left" aria-hidden="true"></i> BibTex</a>&nbsp;&nbsp;
       {% endif %}
