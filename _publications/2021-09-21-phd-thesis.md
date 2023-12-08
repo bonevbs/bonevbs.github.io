@@ -8,6 +8,6 @@ venue: 'PhD Thesis, EPFL'
 paperurl: 'https://infoscience.epfl.ch/record/288711'
 redirect_to:
   - https://infoscience.epfl.ch/record/288711
-thumbnail: https://bonevbs.github.io/files/solver-complexity.png
+thumbnail: https://bonevbs.github.io/files/guitars_hprecon.png
 pdf: https://infoscience.epfl.ch/record/288711/files/EPFL_TH8641.pdf?ln=en
 ---
