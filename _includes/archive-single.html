@@ -62,23 +62,25 @@
     <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p></p>
     {% endif %}
 
-    <p>
-      {% if post.paperurl %}
-        <a href=" {{ post.paperurl }}" style="text-decoration: none"><i class="fas fa-fw fa-file-pdf" aria-hidden="true"></i> PDF</a>&nbsp;&nbsp;
-      {% endif %}
-      {% if post.slides %}
-        <a href="/download/{{ page.slug }}_slides.pdf" style="text-decoration: none"><i class="far fa-file-pdf" aria-hidden="true"></i> Slides</a>&nbsp;&nbsp;
-      {% endif %}
-      {% if post.video %}
-        <a href="{{ post.video }}" style="text-decoration: none"><i class="fas fa-fw fa-film" aria-hidden="true"></i> Video</a>&nbsp;&nbsp;
-      {% endif %}
-      {% if post.citation %}
-        <a href="/download/{{ page.slug }}.bib" style="text-decoration: none"><i class="fas fa-fw fa-quote-left" aria-hidden="true"></i> BibTex</a>&nbsp;&nbsp;
-      {% endif %}
-      {% if post.doi %}
-        <a href="{{ page.doi }}" style="text-decoration: none"><i class="fas fa-fw fa-external-link-alt" aria-hidden="true"></i> DOI</a>&nbsp;&nbsp;
-      {% endif %}
-    </p>
-
+    {% if post.collection == 'publications' %}
+      <p>
+        {% if post.paperurl %}
+          <a href=" {{ post.paperurl }}" style="text-decoration: none"><i class="fas fa-fw fa-file-pdf" aria-hidden="true"></i> PDF</a>&nbsp;&nbsp;
+        {% endif %}
+        {% if post.slides %}
+          <a href="/download/{{ page.slug }}_slides.pdf" style="text-decoration: none"><i class="far fa-file-pdf" aria-hidden="true"></i> Slides</a>&nbsp;&nbsp;
+        {% endif %}
+        {% if post.video %}
+          <a href="{{ post.video }}" style="text-decoration: none"><i class="fas fa-fw fa-film" aria-hidden="true"></i> Video</a>&nbsp;&nbsp;
+        {% endif %}
+        {% if post.citation %}
+          <a href="/download/{{ page.slug }}.bib" style="text-decoration: none"><i class="fas fa-fw fa-quote-left" aria-hidden="true"></i> BibTex</a>&nbsp;&nbsp;
+        {% endif %}
+        {% if post.doi %}
+          <a href="{{ page.doi }}" style="text-decoration: none"><i class="fas fa-fw fa-external-link-alt" aria-hidden="true"></i> DOI</a>&nbsp;&nbsp;
+        {% endif %}
+      </p>
+    {% endif %}
+    
   </article>
 </div>
