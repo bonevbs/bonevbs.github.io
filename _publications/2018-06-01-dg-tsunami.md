@@ -11,5 +11,4 @@ redirect_to:
 thumbnail: https://bonevbs.github.io/files/amr_showcase_prev.png
 pdf: https://infoscience.epfl.ch/record/232449?ln=en
 video: https://bonevbs.github.io/files/amr_showcase_prev.png)](https://bonevbs.github.io/files/amr_showcase.mp4
-citation: "Bonev, Boris; Hesthaven, Jan S.; Giraldo, Francis X.; Kopera, Michal A. (2018). "Discontinuous Galerkin scheme for the spherical shallow water equations with applications to tsunami modeling and prediction"; <i>Journal of Computational Physics</i>. 362, 425-448."
 ---
