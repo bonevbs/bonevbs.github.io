@@ -1,0 +1,14 @@
+---
+title: "Spherical Fourier Neural Operators: Learning Stable Dynamics on the Sphere"
+authors: "Boris Bonev, Thorsten Kurth, Christian Hundt, Jaideep Pathak, Maximilian Baust, Karthik Kashinath, Anima Anandkumar"
+collection: publications
+permalink: /publications/2023-04-24-sfno
+date: 2023-04-24
+venue: 'International Conference on Machine Learning'
+paperurl: 'https://openreview.net/forum?id=TwsJ9IOZDx'
+redirect_to:
+  - https://openreview.net/forum?id=TwsJ9IOZDx
+thumbnail: https://bonevbs.github.io/files/sfno.png
+pdf: https://openreview.net/pdf?id=TwsJ9IOZDx
+video: https://www.youtube.com/watch?v=OM3JZZN5uE4
+---
