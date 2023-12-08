@@ -8,7 +8,7 @@ venue: 'International Conference on Machine Learning'
 paperurl: 'https://openreview.net/forum?id=TwsJ9IOZDx'
 redirect_to:
   - https://openreview.net/forum?id=TwsJ9IOZDx
-thumbnail: https://bonevbs.github.io/files/sfno.png
+thumbnail: https://media.githubusercontent.com/media/NVIDIA/torch-harmonics/main/images/sfno.gif
 pdf: https://openreview.net/pdf?id=TwsJ9IOZDx
 video: https://www.youtube.com/watch?v=OM3JZZN5uE4
 ---
