@@ -11,6 +11,7 @@ redirect_to:
 thumbnail: https://bonevbs.github.io/files/amr_showcase_prev.png
 pdf: https://infoscience.epfl.ch/record/232449?ln=en
 ---
+
 This paper is about Tsunami simulations using a Discontinuous Galerkin method for the Spherical Shallow Water Equations. We present a method that is well-balanced even when wetting-drying and dynamically adaptive meshing is considered. We demonstrate this using large-scale tsunami simulations such as the 2011 Tohoku tsunami. Results are compared to real-world measurements.
 
 [![Watch the video](https://bonevbs.github.io/files/amr_showcase_prev.png)](https://bonevbs.github.io/files/amr_showcase.mp4).
