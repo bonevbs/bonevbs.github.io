@@ -61,29 +61,21 @@
     {% elsif post.excerpt and site.read_more == 'enabled' %}
     <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p></p>
     {% endif %}
-    
-    {% if post.citation and post.paperurl %}
-      <p>Recommended citation: {{ post.citation }} <a href="{{ post.paperurl }}"><u>{{ post.paperurl }}</u></a></p>
-    {% elsif post.citation %}
-      <p>Recommended citation: {{ post.citation }} </p>
-    {% elsif post.paperurl %}
-      <p>Download <a href=" {{ post.paperurl }} "><u>here</u></a></p>
-    {% endif %}
 
-    <div class="iconlink">
-      <p>
-        {% if post.pdf %}
-          <a href=" {{ post.pdf }} "><i class="fas fa-fw fa-file-pdf" aria-hidden="true"></i> PDF</a>&nbsp;&nbsp;
-        {% endif %}
-        {% if page.slides %}
-          <a href="/download/{{ page.slug }}_slides.pdf"><i class="far fa-file-pdf" aria-hidden="true"></i> Slides</a>&nbsp;&nbsp;
-        {% endif %}
-        <a href="/download/{{ page.slug }}.bib"><i class="fas fa-fw fa-quote-left" aria-hidden="true"></i> BibTex</a>&nbsp;&nbsp;
-        {% if page.doi %}
-          <a href="{{ page.doi }}"><i class="fas fa-external-link-alt" aria-hidden="true"></i> DOI</a>&nbsp;&nbsp;
-        {% endif %}
-      </p>
-    </div>
+    <p>
+      {% if post.paperurl %}
+        <a href=" {{ post.paperurl }}" style="text-decoration: none"><i class="fas fa-fw fa-file-pdf" aria-hidden="true"></i> PDF</a>&nbsp;&nbsp;
+      {% endif %}
+      {% if post.slides %}
+        <a href="/download/{{ page.slug }}_slides.pdf" style="text-decoration: none"><i class="far fa-file-pdf" aria-hidden="true"></i> Slides</a>&nbsp;&nbsp;
+      {% endif %}
+      {% if post.citation %}
+        <a href="/download/{{ page.slug }}.bib" style="text-decoration: none"><i class="fas fa-fw fa-quote-left" aria-hidden="true"></i> BibTex</a>&nbsp;&nbsp;
+      {% endif %}
+      {% if post.doi %}
+        <a href="{{ page.doi }}" style="text-decoration: none"><i class="fas fa-fw fa-external-link-alt" aria-hidden="true"></i> DOI</a>&nbsp;&nbsp;
+      {% endif %}
+    </p>
 
   </article>
 </div>
