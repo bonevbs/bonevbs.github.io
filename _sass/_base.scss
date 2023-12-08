@@ -261,6 +261,16 @@ svg:not(:root) {
   overflow: hidden;
 }
 
+/* links with icons */
+iconlink {
+   color: mix(#fff, $text-color, 25%);
+   font-family: $caption-font-family;
+   font-size: $type-size-6;
+   a {
+      text-decoration: none;
+   }
+}
+
 
 /*
    Navigation lists
