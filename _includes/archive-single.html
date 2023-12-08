@@ -70,7 +70,18 @@
       <p>Download <a href=" {{ post.paperurl }} "><u>here</u></a></p>
     {% endif %}
 
-    <a href="/download/{{ pub.slug}}.pdf"><i class="far fa-file-pdf"></i> PDF</a>&nbsp;&nbsp;
+    <p>
+      {% if post.pdf %}
+        <a href=" {{ post.pdf }} "><i class="far fa-file-pdf"></i> PDF</a>&nbsp;&nbsp;
+      {% endif %}
+      {% if page.slides %}
+        <a href="/download/{{ page.slug }}_slides.pdf"><i class="far fa-file-pdf"></i> Slides</a>&nbsp;&nbsp;
+      {% endif %}
+      <a href="/download/{{ page.slug }}.bib"><i class="far fa-file-alt"></i> BibTex</a>&nbsp;&nbsp;
+      {% if page.doi %}
+        <a href="{{ page.doi }}"><i class="fas fa-external-link-alt"></i> DOI</a>&nbsp;&nbsp;
+      {% endif %}
+    </p>
 
   </article>
 </div>
