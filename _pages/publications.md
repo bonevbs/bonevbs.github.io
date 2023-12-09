@@ -12,5 +12,7 @@ author_profile: true
 {% include base_path %}
 
 {% for post in site.publications reversed %}
-  {% include archive-single.html %}
+  <table border="0" width="100%">
+    {% include archive-single-table.html %}
+  </table>
 {% endfor %}
