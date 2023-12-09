@@ -5,6 +5,7 @@ collection: publications
 permalink: /publications/2023-10-03-ace-climate
 date: 2023-10-03
 venue: 'Under review'
+thumbnail: https://bonevbs.github.io/files/ace-preview.png
 paperurl: 'https://arxiv.org/abs/2310.02074'
 redirect_to:
   - https://arxiv.org/abs/2310.02074
