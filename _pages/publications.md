@@ -11,8 +11,8 @@ author_profile: true
 
 {% include base_path %}
 
-{% for post in site.publications reversed %}
-  <table border="0" width="100%">
-    {% include archive-single-table.html %}
-  </table>
-{% endfor %}
+<table cellspacing="0" cellpadding="0" width="100%" style="border: none">
+  {% for post in site.publications reversed %}
+      {% include archive-single-table.html %}
+  {% endfor %}
+</table>
