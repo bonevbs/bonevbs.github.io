@@ -60,7 +60,9 @@
             {% if post.slides %}
               <a href="/download/{{ page.slug }}_slides.pdf" style="text-decoration: none"><i class="far fa-file-pdf" aria-hidden="true"></i> Slides</a>&nbsp;&nbsp;
             {% endif %}
-    <!--         {% for vid in post.videos %} {% include archive-single.html %} {% endfor %} -->
+            {% for vid in post.videos %}
+              <a href="{{ vid }}" style="text-decoration: none"><i class="fas fa-fw fa-film" aria-hidden="true"></i> Video</a>&nbsp;&nbsp;
+            {% endfor %}
             {% if post.video %}
               <a href="{{ post.video }}" style="text-decoration: none"><i class="fas fa-fw fa-film" aria-hidden="true"></i> Video</a>&nbsp;&nbsp;
             {% endif %}
