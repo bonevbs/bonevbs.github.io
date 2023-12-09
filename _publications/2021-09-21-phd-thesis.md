@@ -1,10 +1,10 @@
 ---
 title: "Efficient algorithms for wave problems"
-authors: "Bonev, Boris"
+authors: "Boris Bonev"
 collection: publications
 permalink: /publications/2021-09-21-phd-thesis
 date: 2021-09-21
-venue: 'PhD Thesis, EPFL'
+venue: 'PhD Thesis, Applied Mathematics, EPFL'
 paperurl: 'https://infoscience.epfl.ch/record/288711'
 redirect_to:
   - https://infoscience.epfl.ch/record/288711
