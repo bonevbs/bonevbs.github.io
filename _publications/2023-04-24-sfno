@@ -4,7 +4,7 @@ authors: "Boris Bonev, Thorsten Kurth, Christian Hundt, Jaideep Pathak, Maximili
 collection: publications
 permalink: /publications/2023-04-24-sfno
 date: 2023-04-24
-venue: 'International Conference on Machine Learning'
+venue: 'International Conference on Machine Learning (ICML)'
 paperurl: 'https://openreview.net/forum?id=TwsJ9IOZDx'
 redirect_to:
   - https://openreview.net/forum?id=TwsJ9IOZDx
