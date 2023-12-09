@@ -1,6 +1,6 @@
 ---
 title: "A hierarchical preconditioner for wave problems in quasilinear complexity"
-authors: "Bonev, Boris; Hesthaven, Jan S."
+authors: " Boris Bonev, Jan S. Hesthaven"
 collection: publications
 permalink: /publications/2020-09-07-hierarchical-preconditioner
 date: 2020-09-07
