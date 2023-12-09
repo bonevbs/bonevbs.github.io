@@ -10,5 +10,7 @@ redirect_to:
   - http://dx.doi.org/10.1016/j.jcp.2018.02.008
 thumbnail: https://bonevbs.github.io/files/amr_showcase_prev.png
 pdf: https://infoscience.epfl.ch/record/232449?ln=en
-video: https://bonevbs.github.io/files/amr_showcase.mp4
+videos:
+  - https://bonevbs.github.io/files/amr_showcase.mp4
+  - https://bonevbs.github.io/files/tohoku.mp4
 ---
