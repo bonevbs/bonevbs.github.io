@@ -1,6 +1,6 @@
 ---
 title: "Discontinuous Galerkin scheme for the spherical shallow water equations with applications to tsunami modeling and prediction"
-authors: "Bonev, Boris; Hesthaven, Jan S.; Giraldo, Francis X.; Kopera, Michal A."
+authors: "Boris Bonev, Jan S. Hesthaven, Francis X. Giraldo, Michal A. Kopera"
 collection: publications
 permalink: /publications/2018-06-01-dg-tsunami
 date: 2018-06-01
