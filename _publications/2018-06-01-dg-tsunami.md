@@ -4,7 +4,7 @@ authors: "Boris Bonev, Jan S. Hesthaven, Francis X. Giraldo, Michal A. Kopera"
 collection: publications
 permalink: /publications/2018-06-01-dg-tsunami
 date: 2018-06-01
-venue: 'Journal of Computational Physics'
+venue: 'Journal of Computational Physics (JCP)'
 paperurl: 'http://dx.doi.org/10.1016/j.jcp.2018.02.008'
 redirect_to:
   - http://dx.doi.org/10.1016/j.jcp.2018.02.008
