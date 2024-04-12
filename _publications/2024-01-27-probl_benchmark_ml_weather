@@ -1,0 +1,13 @@
+---
+title: "A Practical Probabilistic Benchmark for AI Weather Models"
+authors: "Noah D. Brenowitz, Yair Cohen, Jaideep Pathak, Ankur Mahesh, Boris Bonev, Thorsten Kurth, Dale R. Durran, Peter Harrington, Michael S. Pritchard"
+collection: publications
+permalink: /publications/2024-01-27-probl_benchmark_ml_weather
+date: 2024-01-27
+venue: 'under review'
+paperurl: 'https://arxiv.org/abs/2401.15305'
+redirect_to:
+  - https://arxiv.org/abs/2401.15305
+thumbnail: https://bonevbs.github.io/files/probl_benchmark_ml_weather.png
+pdf: https://arxiv.org/pdf/2401.15305
+---
