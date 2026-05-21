@@ -8,4 +8,6 @@ _site
 .tweet-cache
 Gemfile.lock
 vendor
+.cv_extract/
+/cv_boris.pdf
 

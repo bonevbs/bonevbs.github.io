@@ -2,96 +2,96 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
-    - name: Date of Birth
-      value: 14th March 1879
-    - name: Languages
-      value: English, German
-
-- title: Education
-  type: time_table
-  contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
-      description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
-      description:
-        - Description 1.
-        - Description 2.
+      value: Boris Bonev
+    - name: Email
+      value: <a href="mailto:bonevbs@gmail.com">bonevbs@gmail.com</a>
+    - name: Website
+      value: <a href="https://bonevbs.github.io">bonevbs.github.io</a>
+    - name: Google Scholar
+      value: <a href="https://scholar.google.com/citations?user=sYo-KS4AAAAJ">Profile</a>
 
 - title: Experience
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Senior Research Scientist
+      institution: NVIDIA Research, Zurich, Switzerland
+      year: 2023 – Present
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
+        - Led development of frontier AI weather models (FourCastNet 2/3) and Spherical Fourier Neural Operators.
+        - Research operationalized by NOAA, AWS, ECMWF, and MetDesk.
+        - Mentored interns and colleagues; research featured in White House PCAST presentation (2023).
+    - title: PhD in Applied Mathematics
+      institution: EPFL, Lausanne, Switzerland
+      year: 2017 – 2021
       description:
-        - Description 1.
-        - Description 2.
-
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
+        - Scalable sparse direct solvers using hierarchical matrices (quasi-linear complexity).
+        - Discontinuous Galerkin methods for spherical shallow water equations and tsunami modeling.
+        - Principal teaching assistant for seven semesters (analysis, probability, linear algebra).
+    - title: Research Assistant in Machine Learning
+      institution: TU Munich, Germany
+      year: 2016 – 2017
       description:
+        - Machine learning algorithms for fluid simulations.
+        - Principal teaching assistant for introductory machine learning course.
 
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
-
-- title: Open Source Projects
+- title: Education
   type: time_table
   contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+    - title: PhD in Applied Mathematics
+      institution: EPFL, Lausanne, Switzerland
+      year: 2017 – 2021
+      description:
+        - Thesis: Efficient algorithms for wave problems
+        - Advisor: Jan S. Hesthaven
+    - title: B.S. in Physics
+      institution: University of Stuttgart, Germany
+      year: 2011 – 2015
+      description:
+        - Completed in parallel with Aerospace Engineering; focus on theoretical and computational physics.
+    - title: M.S. and B.S. in Aerospace Engineering
+      institution: University of Stuttgart, Germany
+      year: 2009 – 2015
+      description:
+        - Specialization in numerical and mathematical modelling.
 
 - title: Honors and Awards
   type: time_table
   contents:
-    - year: 1921
-      items: 
-        - Nobel Prize in Physics 
-        - Matteucci Medal
-    - year: 2029
-      items: 
-        - Max Planck Medal
+    - year: 2023
+      items:
+        - Work presented at White House PCAST (presented by A. Anandkumar)
+    - year: 2018
+      items:
+        - Fellowship, German National Scholarship Foundation (Studienstiftung des deutschen Volkes)
 
-- title: Academic Interests
+- title: Open Source
+  type: time_table
+  contents:
+    - title: <a href="https://github.com/NVIDIA/torch-harmonics">torch-harmonics</a>
+      year: ongoing
+      description: Differentiable spherical harmonic transforms in PyTorch.
+    - title: <a href="https://github.com/NVIDIA/makani">makani</a>
+      year: ongoing
+      description: GPU-accelerated weather and climate modeling in PyTorch.
+    - title: <a href="https://github.com/neuraloperator/neuraloperator">neuraloperator</a>
+      year: ongoing
+      description: Library for learning in infinite dimensions.
+    - title: <a href="https://github.com/bonevbs/HssMatrices.jl">HssMatrices.jl</a>
+      year: ongoing
+      description: Julia package for hierarchically semi-separable matrices.
+    - title: <a href="https://github.com/bonevbs/HierarchicalSolvers.jl">HierarchicalSolvers.jl</a>
+      year: ongoing
+      description: Quasi-linear complexity sparse direct solvers in Julia.
+
+- title: Skills
   type: nested_list
   contents:
-    - title: Topic 1.
-      items: 
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
+    - title: Theory
       items:
-        - Description 1.
-        - Description 2.
-
-- title: Other Interests
-  type: list
-  contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+        - Machine learning, numerical analysis, numerical linear algebra
+    - title: Code
+      items:
+        - Python, C++/CUDA, Julia, Fortran, MATLAB
+    - title: Languages
+      items:
+        - English, German, Bulgarian (C2); French, Spanish (B2); Japanese (B1)

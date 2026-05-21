@@ -7,24 +7,21 @@ subtitle: <a href='https://research.nvidia.com/person/boris-bonev'>NVIDIA Resear
 profile:
   align: right
   image: boris.jpg
-  image_circular: false # crops the image to make it circular
-  more_info: >
-    hi
-    # <p>555 your office number</p>
-    # <p>123 your address street</p>
-    # <p>Your City, State 12345</p>
+  image_circular: false
+  address: >
+    <p><a href="mailto:bonevbs@gmail.com">bonevbs@gmail.com</a></p>
+    <p><a href="https://scholar.google.com/citations?user=sYo-KS4AAAAJ">Google Scholar</a></p>
 
-news: false  # includes a list of news items
-latest_posts: true  # includes a list of the newest posts
-selected_papers: true # includes a list of papers marked as "selected={true}"
-social: false # includes social icons at the bottom of the page
+news: false
+latest_posts: true
+selected_papers: true
+social: true
 ---
 
-Welcome! I am a ML/AI Engineer at NVIDIA working on Machine Learning and Numerical Algorithms. The prospect of applying mathematics, algorithms and physics to tackle the great challenges facing us today is what gets me out of bed everyday.
+Welcome! I am a Senior Research Scientist at NVIDIA Research in Zurich, working on AI for science — bridging rigorous numerical methods and scalable machine learning. I pioneered [Spherical Fourier Neural Operators](https://developer.nvidia.com/blog/modeling-earths-atmosphere-with-spherical-fourier-neural-operators/) and contribute to the [FourCastNet](https://arxiv.org/abs/2507.12144) family of weather models, with research adopted at operational scale (NOAA, ECMWF, and others).
 
-I earned my [Ph.D. in Applied Mathematics](/files/thesis_compressed.pdf) from [EPFL](https://www.epfl.ch) under the supervision of [Prof. Jan S. Hesthaven](https://www.epfl.ch/labs/mcss/members/hesthaven/). Prior to that, I have obtained degrees in both Physics and in Aerospace Engineering. My [academic research](/research) focuses on computational methods for scientific applications. Check out [publications](/publications) and [software](/software) for more.
+I earned my [Ph.D. in Applied Mathematics](/files/thesis_compressed.pdf) from [EPFL](https://www.epfl.ch) under [Prof. Jan S. Hesthaven](https://www.epfl.ch/labs/mcss/members/hesthaven/). I also hold degrees in Physics and Aerospace Engineering from the University of Stuttgart. My [research](/research) spans neural operators, sparse solvers for wave problems, and discontinuous Galerkin methods for geophysical flows. See [publications](/publications) and [software](/software) for more.
 
-In the past, I have been fortunate to work, collaborate and learn from some truly awesome people. These include: [Anima Anandkumar](https://www.eas.caltech.edu/people/anima), [Maximilian Baust](https://mbaust.github.io), [Frank Giraldo](https://frankgiraldo.wixsite.com/mysite), [Mahya Hajihassanpour](https://mahyahhp.github.io/projects/), [Jan S. Hesthaven](https://www.epfl.ch/labs/mcss/members/hesthaven/), [Christian Hundt](https://scholar.google.com/citations?hl=en&user=jcoDb5gAAAAJ), [Karthik Kashinath](https://scholar.google.com/citations?user=sNMCgVwAAAAJ&hl=en), [Michal Kopera](https://www.boisestate.edu/computing/directory/faculty-directory-2/michal-kopera/), [Thorsten Kurth](https://scholar.google.com/citations?user=dGa1CFkAAAAJ&hl=en), [Jaideep Pathak](https://scholar.google.com/citations?user=cevw0gkAAAAJ&hl=en), [Lukas Prantl](https://ge.in.tum.de/about/lukas-prantl/), [Nils Thuerey](https://ge.in.tum.de/about/n-thuerey/)
+I have been fortunate to collaborate with [Anima Anandkumar](https://www.eas.caltech.edu/people/anima), [Thorsten Kurth](https://scholar.google.com/citations?user=dGa1CFkAAAAJ), [Jan S. Hesthaven](https://www.epfl.ch/labs/mcss/members/hesthaven/), [Jaideep Pathak](https://scholar.google.com/citations?user=cevw0gkAAAAJ), [Karthik Kashinath](https://scholar.google.com/citations?user=sNMCgVwAAAAJ), and many others.
 
-
-If you want to get in touch, feel free to contact ma via mail or connect with me on [LinkedIn](https://www.linkedin.com/in/bonevbs/).
+Contact me via [email](mailto:bonevbs@gmail.com) or [LinkedIn](https://www.linkedin.com/in/bonevbs/).

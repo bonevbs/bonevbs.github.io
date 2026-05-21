@@ -1,6 +1,33 @@
-"AJP":
-  url: https://aapt.scitation.org/journal/ajp
-  color: "#00369f"
-
-"PhysRev":
-  url: https://journals.aps.org/
+"NeurIPS":
+  url: https://neurips.cc/
+  color: "#159b52"
+"ICML":
+  url: https://icml.cc/
+  color: "#159b52"
+"ICLR":
+  url: https://iclr.cc/
+  color: "#159b52"
+"GMD":
+  url: https://gmd.copernicus.org/
+  color: "#117a42"
+"GRL":
+  url: https://agupubs.onlinelibrary.wiley.com/journal/19448007
+  color: "#117a42"
+"JAMES":
+  url: https://agupubs.onlinelibrary.wiley.com/journal/19422466
+  color: "#117a42"
+"JGR":
+  url: https://agupubs.onlinelibrary.wiley.com/
+  color: "#117a42"
+"SIAM":
+  url: https://www.siam.org/
+  color: "#159b52"
+"JCP":
+  url: https://www.journals.elsevier.com/journal-of-computational-physics
+  color: "#159b52"
+"Ocean":
+  url: https://www.journals.elsevier.com/ocean-modelling
+  color: "#159b52"
+"EPFL":
+  url: https://www.epfl.ch/
+  color: "#117a42"
