@@ -1,7 +1,7 @@
 ---
 layout: page
 permalink: /software/
-title: software
+title: Software
 description: Open-source software and libraries.
 nav: true
 nav_order: 3
@@ -33,7 +33,7 @@ pip install torch-harmonics
 
 [![tests](https://github.com/NVIDIA/makani/actions/workflows/tests.yml/badge.svg)](https://github.com/NVIDIA/makani/actions/workflows/tests.yml)
 
-[Makani](https://github.com/NVIDIA/makani) is a library for GPU-accelerated machine-learning weather and climate models in PyTorch. It was used to train [FourCastNet](https://github.com/NVlabs/FourCastNet), [SFNO](https://developer.nvidia.com/blog/modeling-earths-atmosphere-with-spherical-fourier-neural-operators/), and [AFNO](https://arxiv.org/abs/2111.13587) on ERA5-scale data.
+[Makani](https://github.com/NVIDIA/makani) is a library for training large machine-learning weather models on either a few or a few thousand GPUs, on ERA5 and other similar datasets. It was used to train [FourCastNet](https://github.com/NVlabs/FourCastNet), [SFNO](https://developer.nvidia.com/blog/modeling-earths-atmosphere-with-spherical-fourier-neural-operators/), and [AFNO](https://arxiv.org/abs/2111.13587).
 
 <img src="https://github.com/NVIDIA/modulus-makani/blob/main/images/sfno_rollout.gif?raw=true" alt="Makani SFNO weather rollout">
 

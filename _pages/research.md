@@ -1,7 +1,7 @@
 ---
 layout: page
 permalink: /research/
-title: research
+title: Research
 description: Research interests in machine learning, scientific computing, and numerical algorithms.
 nav: true
 nav_order: 2

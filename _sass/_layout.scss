@@ -28,7 +28,18 @@ body.sticky-bottom-footer {
 
 // Full-width figures on research / software pages
 .post article.wide-media {
-  img {
+  // Shields.io / GitHub status badges (image inside link in a paragraph)
+  p > a > img {
+    width: auto;
+    max-width: none;
+    height: 1.25rem;
+    display: inline;
+    margin: 0 0.5rem 0.5rem 0;
+    vertical-align: middle;
+  }
+
+  // Standalone figures (not wrapped in a link)
+  p > img {
     width: 100%;
     max-width: 100%;
     height: auto;
@@ -59,6 +70,9 @@ body.sticky-bottom-footer {
     }
 
     img {
+      width: 100%;
+      height: auto;
+      display: block;
       margin: 0;
     }
   }

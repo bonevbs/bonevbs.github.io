@@ -50,16 +50,6 @@
               {%- assign author_is_self = true -%}
             {%- endif -%}
           {%- endif -%}
-          {%- assign coauthor_url = nil -%}
-          {%- if site.data.coauthors[author_last_name] -%}
-            {%- for coauthor in site.data.coauthors[author_last_name] -%}
-              {%- if coauthor.firstname contains author.first -%}
-                {%- assign coauthor_url = coauthor.url -%}
-                {%- break -%}
-              {%- endif -%}
-            {%- endfor -%}
-          {%- endif -%}
-
           {%- if forloop.length > 1 -%}
             {%- if forloop.first == false -%},&nbsp;{%- endif -%}
             {%- if forloop.last and author_array_limit == author_array_size -%}and&nbsp;{%- endif -%}
@@ -67,11 +57,7 @@
           {%- if author_is_self -%}
             <em>{{author.first}} {{author.last}}</em>
           {%- else -%}
-            {%- if coauthor_url -%}
-              <a href="{{coauthor_url}}">{{author.first}} {{author.last}}</a>
-            {%- else -%}
-              {{author.first}} {{author.last}}
-            {%- endif -%}
+            {{author.first}} {{author.last}}
           {%- endif -%}
         {%- endfor -%}
         {%- assign more_authors = author_array_size | minus: author_array_limit -%}
@@ -142,7 +128,9 @@
             <a class="abstract btn btn-sm z-depth-0" role="button">Abs</a>
           {%- endif %}
           {%- if entry.arxiv %}
-            <a href="http://arxiv.org/abs/{{ entry.arxiv }}" class="btn btn-sm z-depth-0" role="button">arXiv</a>
+            <a href="https://arxiv.org/abs/{{ entry.arxiv }}" class="btn btn-sm z-depth-0" role="button">arXiv</a>
+          {%- elsif entry.eprint %}
+            <a href="https://arxiv.org/abs/{{ entry.eprint }}" class="btn btn-sm z-depth-0" role="button">arXiv</a>
           {%- endif %}
           {%- if entry.bibtex_show %}
             <a class="bibtex btn btn-sm z-depth-0" role="button">Bib</a>
@@ -150,13 +138,31 @@
           {%- if entry.html %}
             <a href="{{ entry.html }}" class="btn btn-sm z-depth-0" role="button">HTML</a>
           {%- endif %}
-          {%- if entry.pdf %}
-            {% if entry.pdf contains '://' -%}
-            <a href="{{ entry.pdf }}" class="btn btn-sm z-depth-0" role="button">PDF</a>
+          {%- assign pdf_href = entry.pdf -%}
+          {%- if pdf_href == nil or pdf_href == '' -%}
+            {%- if entry.eprint -%}
+              {%- assign pdf_href = entry.eprint | prepend: 'https://arxiv.org/pdf/' | append: '.pdf' -%}
+            {%- endif -%}
+          {%- endif -%}
+          {%- if pdf_href -%}
+            {%- assign pdf_href_lower = pdf_href | downcase -%}
+            {%- if pdf_href_lower contains 'mailto:' or pdf_href_lower contains '@' -%}
+              {%- assign pdf_href = nil -%}
+            {%- elsif pdf_href contains 'infoscience.epfl.ch/record/' -%}
+              {%- unless pdf_href contains '/files/' -%}
+                {%- assign pdf_href = nil -%}
+              {%- endunless -%}
+            {%- endif -%}
+          {%- endif -%}
+          {%- if pdf_href -%}
+            {% if pdf_href contains '://' -%}
+            <a href="{{ pdf_href }}" class="btn btn-sm z-depth-0" role="button">PDF</a>
+            {%- elsif pdf_href contains '/' -%}
+            <a href="{{ pdf_href | relative_url }}" class="btn btn-sm z-depth-0" role="button">PDF</a>
             {%- else -%}
-            <a href="{{ entry.pdf | prepend: '/assets/pdf/' | relative_url }}" class="btn btn-sm z-depth-0" role="button">PDF</a>
+            <a href="{{ pdf_href | prepend: '/assets/pdf/' | relative_url }}" class="btn btn-sm z-depth-0" role="button">PDF</a>
             {%- endif %}
-          {%- endif %}
+          {%- endif -%}
           {%- if entry.supp %}
             {% if entry.supp contains '://' -%}
             <a href="{{ entry.supp }}" class="btn btn-sm z-depth-0" role="button">Supp</a>

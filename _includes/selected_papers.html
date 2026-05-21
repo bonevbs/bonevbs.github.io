@@ -1,4 +1,9 @@
 
           <div class="publications">
-            {% bibliography -f {{ site.scholar.bibliography }} --group_by none --query @*[selected=true]* %}
+            {% bibliography -f {{ site.scholar.bibliography }} --group_by none -q @*[key^=bonev2025fourcastnet3]* %}
+            {% bibliography -f {{ site.scholar.bibliography }} --group_by none -q @*[key^=mahesh2025huge1]* %}
+            {% bibliography -f {{ site.scholar.bibliography }} --group_by none -q @*[key^=bonev2025attention]* %}
+            {% bibliography -f {{ site.scholar.bibliography }} --group_by none -q @*[key^=liu2024localno]* %}
+            {% bibliography -f {{ site.scholar.bibliography }} --group_by none -q @*[key^=wattmeyer2023ace]* %}
+            {% bibliography -f {{ site.scholar.bibliography }} --group_by none -q @*[key^=bonev2023sfno]* %}
           </div>

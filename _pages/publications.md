@@ -1,14 +1,14 @@
 ---
 layout: page
 permalink: /publications/
-title: publications
-description: Publications in reverse chronological order.
+title: Publications
+description:
 nav: true
 nav_order: 1
 ---
 <!-- _pages/publications.md -->
 
-Publications are listed from `_bibliography/papers.bib`. To add a paper, append a BibTeX entry there (see `CONTENT.md` in the repo root).
+Publications are listed in reverse chronological order (most recent first).
 
 <div class="publications">
 
