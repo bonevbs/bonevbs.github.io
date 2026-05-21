@@ -19,13 +19,13 @@ ML-based methods promise to greatly accelerate scientific computing. Recent adva
 
 ## Sparse direct solvers for wave problems
 
-Sparse direct solvers solve $A x = b$ without relying on many Krylov iterations — important for wave problems. We use *hierarchical matrices* to compress fill-in during factorization, enabling quasi-linear complexity for problems such as the Helmholtz equation. These methods also serve as preconditioners. See [our SIAM paper](https://epubs.siam.org/doi/10.1137/20M1365958) and [PhD dissertation](/files/thesis_compressed.pdf).
+Sparse direct solvers solve $A x = b$ without relying on many Krylov iterations — important for wave problems. We use *hierarchical matrices* to compress fill-in during factorization, enabling quasi-linear complexity for problems such as the Helmholtz equation. These methods also serve as preconditioners. See [our SIAM paper](https://epubs.siam.org/doi/10.1137/20M1365958) and [PhD dissertation]({{ '/files/thesis_compressed.pdf' | relative_url }}).
 
-![Helmholtz solutions on a guitar](/files/guitars_hprecon.png)
+![Helmholtz solutions on a guitar]({{ '/files/guitars_hprecon.png' | relative_url }})
 
 ## Discontinuous Galerkin methods for tsunami simulations
 
 Discontinuous Galerkin methods achieve high accuracy per degree of freedom for hyperbolic PDEs and scale well on HPC systems. We adapted DG to global tsunami modeling using the spherical shallow water equations, with well-balancedness, wetting/drying, and mesh adaptivity. See [JCP](https://doi.org/10.1016/j.jcp.2018.02.008) and [Ocean Modelling](https://doi.org/10.1016/j.ocemod.2019.101429).
 
-[![Tsunami AMR]({{ '/assets/img/publication_preview/amr_showcase_prev.png' | relative_url }})](https://bonevbs.github.io/files/amr_showcase.mp4)
-[![Tohoku simulation]({{ '/assets/img/publication_preview/tohoku_prev.png' | relative_url }})](https://bonevbs.github.io/files/tohoku.mp4)
+[![Tsunami AMR]({{ '/assets/img/publication_preview/amr_showcase_prev.png' | relative_url }})]({{ '/files/amr_showcase.mp4' | relative_url }})
+[![Tohoku simulation]({{ '/assets/img/publication_preview/tohoku_prev.png' | relative_url }})]({{ '/files/tohoku.mp4' | relative_url }})

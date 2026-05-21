@@ -1,12 +1,8 @@
 github_users:
-  - torvalds
-  - alshedivat
+  - bonevbs
 
 github_repos:
-  - alshedivat/al-folio
-  - twbs/bootstrap
-  - jekyll/jekyll
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - jpswalsh/academicons
-  - mathjax/MathJax
+  - bonevbs/HssMatrices.jl
+  - bonevbs/HierarchicalSolvers.jl
+  - NVIDIA/torch-harmonics
+  - NVIDIA/makani
