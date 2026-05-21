@@ -26,6 +26,27 @@ body.sticky-bottom-footer {
   max-width: $max-content-width;
 }
 
+// Teaching page — compact course list
+.teaching-list {
+  .teaching-entry {
+    margin-bottom: 1.1rem;
+  }
+
+  .teaching-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 0 0 0.15rem;
+    line-height: 1.35;
+  }
+
+  .teaching-meta {
+    font-size: 0.9rem;
+    color: var(--global-text-color-light);
+    margin: 0;
+    line-height: 1.4;
+  }
+}
+
 // Full-width figures on research / software pages
 .post article.wide-media {
   // Shields.io / GitHub status badges (image inside link in a paragraph)
@@ -47,6 +68,20 @@ body.sticky-bottom-footer {
     margin: 1.25rem 0;
   }
 
+  img.figure-half,
+  p > img.figure-half {
+    width: 50%;
+    max-width: 50%;
+    height: auto;
+    display: block;
+    margin: 1.25rem 0;
+
+    @media (max-width: 576px) {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+
   .media-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -62,6 +97,18 @@ body.sticky-bottom-footer {
 
       @media (max-width: 768px) {
         grid-template-columns: 1fr;
+      }
+    }
+
+    // Two thumbnails at ~33% line width each (grid container ≈ 2/3 width)
+    &.media-grid--2-third {
+      width: 66.666%;
+      max-width: 66.666%;
+      grid-template-columns: 1fr 1fr;
+
+      @media (max-width: 576px) {
+        width: 100%;
+        max-width: 100%;
       }
     }
 
