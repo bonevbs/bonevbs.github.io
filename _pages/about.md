@@ -10,6 +10,7 @@ profile:
   image_circular: false
   address: >
     <p><a href="https://scholar.google.com/citations?user=sYo-KS4AAAAJ">Google Scholar</a></p>
+    <p><a href="{{ '/assets/pdf/cv_boris.pdf' | relative_url }}">CV (PDF)</a></p>
 
 news: false
 latest_posts: true

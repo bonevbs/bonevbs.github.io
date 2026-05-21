@@ -10,4 +10,6 @@ Gemfile.lock
 vendor
 .cv_extract/
 /cv_boris.pdf
+assets/pdf/cv_boris.pdf
+**/cv_boris.pdf
 
