@@ -45,4 +45,4 @@ docker compose up
 bundle install && bundle exec jekyll serve
 ```
 
-Site URL is configured in [`_config.yml`](_config.yml) (`url` / `baseurl`).
+This site is built for **https://bonevbs.github.io/** (`url` + empty `baseurl` in [`_config.yml`](_config.yml)). Deploy from a repo named `bonevbs.github.io` (GitHub user Pages). Use `relative_url` for internal paths in Markdown/Liquid.
