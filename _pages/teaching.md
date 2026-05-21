@@ -6,16 +6,6 @@ nav: true
 nav_order: 5
 ---
 
-<div class="teaching-list">
+## EPFL 2017–2021
 
-{% assign courses = site.teaching | sort: 'date' | reverse %}
-{% for course in courses %}
-  {% unless course.path contains '_template' %}
-  <div class="teaching-entry">
-    <h4 class="teaching-title">{{ course.title }}</h4>
-    <p class="teaching-meta">{{ course.type }} · {{ course.venue }} · {{ course.date | date: "%Y" }}</p>
-  </div>
-  {% endunless %}
-{% endfor %}
-
-</div>
+Principal teaching assistant: Analysis 1 (for Physicists) (2017), Analysis 2 (for Physicists) (2017), Analysis 2 (for Electrical Engineers) (2018), Probability and Statistics (2018), Probability and Statistics (2019), Linear Algebra (for Life Sciences) (2019), Analysis 3 (for Physicists) (2020).

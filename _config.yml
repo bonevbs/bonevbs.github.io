@@ -124,9 +124,15 @@ blog_nav_title: Blog # your blog must have a title for it to be displayed in the
 blog_description: 
 permalink: /blog/:year/:title/
 
-# Pagination
+# Pagination (required for /blog/ index; see jekyll-paginate-v2)
 pagination:
-  enabled: false
+  enabled: true
+  per_page: 10
+  permalink: '/page/:num/'
+  title: ':title - page :num'
+  limit: 0
+  sort_field: date
+  sort_reverse: true
 
 related_blog_posts:
   enabled: false
@@ -266,8 +272,8 @@ jekyll-archives:
     tag: '/blog/tag/:name/'
     category: '/blog/category/:name/'
 
-display_tags: ['formatting', 'images', 'links', 'math', 'code'] # these tags will be displayed on the front page of your blog
-display_categories: ['blockquotes'] # these categories will be displayed on the front page of your blog
+display_tags: ['Machine Learning', 'Numerical optimization', 'Gaussian Processes', 'PyTorch', 'Julia'] # shown on /blog/
+display_categories: [] # leave empty unless you use post categories
 
 # -----------------------------------------------------------------------------
 # Jekyll Scholar
