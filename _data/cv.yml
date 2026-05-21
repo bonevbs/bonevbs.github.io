@@ -3,8 +3,6 @@
   contents:
     - name: Full Name
       value: Boris Bonev
-    - name: Email
-      value: <a href="mailto:bonevbs@gmail.com">bonevbs@gmail.com</a>
     - name: Website
       value: <a href="https://bonevbs.github.io">bonevbs.github.io</a>
     - name: Google Scholar

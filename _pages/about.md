@@ -9,7 +9,6 @@ profile:
   image: boris.jpg
   image_circular: false
   address: >
-    <p><a href="mailto:bonevbs@gmail.com">bonevbs@gmail.com</a></p>
     <p><a href="https://scholar.google.com/citations?user=sYo-KS4AAAAJ">Google Scholar</a></p>
 
 news: false
@@ -24,4 +23,4 @@ I earned my [Ph.D. in Applied Mathematics]({{ '/files/thesis_compressed.pdf' | r
 
 I have been fortunate to collaborate with [Anima Anandkumar](https://www.eas.caltech.edu/people/anima), [Thorsten Kurth](https://scholar.google.com/citations?user=dGa1CFkAAAAJ), [Jan S. Hesthaven](https://www.epfl.ch/labs/mcss/members/hesthaven/), [Jaideep Pathak](https://scholar.google.com/citations?user=cevw0gkAAAAJ), [Karthik Kashinath](https://scholar.google.com/citations?user=sNMCgVwAAAAJ), and many others.
 
-Contact me via [email](mailto:bonevbs@gmail.com) or [LinkedIn](https://www.linkedin.com/in/bonevbs/).
+Contact me on [LinkedIn](https://www.linkedin.com/in/bonevbs/).

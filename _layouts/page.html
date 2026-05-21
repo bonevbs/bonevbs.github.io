@@ -9,7 +9,7 @@ layout: default
     <p class="post-description">{{ page.description }}</p>
   </header>
 
-  <article>
+  <article{% if page.wide_media %} class="wide-media"{% endif %}>
     {{ content }}
   </article>
 

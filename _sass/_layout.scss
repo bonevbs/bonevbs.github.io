@@ -26,6 +26,44 @@ body.sticky-bottom-footer {
   max-width: $max-content-width;
 }
 
+// Full-width figures on research / software pages
+.post article.wide-media {
+  img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.25rem 0;
+  }
+
+  .media-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.25rem 0;
+
+    @media (max-width: 576px) {
+      grid-template-columns: 1fr;
+    }
+
+    &.media-grid--3 {
+      grid-template-columns: repeat(3, 1fr);
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    a {
+      display: block;
+    }
+
+    img {
+      margin: 0;
+    }
+  }
+}
+
 // Profile
 .profile {
   img {
