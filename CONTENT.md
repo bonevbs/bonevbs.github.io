@@ -31,9 +31,9 @@ Order is fixed in [`_includes/selected_papers.html`](_includes/selected_papers.h
 
 1. Copy [`_teaching/_template.md`](_teaching/_template.md) to `_teaching/YYYY-term-slug.md`.
 2. Set `published: true` (or remove `published: false` from the template).
-3. Fill `title`, `type`, `venue`, `date`, `location`, and the markdown body.
+3. Fill `title`, `type`, `venue`, and `date` in the front matter (no body text needed).
 
-Courses appear on [/teaching/](_pages/teaching.md) as a single list (no separate page per course). Add markdown files under `_teaching/` only.
+Courses appear on [/teaching/](_pages/teaching.md) as a compact list (no separate page per course). Add markdown files under `_teaching/` only.
 
 ## Blog posts
 
