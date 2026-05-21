@@ -846,6 +846,17 @@ html.transition *:after {
 
 // Extra Markdown style (post Customization)
 .post {
+  // Block-style (justified) body text
+  article p,
+  .clearfix p,
+  article > ul > li,
+  .clearfix > ul > li,
+  article > ol > li,
+  .clearfix > ol > li {
+    text-align: justify;
+    hyphens: auto;
+  }
+
   .post-meta {
     color: var(--global-text-color-light);
     font-size: 0.875rem;
