@@ -17,11 +17,23 @@ Co-author links: add entries to [`_data/coauthors.yml`](_data/coauthors.yml) key
 
 ### Thumbnails (uniform size)
 
-- Add `preview={your-image.png}` in the bib entry; place the file in `assets/img/publication_preview/`.
 - All preview images are displayed at a fixed height (140px) with `object-fit: cover` via CSS.
-- Entries without `preview` show a venue **abbr** badge instead.
+- **Deploy CI** runs `bin/generate_publication_previews.py` before each `jekyll build` (see [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)). You do not need to run it manually for the live site.
+- Generated files: `assets/img/publication_preview/{bibkey}.png` and [`_data/generated_previews.yml`](_data/generated_previews.yml) (tells the layout which auto-thumbs exist).
+- Optional override: `preview={your-image.png}` in `papers.bib` for a custom file; entries with no thumb and no generated PNG show the venue **abbr** badge.
 
-Optional: run `bin/fetch_publication_previews.py` before building to try downloading Open Graph images from `html` / arXiv URLs (requires network and ImageMagick). The script does not modify `papers.bib` automatically — review downloads and add `preview=` fields yourself.
+**Local run** (optional, for `jekyll serve` without waiting for CI):
+
+```bash
+sudo apt-get install -y poppler-utils ghostscript imagemagick   # once
+python3 bin/generate_publication_previews.py
+```
+
+The script tries: **PDF page 1** → **page 2** if page 1 is blank → **embedded figure** (with `pip install pymupdf`) → **Open Graph** from `html=`. Add `html`, `pdf`, or `eprint` in the bib entry so CI can fetch a source.
+
+Flags: `--dry-run`, `--force`, `--keys KEY`, `--update-bib` (optional; writes `preview=` into `papers.bib` — not required for CI).
+
+To disable preview generation in CI, set repo variable `SKIP_PUBLICATION_PREVIEWS` = `true`.
 
 ### Homepage selected papers
 

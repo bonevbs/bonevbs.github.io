@@ -33,6 +33,21 @@ jobs:
         valueFile: '_config.yml'
         propertyPath: 'giscus.repo'
         value: ${{ github.repository }}
+    - name: Cache publication previews
+      uses: actions/cache@v4
+      with:
+        path: |
+          assets/img/publication_preview
+          _data/generated_previews.yml
+        key: pub-previews-${{ hashFiles('_bibliography/papers.bib') }}
+        restore-keys: |
+          pub-previews-
+    - name: Generate publication previews
+      if: ${{ vars.SKIP_PUBLICATION_PREVIEWS != 'true' }}
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y poppler-utils ghostscript imagemagick
+        python3 bin/generate_publication_previews.py
     - name: Install and Build 🔧
       run: |
         pip3 install --upgrade jupyter
