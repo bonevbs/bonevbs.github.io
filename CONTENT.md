@@ -33,10 +33,10 @@ python3 bin/generate_publication_previews.py
 
 Add a direct link in the bib entry: `pdf={https://…/paper.pdf}` or `pdf={/files/your.pdf}` for site-local files. The script only reads `pdf=` (no URL guessing from `eprint` / `html`). By default it extracts the **first embedded figure** from the PDF (PyMuPDF); if none is found, it falls back to rendering a full page. Use `--full-page` or set `EXTRACT_EMBEDDED_FIGURES = False` in the script to revert to page-only thumbnails.
 
-**Clear and regenerate** (existing PNGs are skipped unless you force):
+**Clear and regenerate** (existing `{bibkey}.png` files are skipped unless you force):
 
 ```bash
-python3 bin/generate_publication_previews.py --clear   # deletes all previews + manifest, then rebuilds
+python3 bin/generate_publication_previews.py --clear   # deletes auto {bibkey}.png + manifest only, then rebuilds
 # or
 python3 bin/generate_publication_previews.py --force # overwrite {bibkey}.png only
 ```
