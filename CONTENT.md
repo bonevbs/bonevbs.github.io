@@ -19,19 +19,31 @@ Co-author links: add entries to [`_data/coauthors.yml`](_data/coauthors.yml) key
 
 - All preview images are displayed at a fixed height (140px) with `object-fit: cover` via CSS.
 - **Deploy CI** runs `bin/generate_publication_previews.py` before each `jekyll build` (see [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)). You do not need to run it manually for the live site.
-- Generated files: `assets/img/publication_preview/{bibkey}.png` and [`_data/generated_previews.yml`](_data/generated_previews.yml) (tells the layout which auto-thumbs exist).
-- Optional override: `preview={your-image.png}` in `papers.bib` for a custom file; entries with no thumb and no generated PNG show the venue **abbr** badge.
+- Generated files: `assets/img/publication_preview/{bibkey}.png` and [`_data/generated_previews.yml`](_data/generated_previews.yml) (lists bib keys with auto `{bibkey}.png` only).
+- Manual `preview={your-image.png}` in `papers.bib` is **off** by default (`enable_manual_publication_previews: false` in `_config.yml`). Set it to `true` to use custom images again.
+- Entries with no auto thumb show the venue **abbr** badge.
 
 **Local run** (optional, for `jekyll serve` without waiting for CI):
 
 ```bash
 sudo apt-get install -y poppler-utils ghostscript imagemagick   # once
+pip install pymupdf
 python3 bin/generate_publication_previews.py
 ```
 
-Add a direct link in the bib entry: `pdf={https://…/paper.pdf}` or `pdf={/files/your.pdf}` for site-local files. The script only reads `pdf=` (no URL guessing from `eprint` / `html`). It uses the first page with an embedded figure (via PyMuPDF), otherwise page 1 (or page 2 if page 1 is blank). The full page is scaled to fit without cropping. CI installs `pymupdf`; locally: `pip install pymupdf`.
+Add a direct link in the bib entry: `pdf={https://…/paper.pdf}` or `pdf={/files/your.pdf}` for site-local files. The script only reads `pdf=` (no URL guessing from `eprint` / `html`). It uses the first page with an embedded figure (via PyMuPDF), otherwise page 1 (or page 2 if page 1 is blank). The full page is scaled to fit without cropping.
 
-Flags: `--dry-run`, `--force`, `--keys KEY`, `--update-bib` (optional; writes `preview=` into `papers.bib` — not required for CI).
+**Clear and regenerate** (existing PNGs are skipped unless you force):
+
+```bash
+python3 bin/generate_publication_previews.py --clear   # deletes all previews + manifest, then rebuilds
+# or
+python3 bin/generate_publication_previews.py --force # overwrite {bibkey}.png only
+```
+
+**CI:** Actions → **deploy** → **Run workflow**, check **Clear publication preview cache** to skip the preview cache, wipe thumbnails, regenerate from PDFs, build, and deploy.
+
+Flags: `--dry-run`, `--force`, `--clear`, `--keys KEY`, `--update-bib` (optional; writes `preview=` into `papers.bib` — not required for CI).
 
 To disable preview generation in CI, set repo variable `SKIP_PUBLICATION_PREVIEWS` = `true`.
 
