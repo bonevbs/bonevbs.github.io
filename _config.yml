@@ -16,7 +16,7 @@ footer_text: >
 keywords: boris bonev, ml-research, scientific-computing, research-scientist  # add your own keywords or leave empty
 
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
-icon: ⚛️  # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
+icon: favicon.png  # site icon in assets/img/ (from 3D surface plot)
 
 url: https://bonevbs.github.io # user site: repo must be bonevbs.github.io, baseurl empty
 baseurl: "" # leave empty for https://bonevbs.github.io/ (not /ai-folio/)
@@ -272,7 +272,7 @@ jekyll-archives:
     tag: '/blog/tag/:name/'
     category: '/blog/category/:name/'
 
-display_tags: ['Machine Learning', 'Numerical optimization', 'Gaussian Processes', 'PyTorch', 'Julia'] # shown on /blog/
+display_tags: [] # leave empty to hide tag links on /blog/
 display_categories: [] # leave empty unless you use post categories
 
 # -----------------------------------------------------------------------------
