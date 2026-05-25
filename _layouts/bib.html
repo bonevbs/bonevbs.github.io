@@ -3,12 +3,12 @@
 <!-- _layouts/bib.html -->
       <div class="row">
         {%- if site.enable_publication_thumbnails -%}
-        {%- assign preview_file = entry.preview -%}
-        {%- unless preview_file -%}
-          {%- if site.data.generated_previews.keys contains entry.key -%}
-            {%- assign preview_file = entry.key | append: '.png' -%}
-          {%- endif -%}
-        {%- endunless -%}
+        {%- assign preview_file = nil -%}
+        {%- if site.enable_manual_publication_previews and entry.preview -%}
+          {%- assign preview_file = entry.preview -%}
+        {%- elsif site.data.generated_previews.keys contains entry.key -%}
+          {%- assign preview_file = entry.key | append: '.png' -%}
+        {%- endif -%}
         <div class="col-sm-2 {% if preview_file %}preview{% else %}abbr{% endif %}">
         {%- if preview_file -%}
           {% if preview_file contains '://' -%}

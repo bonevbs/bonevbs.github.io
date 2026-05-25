@@ -7,7 +7,7 @@ Picks the first page that contains an embedded figure (PyMuPDF), else page 1 (or
 Renders the full page, scaled to fit without cropping.
 
 Usage:
-  python3 bin/generate_publication_previews.py [--dry-run] [--force] [--update-bib]
+  python3 bin/generate_publication_previews.py [--dry-run] [--force] [--clear] [--update-bib]
   python3 bin/generate_publication_previews.py --keys bonev2025fourcastnet3
 
 Requires: network for downloads. For PDF rendering, one of:
@@ -116,9 +116,6 @@ def parse_bib(path: Path, only_missing: bool, keys: set[str] | None) -> list[dic
         key = m.group(1).strip()
         if keys and key not in keys:
             continue
-        custom = parse_field(block, "preview")
-        if custom and custom != f"{key}.png":
-            continue
         out_png = OUT / f"{key}.png"
         if only_missing and out_png.is_file():
             continue
@@ -129,8 +126,14 @@ def parse_bib(path: Path, only_missing: bool, keys: set[str] | None) -> list[dic
     return entries
 
 
+def bib_keys(path: Path) -> set[str]:
+    text = path.read_text(encoding="utf-8")
+    return {m.group(1).strip() for m in re.finditer(r"@\w+\{([^,]+),", text)}
+
+
 def write_manifest() -> None:
-    keys = sorted(p.stem for p in OUT.glob("*.png") if not p.name.startswith("."))
+    valid = bib_keys(BIB)
+    keys = sorted(p.stem for p in OUT.glob("*.png") if p.stem in valid)
     MANIFEST.write_text(
         "# Updated by bin/generate_publication_previews.py\nkeys:\n"
         + "".join(f"  - {k}\n" for k in keys),
@@ -319,7 +322,12 @@ def update_bib_preview(path: Path, key: str, filename: str) -> bool:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--dry-run", action="store_true", help="print planned actions only")
-    parser.add_argument("--force", action="store_true", help="regenerate even if preview= is set")
+    parser.add_argument("--force", action="store_true", help="regenerate even if {key}.png already exists")
+    parser.add_argument(
+        "--clear",
+        action="store_true",
+        help="delete all PNGs in publication_preview/ and the manifest, then regenerate",
+    )
     parser.add_argument("--update-bib", action="store_true", help="add preview={key}.png to papers.bib")
     parser.add_argument("--keys", nargs="*", help="only these bib keys")
     args = parser.parse_args()
@@ -328,6 +336,15 @@ def main() -> None:
         print("Warning: no pdftoppm or gs — PDF thumbnails will not work.", file=sys.stderr)
 
     OUT.mkdir(parents=True, exist_ok=True)
+    if args.clear:
+        removed = 0
+        for png in OUT.glob("*.png"):
+            png.unlink()
+            removed += 1
+        MANIFEST.unlink(missing_ok=True)
+        print(f"Cleared {removed} preview(s) and manifest.")
+        args.force = True
+
     key_set = set(args.keys) if args.keys else None
     entries = parse_bib(BIB, only_missing=not args.force, keys=key_set)
 

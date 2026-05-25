@@ -1,13 +1,3 @@
 # Updated by bin/generate_publication_previews.py
 keys:
-  - ace-preview
-  - amr_showcase_prev
   - bonev2025fourcastnet3
-  - dlwp_healpix
-  - local_no
-  - mixed_precision_no
-  - prob_benchmark_ml_weather
-  - sfno_showcase
-  - solver-complexity
-  - sparsity-pattern
-  - tohoku_prev

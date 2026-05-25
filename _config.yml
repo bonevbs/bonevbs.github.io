@@ -320,6 +320,8 @@ more_authors_animation_delay: 10  # more authors are revealed on click using ani
 
 # Enables publication thumbnails. If disabled, none of the publications will display thumbnails, even if specified in the bib entry.
 enable_publication_thumbnails: true
+# If false, ignore preview={...} in papers.bib; only auto-generated {bibkey}.png thumbs are shown.
+enable_manual_publication_previews: false
 
 # -----------------------------------------------------------------------------
 # Jekyll Link Attributes

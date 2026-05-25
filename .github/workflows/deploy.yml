@@ -10,6 +10,11 @@ on:
       - master
       - main
   workflow_dispatch:
+    inputs:
+      clear_preview_cache:
+        description: Clear publication preview cache and regenerate all thumbnails from PDFs
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -34,6 +39,7 @@ jobs:
         propertyPath: 'giscus.repo'
         value: ${{ github.repository }}
     - name: Cache publication previews
+      if: github.event.inputs.clear_preview_cache != 'true'
       uses: actions/cache@v4
       with:
         path: |
@@ -48,7 +54,11 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y poppler-utils ghostscript imagemagick
         pip3 install pymupdf
-        python3 bin/generate_publication_previews.py
+        EXTRA=""
+        if [ "${{ github.event.inputs.clear_preview_cache }}" = "true" ]; then
+          EXTRA="--clear"
+        fi
+        python3 bin/generate_publication_previews.py $EXTRA
     - name: Install and Build 🔧
       run: |
         pip3 install --upgrade jupyter
