@@ -29,7 +29,7 @@ sudo apt-get install -y poppler-utils ghostscript imagemagick   # once
 python3 bin/generate_publication_previews.py
 ```
 
-Add a direct link in the bib entry: `pdf={https://…/paper.pdf}` or `pdf={/files/your.pdf}` for site-local files. The script only reads `pdf=` (no URL guessing from `eprint` / `html`). It renders the full first page (page 2 if page 1 is blank), scaled to fit without cropping.
+Add a direct link in the bib entry: `pdf={https://…/paper.pdf}` or `pdf={/files/your.pdf}` for site-local files. The script only reads `pdf=` (no URL guessing from `eprint` / `html`). It uses the first page with an embedded figure (via PyMuPDF), otherwise page 1 (or page 2 if page 1 is blank). The full page is scaled to fit without cropping. CI installs `pymupdf`; locally: `pip install pymupdf`.
 
 Flags: `--dry-run`, `--force`, `--keys KEY`, `--update-bib` (optional; writes `preview=` into `papers.bib` — not required for CI).
 
