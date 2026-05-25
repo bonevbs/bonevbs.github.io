@@ -664,16 +664,15 @@ footer.sticky-bottom {
       .preview {
         width: 100%;
         min-width: 80px;
-        max-width: 240px;
+        max-width: 200px;
 
         img.preview {
           width: 100%;
-          max-width: 240px;
+          max-width: 200px;
           height: auto;
-          max-height: 240px;
-          aspect-ratio: 1;
+          max-height: 280px;
           object-fit: contain;
-          object-position: center;
+          object-position: top center;
           background: var(--global-bg-color);
           display: block;
         }
