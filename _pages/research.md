@@ -2,7 +2,6 @@
 layout: page
 permalink: /research/
 title: Research
-description: Research in AI for science and engineering, numerical methods, and scientific machine learning.
 nav: true
 nav_order: 2
 wide_media: true

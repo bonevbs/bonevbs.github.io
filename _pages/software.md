@@ -2,7 +2,6 @@
 layout: page
 permalink: /software/
 title: Software
-description: Open-source software and libraries.
 nav: true
 nav_order: 3
 wide_media: true
