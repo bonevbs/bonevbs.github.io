@@ -17,7 +17,7 @@ Co-author links: add entries to [`_data/coauthors.yml`](_data/coauthors.yml) key
 
 ### Thumbnails (uniform size)
 
-- All preview images are displayed at a fixed height (140px) with `object-fit: cover` via CSS.
+- Preview images use a square frame (240×240px max) with `object-fit: contain` via CSS.
 - **Deploy CI** runs `bin/generate_publication_previews.py` before each `jekyll build` (see [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)). You do not need to run it manually for the live site.
 - Generated files: `assets/img/publication_preview/{bibkey}.png` and [`_data/generated_previews.yml`](_data/generated_previews.yml) (lists bib keys with auto `{bibkey}.png` only).
 - Manual `preview={your-image.png}` in `papers.bib` is **off** by default (`enable_manual_publication_previews: false` in `_config.yml`). Set it to `true` to use custom images again.
@@ -31,12 +31,12 @@ pip install pymupdf
 python3 bin/generate_publication_previews.py
 ```
 
-Add a direct link in the bib entry: `pdf={https://…/paper.pdf}` or `pdf={/files/your.pdf}` for site-local files. The script only reads `pdf=` (no URL guessing from `eprint` / `html`). It uses the first page with an embedded figure (via PyMuPDF), otherwise page 1 (or page 2 if page 1 is blank). The full page is scaled to fit without cropping.
+Add a direct link in the bib entry: `pdf={https://…/paper.pdf}` or `pdf={/files/your.pdf}` for site-local files. The script only reads `pdf=` (no URL guessing from `eprint` / `html`). By default it extracts the **first embedded figure** from the PDF (PyMuPDF); if none is found, it falls back to rendering a full page. Use `--full-page` or set `EXTRACT_EMBEDDED_FIGURES = False` in the script to revert to page-only thumbnails.
 
-**Clear and regenerate** (existing PNGs are skipped unless you force):
+**Clear and regenerate** (existing `{bibkey}.png` files are skipped unless you force):
 
 ```bash
-python3 bin/generate_publication_previews.py --clear   # deletes all previews + manifest, then rebuilds
+python3 bin/generate_publication_previews.py --clear   # deletes auto {bibkey}.png + manifest only, then rebuilds
 # or
 python3 bin/generate_publication_previews.py --force # overwrite {bibkey}.png only
 ```
