@@ -8,7 +8,7 @@
    - `abbr={ICML}` — venue badge (define colors in [`_data/venues.yml`](_data/venues.yml))
    - `preview={filename.png}` — thumbnail in `assets/img/publication_preview/`
    - `selected={true}` — highlight on the about page
-   - `html`, `pdf`, `code`, `eprint` — link buttons on the publication card
+   - `html`, `pdf`, `code`, `eprint` — link buttons on the publication card (`pdf` is also used for auto-thumbnails)
    - For PDFs: use direct URLs (arXiv `https://arxiv.org/pdf/…`, EPFL Infoscience `…/record/…/files/…`, or site paths like `/files/thesis_compressed.pdf`). Do not use bare Infoscience record pages — they can redirect with personal tokens.
    - Preprints with `eprint={…}` get an automatic arXiv PDF link when `pdf` is omitted.
    - `note={Under review}` — status line for preprints
@@ -29,7 +29,7 @@ sudo apt-get install -y poppler-utils ghostscript imagemagick   # once
 python3 bin/generate_publication_previews.py
 ```
 
-The script tries: **PDF page 1** → **page 2** if page 1 is blank → **embedded figure** (with `pip install pymupdf`) → **Open Graph** from `html=`. Add `html`, `pdf`, or `eprint` in the bib entry so CI can fetch a source.
+Add a direct link in the bib entry: `pdf={https://…/paper.pdf}` or `pdf={/files/your.pdf}` for site-local files. The script only reads `pdf=` (no URL guessing from `eprint` / `html`). It renders the full first page (page 2 if page 1 is blank), scaled to fit without cropping.
 
 Flags: `--dry-run`, `--force`, `--keys KEY`, `--update-bib` (optional; writes `preview=` into `papers.bib` — not required for CI).
 

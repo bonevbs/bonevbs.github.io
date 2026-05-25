@@ -2,11 +2,8 @@
 """
 Generate publication thumbnails for al-folio (preview={...} in papers.bib).
 
-Tries, in order:
-  1. PDF first page (arxiv / pdf= / eprint=) via pdftoppm or Ghostscript
-  2. PDF page 2 if page 1 looks mostly blank
-  3. Largest embedded figure on pages 1–2 (PyMuPDF), if installed
-  4. Open Graph image from html= / abs page
+Uses only the `pdf={...}` field from each BibTeX entry (http(s) URL or site path like `/files/thesis.pdf`).
+Renders the full first PDF page (page 2 if page 1 is blank), scaled to fit without cropping.
 
 Usage:
   python3 bin/generate_publication_previews.py [--dry-run] [--force] [--update-bib]
@@ -30,14 +27,14 @@ import subprocess
 import sys
 import tempfile
 from pathlib import Path
-from urllib.parse import urljoin
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 BIB = ROOT / "_bibliography" / "papers.bib"
 OUT = ROOT / "assets" / "img" / "publication_preview"
 MANIFEST = ROOT / "_data" / "generated_previews.yml"
-PREVIEW_SIZE = "400x280"
+# Max width × height; entire page visible (no crop). Matches publication list CSS.
+PREVIEW_MAX = "200x280"
 UA = "ai-folio-preview-generator/1.0"
 
 
@@ -45,10 +42,6 @@ def _http_get(url: str, timeout: int = 60) -> bytes:
     req = Request(url, headers={"User-Agent": UA})
     with urlopen(req, timeout=timeout) as resp:
         return resp.read()
-
-
-def _http_get_text(url: str, timeout: int = 20) -> str:
-    return _http_get(url, timeout=timeout).decode("utf-8", errors="replace")
 
 
 def _which(cmd: str) -> str | None:
@@ -63,6 +56,7 @@ def _convert_cmd() -> list[str] | None:
 
 
 def resize_png(src: Path, dest: Path) -> None:
+    """Fit whole page inside PREVIEW_MAX; letterbox if aspect ratio differs."""
     conv = _convert_cmd()
     if not conv:
         shutil.copy2(src, dest)
@@ -72,11 +66,15 @@ def resize_png(src: Path, dest: Path) -> None:
             *conv,
             str(src),
             "-resize",
-            f"{PREVIEW_SIZE}^",
+            f"{PREVIEW_MAX}>",
+            "-background",
+            "white",
+            "-alpha",
+            "remove",
             "-gravity",
             "center",
             "-extent",
-            PREVIEW_SIZE,
+            PREVIEW_MAX,
             str(dest),
         ],
         check=True,
@@ -89,38 +87,17 @@ def parse_field(block: str, name: str) -> str | None:
     return m.group(1).strip() if m else None
 
 
-def arxiv_id_from_block(block: str) -> str | None:
-    eprint = parse_field(block, "eprint")
-    if eprint:
-        return eprint.split("v")[0]
-    note = parse_field(block, "note") or ""
-    m = re.search(r"arXiv[:\s]+([\d.]+)", note, re.I)
-    return m.group(1) if m else None
-
-
-def resolve_urls(block: str) -> dict[str, str | None]:
+def resolve_pdf(block: str) -> str | Path | None:
+    """Return PDF URL string or local Path from the bib entry's pdf= field only."""
     pdf = parse_field(block, "pdf")
-    html = parse_field(block, "html")
-    aid = arxiv_id_from_block(block)
-
-    if aid:
-        arxiv_pdf = f"https://arxiv.org/pdf/{aid}.pdf"
-        arxiv_abs = f"https://arxiv.org/abs/{aid}"
-        if not pdf or "arxiv.org" in pdf:
-            pdf = arxiv_pdf
-        if not html:
-            html = arxiv_abs
-
-    if pdf and pdf.startswith("/"):
-        pdf = None
-    if pdf and not pdf.startswith("http"):
-        pdf = None
-
-    if html and "arxiv.org/abs/" in html and not pdf:
-        aid2 = html.rstrip("/").split("/")[-1].split("v")[0]
-        pdf = f"https://arxiv.org/pdf/{aid2}.pdf"
-
-    return {"pdf": pdf, "html": html}
+    if not pdf:
+        return None
+    if pdf.startswith(("http://", "https://")):
+        return pdf
+    if pdf.startswith("/"):
+        local = ROOT / pdf.lstrip("/")
+        return local if local.is_file() else None
+    return None
 
 
 def parse_bib(path: Path, only_missing: bool, keys: set[str] | None) -> list[dict]:
@@ -139,10 +116,10 @@ def parse_bib(path: Path, only_missing: bool, keys: set[str] | None) -> list[dic
         out_png = OUT / f"{key}.png"
         if only_missing and out_png.is_file():
             continue
-        urls = resolve_urls(block)
-        if not urls["pdf"] and not urls["html"]:
+        pdf = resolve_pdf(block)
+        if not pdf:
             continue
-        entries.append({"key": key, "block": block, **urls})
+        entries.append({"key": key, "pdf": pdf})
     return entries
 
 
@@ -154,22 +131,6 @@ def write_manifest() -> None:
         encoding="utf-8",
     )
     print(f"Manifest: {len(keys)} previews in {MANIFEST.relative_to(ROOT)}")
-
-
-def og_image(page_url: str) -> str | None:
-    try:
-        html = _http_get_text(page_url)
-    except OSError:
-        return None
-    for pat in (
-        r'<meta\s+property=["\']og:image["\']\s+content=["\']([^"\']+)',
-        r'<meta\s+content=["\']([^"\']+)["\']\s+property=["\']og:image',
-        r'<meta\s+name=["\']twitter:image["\']\s+content=["\']([^"\']+)',
-    ):
-        m = re.search(pat, html, re.I)
-        if m:
-            return urljoin(page_url, m.group(1))
-    return None
 
 
 def download_pdf(url: str, dest: Path) -> bool:
@@ -257,89 +218,38 @@ def page_mostly_blank(png: Path, threshold: float = 0.92) -> bool:
         return False
 
 
-def extract_largest_figure(pdf: Path, max_pages: int, out_png: Path) -> bool:
-    try:
-        import fitz  # PyMuPDF
-    except ImportError:
-        return False
-
-    doc = fitz.open(pdf)
-    best = None
-    best_area = 0
-    for pno in range(min(max_pages, doc.page_count)):
-        for img in doc[pno].get_images(full=True):
-            xref = img[0]
-            try:
-                pix = fitz.Pixmap(doc, xref)
-                if pix.n < 3:
-                    continue
-                area = pix.width * pix.height
-                if area > best_area and pix.width >= 200 and pix.height >= 120:
-                    best_area = area
-                    best = pix
-            except Exception:
-                continue
-    doc.close()
-    if not best:
-        return False
-    best.save(str(out_png))
-    return True
-
-
 def generate_preview(entry: dict, out: Path, dry_run: bool) -> str:
     """Returns method name or empty string on failure."""
     key = entry["key"]
+    pdf_src = entry["pdf"]
     if dry_run:
-        print(f"  would try pdf={entry['pdf']!r} html={entry['html']!r}")
+        print(f"  would render pdf={pdf_src!r}")
         return "dry-run"
 
     with tempfile.TemporaryDirectory(prefix="folio-preview-") as tmp:
         tmpdir = Path(tmp)
         raw = tmpdir / "raw.png"
+        pdf_path = tmpdir / "paper.pdf"
 
-        if entry["pdf"]:
-            pdf_path = tmpdir / "paper.pdf"
-            print(f"  downloading PDF …")
-            if download_pdf(entry["pdf"], pdf_path):
-                for page in (1, 2):
-                    page_png = tmpdir / f"page{page}.png"
-                    if not render_pdf_page(pdf_path, page, page_png):
-                        continue
-                    if page == 2 and not page_mostly_blank(tmpdir / "page1.png"):
-                        break
-                    if page == 1 and page_mostly_blank(page_png):
-                        continue
-                    shutil.copy2(page_png, raw)
-                    resize_png(raw, out)
-                    return f"pdf-page-{page}"
+        if isinstance(pdf_src, Path):
+            print(f"  local PDF {pdf_src.relative_to(ROOT)}")
+            shutil.copy2(pdf_src, pdf_path)
+        else:
+            print("  downloading PDF …")
+            if not download_pdf(pdf_src, pdf_path):
+                return ""
 
-                fig_png = tmpdir / "figure.png"
-                if extract_largest_figure(pdf_path, 2, fig_png):
-                    resize_png(fig_png, out)
-                    return "pdf-figure"
-
-        if entry["html"]:
-            img_url = og_image(entry["html"])
-            if img_url:
-                print(f"  og:image {img_url[:80]}…")
-                try:
-                    data = _http_get(img_url)
-                    tmp = tmpdir / "og.bin"
-                    tmp.write_bytes(data)
-                    # normalize extension
-                    if data[:8] == b"\x89PNG\r\n\x1a\n":
-                        shutil.copy2(tmp, raw)
-                    else:
-                        # try convert for jpeg/webp
-                        conv = _convert_cmd()
-                        if conv:
-                            subprocess.run([*conv, str(tmp), str(raw)], check=True, capture_output=True)
-                        else:
-                            shutil.copy2(tmp, raw)
-                    resize_png(raw, out)
-                    return "og-image"
-                except OSError as e:
-                    print(f"    og fetch failed: {e}", file=sys.stderr)
+        for page in (1, 2):
+            page_png = tmpdir / f"page{page}.png"
+            if not render_pdf_page(pdf_path, page, page_png):
+                continue
+            if page == 2 and page_png.is_file() and not page_mostly_blank(tmpdir / "page1.png"):
+                break
+            if page == 1 and page_mostly_blank(page_png):
+                continue
+            shutil.copy2(page_png, raw)
+            resize_png(raw, out)
+            return f"pdf-page-{page}"
 
     return ""
 
