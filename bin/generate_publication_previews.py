@@ -3,7 +3,8 @@
 Generate publication thumbnails for al-folio (preview={...} in papers.bib).
 
 Uses only the `pdf={...}` field from each BibTeX entry (http(s) URL or site path like `/files/thesis.pdf`).
-Renders the full first PDF page (page 2 if page 1 is blank), scaled to fit without cropping.
+Picks the first page that contains an embedded figure (PyMuPDF), else page 1 (or page 2 if page 1 is blank).
+Renders the full page, scaled to fit without cropping.
 
 Usage:
   python3 bin/generate_publication_previews.py [--dry-run] [--force] [--update-bib]
@@ -11,7 +12,7 @@ Usage:
 
 Requires: network for downloads. For PDF rendering, one of:
   pdftoppm (poppler-utils), or gs (ghostscript).
-Optional: pip install pymupdf requests
+Optional: `pip install pymupdf` (recommended — detects figure pages)
 Image resize: ImageMagick `convert` or `magick` (optional; copies raw PNG if missing).
 
 Runs automatically in GitHub Actions before `jekyll build` (see .github/workflows/deploy.yml).
@@ -36,6 +37,11 @@ MANIFEST = ROOT / "_data" / "generated_previews.yml"
 # Max width × height; entire page visible (no crop). Matches publication list CSS.
 PREVIEW_MAX = "200x280"
 UA = "ai-folio-preview-generator/1.0"
+# Ignore tiny icons/logos when scanning for figure pages.
+MIN_FIGURE_WIDTH = 120
+MIN_FIGURE_HEIGHT = 80
+MIN_FIGURE_PIXELS = MIN_FIGURE_WIDTH * MIN_FIGURE_HEIGHT
+MAX_PAGES_SCAN = 12
 
 
 def _http_get(url: str, timeout: int = 60) -> bytes:
@@ -199,6 +205,51 @@ def render_pdf_page(pdf: Path, page: int, out_png: Path) -> bool:
     return False
 
 
+def first_page_with_figure(pdf: Path) -> int | None:
+    """Return 1-based page index of the first page with a sizeable embedded image, or None."""
+    try:
+        import fitz  # PyMuPDF
+    except ImportError:
+        return None
+
+    doc = fitz.open(pdf)
+    try:
+        limit = min(MAX_PAGES_SCAN, doc.page_count)
+        for pno in range(limit):
+            page = doc[pno]
+            for img in page.get_images(full=True):
+                xref = img[0]
+                try:
+                    pix = fitz.Pixmap(doc, xref)
+                    if pix.width < MIN_FIGURE_WIDTH or pix.height < MIN_FIGURE_HEIGHT:
+                        continue
+                    if pix.width * pix.height < MIN_FIGURE_PIXELS:
+                        continue
+                    return pno + 1
+                except Exception:
+                    continue
+    finally:
+        doc.close()
+    return None
+
+
+def choose_thumbnail_page(pdf_path: Path, tmpdir: Path) -> tuple[int, str]:
+    """Pick page to render. Returns (page_number, reason_tag)."""
+    figure_page = first_page_with_figure(pdf_path)
+    if figure_page is not None:
+        return figure_page, "figure-page"
+
+    for page in (1, 2):
+        page_png = tmpdir / f"probe{page}.png"
+        if not render_pdf_page(pdf_path, page, page_png):
+            continue
+        if page == 1 and page_mostly_blank(page_png):
+            continue
+        return page, "first-page"
+
+    return 1, "first-page-fallback"
+
+
 def page_mostly_blank(png: Path, threshold: float = 0.92) -> bool:
     conv = _convert_cmd()
     if not conv:
@@ -239,17 +290,12 @@ def generate_preview(entry: dict, out: Path, dry_run: bool) -> str:
             if not download_pdf(pdf_src, pdf_path):
                 return ""
 
-        for page in (1, 2):
-            page_png = tmpdir / f"page{page}.png"
-            if not render_pdf_page(pdf_path, page, page_png):
-                continue
-            if page == 2 and page_png.is_file() and not page_mostly_blank(tmpdir / "page1.png"):
-                break
-            if page == 1 and page_mostly_blank(page_png):
-                continue
+        page, reason = choose_thumbnail_page(pdf_path, tmpdir)
+        page_png = tmpdir / "thumb.png"
+        if render_pdf_page(pdf_path, page, page_png):
             shutil.copy2(page_png, raw)
             resize_png(raw, out)
-            return f"pdf-page-{page}"
+            return f"{reason}-{page}"
 
     return ""
 
