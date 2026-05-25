@@ -31,9 +31,9 @@ For **numerical solvers for PDEs**, I am interested in high-order discretization
 
 <div class="media-grid media-grid--2-third">
   <a href="{{ '/files/amr_showcase.mp4' | relative_url }}">
-    <img src="{{ '/assets/img/publication_preview/amr_showcase_prev.png' | relative_url }}" alt="Tsunami AMR simulation">
+    <img src="{{ '/assets/img/research/amr_showcase_prev.png' | relative_url }}" alt="Tsunami AMR simulation">
   </a>
   <a href="{{ '/files/tohoku.mp4' | relative_url }}">
-    <img src="{{ '/assets/img/publication_preview/tohoku_prev.png' | relative_url }}" alt="Tohoku tsunami simulation">
+    <img src="{{ '/assets/img/research/tohoku_prev.png' | relative_url }}" alt="Tohoku tsunami simulation">
   </a>
 </div>

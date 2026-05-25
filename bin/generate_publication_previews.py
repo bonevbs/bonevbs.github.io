@@ -3,8 +3,10 @@
 Generate publication thumbnails for al-folio (preview={...} in papers.bib).
 
 Uses only the `pdf={...}` field from each BibTeX entry (http(s) URL or site path like `/files/thesis.pdf`).
-Picks the first page that contains an embedded figure (PyMuPDF), else page 1 (or page 2 if page 1 is blank).
-Renders the full page, scaled to fit without cropping.
+By default, extracts the first embedded figure image in the PDF (PyMuPDF).
+Falls back to rendering a full page (first figure page, else page 1/2) if extraction fails.
+
+Set EXTRACT_EMBEDDED_FIGURES = False (or pass --full-page) to restore page-only thumbnails.
 
 Usage:
   python3 bin/generate_publication_previews.py [--dry-run] [--force] [--clear] [--update-bib]
@@ -34,14 +36,17 @@ ROOT = Path(__file__).resolve().parents[1]
 BIB = ROOT / "_bibliography" / "papers.bib"
 OUT = ROOT / "assets" / "img" / "publication_preview"
 MANIFEST = ROOT / "_data" / "generated_previews.yml"
-# Max width × height; entire page visible (no crop). Matches publication list CSS.
-PREVIEW_MAX = "200x280"
+# Square canvas; image fitted inside (letterboxed). Matches publication list CSS.
+PREVIEW_MAX = "240x240"
 UA = "ai-folio-preview-generator/1.0"
 # Ignore tiny icons/logos when scanning for figure pages.
 MIN_FIGURE_WIDTH = 120
 MIN_FIGURE_HEIGHT = 80
 MIN_FIGURE_PIXELS = MIN_FIGURE_WIDTH * MIN_FIGURE_HEIGHT
 MAX_PAGES_SCAN = 12
+
+# Experimental: first embedded figure as thumbnail. Set False to revert to full-page renders.
+EXTRACT_EMBEDDED_FIGURES = True
 
 
 def _http_get(url: str, timeout: int = 60) -> bytes:
@@ -62,7 +67,7 @@ def _convert_cmd() -> list[str] | None:
 
 
 def resize_png(src: Path, dest: Path) -> None:
-    """Fit whole page inside PREVIEW_MAX; letterbox if aspect ratio differs."""
+    """Fit image inside square PREVIEW_MAX; letterbox if aspect ratio differs."""
     conv = _convert_cmd()
     if not conv:
         shutil.copy2(src, dest)
@@ -208,8 +213,56 @@ def render_pdf_page(pdf: Path, page: int, out_png: Path) -> bool:
     return False
 
 
-def first_page_with_figure(pdf: Path) -> int | None:
-    """Return 1-based page index of the first page with a sizeable embedded image, or None."""
+def _figure_qualifies(width: int, height: int) -> bool:
+    return (
+        width >= MIN_FIGURE_WIDTH
+        and height >= MIN_FIGURE_HEIGHT
+        and width * height >= MIN_FIGURE_PIXELS
+    )
+
+
+def _have_pymupdf() -> bool:
+    try:
+        import fitz  # noqa: F401
+
+        return True
+    except ImportError:
+        return False
+
+
+def _pixmap_to_png(pix, dest: Path) -> None:
+    import fitz  # PyMuPDF
+
+    if pix.n - pix.alpha >= 4:
+        pix = fitz.Pixmap(fitz.csRGB, pix)
+    elif pix.alpha:
+        pix = fitz.Pixmap(fitz.csRGB, pix)
+    pix.save(str(dest))
+
+
+def _save_figure_pixmap(doc, page, xref: int, dest: Path) -> bool:
+    import fitz  # PyMuPDF
+
+    try:
+        pix = fitz.Pixmap(doc, xref)
+        if not _figure_qualifies(pix.width, pix.height):
+            return False
+        _pixmap_to_png(pix, dest)
+        return True
+    except Exception:
+        rects = page.get_image_rects(xref)
+        if not rects:
+            return False
+        clip = rects[0]
+        if clip.width < MIN_FIGURE_WIDTH or clip.height < MIN_FIGURE_HEIGHT:
+            return False
+        pix = page.get_pixmap(matrix=fitz.Matrix(2, 2), clip=clip, alpha=False)
+        _pixmap_to_png(pix, dest)
+        return dest.is_file()
+
+
+def find_first_figure(pdf: Path) -> tuple[int, int] | None:
+    """Return (page_1based, image_xref) for the first sizeable embedded figure, or None."""
     try:
         import fitz  # PyMuPDF
     except ImportError:
@@ -224,16 +277,43 @@ def first_page_with_figure(pdf: Path) -> int | None:
                 xref = img[0]
                 try:
                     pix = fitz.Pixmap(doc, xref)
-                    if pix.width < MIN_FIGURE_WIDTH or pix.height < MIN_FIGURE_HEIGHT:
-                        continue
-                    if pix.width * pix.height < MIN_FIGURE_PIXELS:
-                        continue
-                    return pno + 1
+                    if _figure_qualifies(pix.width, pix.height):
+                        return pno + 1, xref
                 except Exception:
+                    rects = page.get_image_rects(xref)
+                    if rects and _figure_qualifies(int(rects[0].width), int(rects[0].height)):
+                        return pno + 1, xref
                     continue
     finally:
         doc.close()
     return None
+
+
+def extract_first_figure(pdf: Path, dest: Path) -> tuple[int, int] | None:
+    """Save the first sizeable embedded image to dest. Returns (page_1based, xref) or None."""
+    try:
+        import fitz  # PyMuPDF
+    except ImportError:
+        return None
+
+    doc = fitz.open(pdf)
+    try:
+        limit = min(MAX_PAGES_SCAN, doc.page_count)
+        for pno in range(limit):
+            page = doc[pno]
+            for img in page.get_images(full=True):
+                xref = img[0]
+                if _save_figure_pixmap(doc, page, xref, dest):
+                    return pno + 1, xref
+    finally:
+        doc.close()
+    return None
+
+
+def first_page_with_figure(pdf: Path) -> int | None:
+    """Return 1-based page index of the first page with a sizeable embedded image, or None."""
+    hit = find_first_figure(pdf)
+    return hit[0] if hit else None
 
 
 def choose_thumbnail_page(pdf_path: Path, tmpdir: Path) -> tuple[int, str]:
@@ -272,12 +352,12 @@ def page_mostly_blank(png: Path, threshold: float = 0.92) -> bool:
         return False
 
 
-def generate_preview(entry: dict, out: Path, dry_run: bool) -> str:
+def generate_preview(entry: dict, out: Path, dry_run: bool, *, full_page: bool = False) -> str:
     """Returns method name or empty string on failure."""
-    key = entry["key"]
     pdf_src = entry["pdf"]
     if dry_run:
-        print(f"  would render pdf={pdf_src!r}")
+        mode = "full-page" if full_page else "figure-then-page-fallback"
+        print(f"  would process pdf={pdf_src!r} ({mode})")
         return "dry-run"
 
     with tempfile.TemporaryDirectory(prefix="folio-preview-") as tmp:
@@ -293,12 +373,21 @@ def generate_preview(entry: dict, out: Path, dry_run: bool) -> str:
             if not download_pdf(pdf_src, pdf_path):
                 return ""
 
+        use_figures = EXTRACT_EMBEDDED_FIGURES and not full_page
+        if use_figures:
+            fig = extract_first_figure(pdf_path, raw)
+            if fig:
+                page, xref = fig
+                resize_png(raw, out)
+                return f"figure-p{page}-xref{xref}"
+
         page, reason = choose_thumbnail_page(pdf_path, tmpdir)
         page_png = tmpdir / "thumb.png"
         if render_pdf_page(pdf_path, page, page_png):
             shutil.copy2(page_png, raw)
             resize_png(raw, out)
-            return f"{reason}-{page}"
+            tag = "page-fallback" if use_figures else reason
+            return f"{tag}-{page}"
 
     return ""
 
@@ -330,19 +419,27 @@ def main() -> None:
     )
     parser.add_argument("--update-bib", action="store_true", help="add preview={key}.png to papers.bib")
     parser.add_argument("--keys", nargs="*", help="only these bib keys")
+    parser.add_argument(
+        "--full-page",
+        action="store_true",
+        help="render full PDF pages only (revert embedded-figure extraction)",
+    )
     args = parser.parse_args()
-
     if not _which("pdftoppm") and not _which("gs"):
         print("Warning: no pdftoppm or gs — PDF thumbnails will not work.", file=sys.stderr)
+    if EXTRACT_EMBEDDED_FIGURES and not args.full_page and not _have_pymupdf():
+        print("Warning: pymupdf not installed — figure extraction disabled, using page fallback.", file=sys.stderr)
 
     OUT.mkdir(parents=True, exist_ok=True)
     if args.clear:
         removed = 0
-        for png in OUT.glob("*.png"):
-            png.unlink()
-            removed += 1
+        for key in bib_keys(BIB):
+            png = OUT / f"{key}.png"
+            if png.is_file():
+                png.unlink()
+                removed += 1
         MANIFEST.unlink(missing_ok=True)
-        print(f"Cleared {removed} preview(s) and manifest.")
+        print(f"Cleared {removed} auto-generated preview(s) and manifest (manual PNGs kept).")
         args.force = True
 
     key_set = set(args.keys) if args.keys else None
@@ -359,9 +456,9 @@ def main() -> None:
         out = OUT / f"{entry['key']}.png"
         print(f"{entry['key']} -> {out.name}")
         if args.dry_run:
-            generate_preview(entry, out, dry_run=True)
+            generate_preview(entry, out, dry_run=True, full_page=args.full_page)
             continue
-        method = generate_preview(entry, out, dry_run=False)
+        method = generate_preview(entry, out, dry_run=False, full_page=args.full_page)
         if method and out.is_file():
             ok += 1
             print(f"  ok ({method})")
