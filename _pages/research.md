@@ -25,7 +25,7 @@ I believe numerical methods and machine learning will keep converging: ideas fro
 
 My background is in **algorithms for wave problems**: numerical PDE solvers and numerical linear algebra for large sparse systems. During my [PhD]({{ '/files/thesis_compressed.pdf' | relative_url }}), I worked on [approximate fast direct solvers](https://github.com/bonevbs/HierarchicalSolvers.jl) for Helmholtz-type problems ([SIAM paper](https://epubs.siam.org/doi/10.1137/20M1365958)) and [discontinuous Galerkin methods](https://doi.org/10.1016/j.jcp.2018.02.008) for global tsunami modeling ([Ocean Modelling](https://doi.org/10.1016/j.ocemod.2019.101429)).
 
-<div class="media-grid media-grid--3">
+<div class="media-grid media-grid--2x3">
   <a href="{{ '/files/amr_showcase.mp4' | relative_url }}">
     <img src="{{ '/assets/img/research/amr_showcase_prev.png' | relative_url }}" alt="Tsunami AMR simulation">
   </a>
@@ -34,5 +34,14 @@ My background is in **algorithms for wave problems**: numerical PDE solvers and 
   </a>
   <a href="https://epubs.siam.org/doi/10.1137/20M1365958">
     <img src="{{ '/assets/img/research/helmholtz_square.png' | relative_url }}" alt="Helmholtz wave solutions">
+  </a>
+  <a href="https://github.com/bonevbs/HierarchicalSolvers.jl">
+    <img src="{{ '/assets/img/research/hss_sparsity_pattern.png' | relative_url }}" alt="Sparse factor sparsity pattern">
+  </a>
+  <a href="https://github.com/bonevbs/HssMatrices.jl">
+    <img src="{{ '/assets/img/research/hss_rank_structure.png' | relative_url }}" alt="HSS block rank structure">
+  </a>
+  <a href="https://epubs.siam.org/doi/10.1137/20M1365958">
+    <img src="{{ '/assets/img/research/hss_rank_structure_large.png' | relative_url }}" alt="HSS rank structure for Helmholtz problem">
   </a>
 </div>

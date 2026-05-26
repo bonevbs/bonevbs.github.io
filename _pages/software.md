@@ -11,7 +11,8 @@ Below are open-source libraries I have contributed to or maintain. Additional co
 
 ## torch-harmonics
 
-[![Build status](https://github.com/NVIDIA/torch-harmonics/actions/workflows/tests.yml/badge.svg)](https://github.com/NVIDIA/torch-harmonics/actions/workflows/tests.yml)
+[![tests](https://github.com/NVIDIA/torch-harmonics/actions/workflows/tests.yml/badge.svg)](https://github.com/NVIDIA/torch-harmonics/actions/workflows/tests.yml)
+[![coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/bonevbs/5d08af0f7f08ac865934a1929f198ffd/raw/torch_harmonics_coverage.json&cacheSeconds=3600)](https://github.com/NVIDIA/torch-harmonics)
 [![pypi](https://img.shields.io/pypi/v/torch_harmonics)](https://pypi.org/project/torch_harmonics/)
 
 [torch-harmonics](https://github.com/NVIDIA/torch-harmonics) is a differentiable implementation of the spherical harmonic transform in PyTorch. It was originally developed for [Spherical Fourier Neural Operators](https://openreview.net/forum?id=TwsJ9IOZDx) and is now used more broadly for global weather models, differentiable PDE solvers, and operator learning on the sphere. The library combines quadrature rules with FFT-based projections onto the harmonic basis and supports distributed computation across GPU ranks.
@@ -38,7 +39,18 @@ pip install torch-harmonics
 
 ## neuraloperator
 
-[neuraloperator](https://github.com/neuraloperator/neuraloperator) is a Python library for learning mappings between function spaces—neural operators that generalize across resolutions and domains. It provides implementations of Fourier and related architectures (including FNO and Galerkin-style layers), training utilities, and example PDE benchmarks. I contribute to the core library and use it in several operator-learning projects.
+[![PyPI](https://img.shields.io/pypi/v/neuraloperator)](https://pypi.org/project/neuraloperator/)
+[![tests](https://github.com/NeuralOperator/neuraloperator/actions/workflows/test.yml/badge.svg)](https://github.com/NeuralOperator/neuraloperator/actions/workflows/test.yml)
+
+<p class="software-brand">
+  <img src="{{ '/assets/img/software/neuraloperator_logo_long.png' | relative_url }}" alt="NeuralOperator logo">
+</p>
+
+[NeuralOperator](https://github.com/NeuralOperator/neuraloperator) is a PyTorch library for learning mappings between function spaces—neural operators that generalize across resolutions and domains. It ships the reference implementations of Fourier Neural Operators and related architectures (FNO, tensorized TFNO, Galerkin-style layers), together with training utilities and PDE benchmark examples. Operators are resolution invariant: a model trained on one grid can be applied on another without retraining. The project is part of the [PyTorch ecosystem](https://pytorch.org/blog/neuraloperatorjoins-the-pytorch-ecosystem); see the [documentation](https://neuraloperator.github.io/dev/index.html) and the [practical guide](https://arxiv.org/abs/2512.01421) for tutorials. I contribute to the core library and use it across several operator-learning projects.
+
+```bash
+pip install neuraloperator
+```
 
 ## HssMatrices.jl
 
