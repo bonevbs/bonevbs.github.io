@@ -68,18 +68,17 @@ body.sticky-bottom-footer {
     margin: 1.25rem 0;
   }
 
-  .software-brand {
-    background: #000;
-    padding: 1rem 1.25rem;
-    border-radius: 0.25rem;
-    margin: 1rem 0 1.25rem;
+  img.figure-line-75,
+  p > img.figure-line-75 {
+    width: 75%;
+    max-width: 75%;
+    height: auto;
+    display: block;
+    margin: 1.25rem auto;
 
-    img {
+    @media (max-width: 576px) {
       width: 100%;
-      max-width: 42rem;
-      height: auto;
-      display: block;
-      margin: 0;
+      max-width: 100%;
     }
   }
 
@@ -90,6 +89,21 @@ body.sticky-bottom-footer {
     height: auto;
     display: block;
     margin: 1.25rem 0;
+
+    @media (max-width: 576px) {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+
+  // 75% of figure-half width (37.5% line), centered
+  img.figure-half-75,
+  p > img.figure-half-75 {
+    width: 37.5%;
+    max-width: 37.5%;
+    height: auto;
+    display: block;
+    margin: 1.25rem auto;
 
     @media (max-width: 576px) {
       width: 100%;

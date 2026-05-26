@@ -35,16 +35,14 @@ pip install torch-harmonics
 
 [Makani](https://github.com/NVIDIA/makani) is a training framework for large machine-learning weather and climate models in PyTorch. It scales from a single GPU to thousands on ERA5-scale and similar reanalysis datasets, with data pipelines, model configurations, and distributed training utilities built in. Makani was used to train [FourCastNet](https://github.com/NVlabs/FourCastNet), [SFNO](https://developer.nvidia.com/blog/modeling-earths-atmosphere-with-spherical-fourier-neural-operators/), and [AFNO](https://arxiv.org/abs/2111.13587).
 
-<img class="figure-half" src="https://github.com/NVIDIA/modulus-makani/blob/main/images/sfno_rollout.gif?raw=true" alt="Makani SFNO weather rollout">
+<img class="figure-half-75" src="https://github.com/NVIDIA/modulus-makani/blob/main/images/sfno_rollout.gif?raw=true" alt="Makani SFNO weather rollout">
 
 ## neuraloperator
 
 [![PyPI](https://img.shields.io/pypi/v/neuraloperator)](https://pypi.org/project/neuraloperator/)
 [![tests](https://github.com/NeuralOperator/neuraloperator/actions/workflows/test.yml/badge.svg)](https://github.com/NeuralOperator/neuraloperator/actions/workflows/test.yml)
 
-<p class="software-brand">
-  <img src="{{ '/assets/img/software/neuraloperator_logo_long.png' | relative_url }}" alt="NeuralOperator logo">
-</p>
+<img class="figure-line-75" src="{{ '/assets/img/software/neuraloperator_logo_long.png' | relative_url }}" alt="NeuralOperator logo">
 
 [NeuralOperator](https://github.com/NeuralOperator/neuraloperator) is a PyTorch library for learning mappings between function spaces—neural operators that generalize across resolutions and domains. It ships the reference implementations of Fourier Neural Operators and related architectures (FNO, tensorized TFNO, Galerkin-style layers), together with training utilities and PDE benchmark examples. Operators are resolution invariant: a model trained on one grid can be applied on another without retraining. The project is part of the [PyTorch ecosystem](https://pytorch.org/blog/neuraloperatorjoins-the-pytorch-ecosystem); see the [documentation](https://neuraloperator.github.io/dev/index.html) and the [practical guide](https://arxiv.org/abs/2512.01421) for tutorials. I contribute to the core library and use it across several operator-learning projects.
 
@@ -59,7 +57,7 @@ pip install neuraloperator
 
 [HssMatrices.jl](https://github.com/bonevbs/HssMatrices.jl) implements hierarchically semi-separable (HSS) matrices in Julia for PDE-related linear algebra. HSS compression represents dense blocks arising in sparse factorizations by low-rank structure, enabling fast matrix–vector products and approximate arithmetic. The package includes construction, multiplication, factorization hooks, and tools to visualize rank structure—useful when developing hierarchical preconditioners for wave problems.
 
-<img class="figure-half" src="https://raw.githubusercontent.com/bonevbs/HssMatrices.jl/main/img/plotranks.svg" alt="HSS matrix rank structure">
+<img class="figure-half-75" src="https://raw.githubusercontent.com/bonevbs/HssMatrices.jl/main/img/plotranks.svg" alt="HSS matrix rank structure">
 
 ## HierarchicalSolvers.jl
 
