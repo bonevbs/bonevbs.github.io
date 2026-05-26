@@ -3,7 +3,7 @@
 Generate publication thumbnails for al-folio (preview={...} in papers.bib).
 
 Uses only the `pdf={...}` field from each BibTeX entry (http(s) URL or site path like `/files/thesis.pdf`).
-Picks the first page that contains an embedded figure (PyMuPDF), else page 1.
+Picks the first page with a figure drawn large enough on the page (PyMuPDF), else page 1.
 Renders the full page, scaled to fit without cropping.
 
 Usage:
@@ -37,11 +37,7 @@ MANIFEST = ROOT / "_data" / "generated_previews.yml"
 # Max width × height; entire page visible (no crop). Matches publication list CSS.
 PREVIEW_MAX = "200x280"
 UA = "ai-folio-preview-generator/1.0"
-# Ignore tiny icons/logos when scanning for figure pages.
-MIN_FIGURE_WIDTH = 120
-MIN_FIGURE_HEIGHT = 80
-MIN_FIGURE_PIXELS = MIN_FIGURE_WIDTH * MIN_FIGURE_HEIGHT
-# Minimum drawn size on the page (PDF points; 72 pt ≈ 1 inch).
+# Minimum drawn figure size on the page (PDF points; 72 pt ≈ 1 inch).
 MIN_FIGURE_ON_PAGE_WIDTH = 150
 MIN_FIGURE_ON_PAGE_HEIGHT = 100
 MAX_PAGES_SCAN = 12
@@ -211,36 +207,29 @@ def render_pdf_page(pdf: Path, page: int, out_png: Path) -> bool:
     return False
 
 
-def _embedded_image_large_enough(doc, xref: int) -> bool:
-    import fitz
-
-    try:
-        pix = fitz.Pixmap(doc, xref)
-    except Exception:
-        return False
-    return (
-        pix.width >= MIN_FIGURE_WIDTH
-        and pix.height >= MIN_FIGURE_HEIGHT
-        and pix.width * pix.height >= MIN_FIGURE_PIXELS
-    )
-
-
-def _qualifies_as_figure(doc, page, xref: int) -> bool:
-    try:
-        rects = page.get_image_rects(xref)
-    except Exception:
-        rects = []
-    if rects:
-        return any(
-            r.width >= MIN_FIGURE_ON_PAGE_WIDTH and r.height >= MIN_FIGURE_ON_PAGE_HEIGHT
-            for r in rects
-        )
-    # Some PDFs omit placement rects; fall back to embedded pixel size.
-    return _embedded_image_large_enough(doc, xref)
+def page_has_large_figure(page) -> bool:
+    """True if the page draws any embedded image above the minimum on-page size."""
+    seen: set[int] = set()
+    for img in page.get_images(full=True):
+        xref = img[0]
+        if xref in seen:
+            continue
+        seen.add(xref)
+        try:
+            rects = page.get_image_rects(xref)
+        except Exception:
+            continue
+        for rect in rects:
+            if (
+                rect.width >= MIN_FIGURE_ON_PAGE_WIDTH
+                and rect.height >= MIN_FIGURE_ON_PAGE_HEIGHT
+            ):
+                return True
+    return False
 
 
-def first_page_with_figure(pdf: Path) -> int | None:
-    """Return 1-based page index of the first page with a sizeable figure, or None."""
+def first_page_with_large_figure(pdf: Path) -> int | None:
+    """Return 1-based index of the first page with a large enough on-page figure."""
     try:
         import fitz  # PyMuPDF
     except ImportError:
@@ -250,15 +239,8 @@ def first_page_with_figure(pdf: Path) -> int | None:
     try:
         limit = min(MAX_PAGES_SCAN, doc.page_count)
         for pno in range(limit):
-            page = doc[pno]
-            seen: set[int] = set()
-            for img in page.get_images(full=True):
-                xref = img[0]
-                if xref in seen:
-                    continue
-                seen.add(xref)
-                if _qualifies_as_figure(doc, page, xref):
-                    return pno + 1
+            if page_has_large_figure(doc[pno]):
+                return pno + 1
     finally:
         doc.close()
     return None
@@ -266,7 +248,7 @@ def first_page_with_figure(pdf: Path) -> int | None:
 
 def choose_thumbnail_page(pdf_path: Path) -> tuple[int, str]:
     """Pick page to render. Returns (page_number, reason_tag)."""
-    figure_page = first_page_with_figure(pdf_path)
+    figure_page = first_page_with_large_figure(pdf_path)
     if figure_page is not None:
         return figure_page, "figure-page"
     return 1, "first-page"

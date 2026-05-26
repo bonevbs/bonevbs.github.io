@@ -187,33 +187,30 @@ body.sticky-bottom-footer {
   }
 }
 
-// About page: photo aligned with name and subtitle
-.about-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 1.25rem;
-  margin-bottom: 1.5rem;
-
-  &__intro {
-    flex: 1 1 12rem;
-    min-width: 0;
-  }
-
-  .profile.about-header__profile {
-    flex: 0 0 auto;
+// About page: floated photo beside title, subtitle, and body text
+.about-page {
+  .profile {
     width: 9rem;
-    max-width: 28%;
-    margin: 0;
+    max-width: 35%;
+    margin-bottom: 0.75rem;
 
     @media (min-width: 576px) {
       width: 11rem;
       max-width: 22%;
     }
+
+    figure {
+      margin-bottom: 0.5rem;
+    }
   }
 
-  &--left {
-    flex-direction: row-reverse;
+  .post-header {
+    margin-bottom: 0.75rem;
+  }
+
+  .about-full-width {
+    clear: both;
+    padding-top: 1.5rem;
   }
 }
 
