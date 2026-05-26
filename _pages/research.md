@@ -13,41 +13,13 @@ A full publication list is on [Google Scholar](https://scholar.google.com/citati
 
 ## AI for Science and Engineering
 
-Scientific machine learning is reshaping how we model complex physical systems. In weather and climate, learned models now compete with operational forecast systems; in other domains, neural operators and related architectures learn maps between function spaces from data or hybrid data–physics setups. A recurring theme is **trustworthiness**: stability, generalization, uncertainty, and consistency with known structure (symmetries, conservation, geometry).
+Scientific machine learning is reshaping how we model complex physical systems. In weather and climate, learned models now compete with operational forecast systems; in other domains, neural operators learn maps between function spaces from data or hybrid data–physics setups. Much of my work aims to develop AI-for-science methods from first principles: architectures and training objectives that respect geometry, stability, and uncertainty, rather than treating these as afterthoughts at deployment time.
 
-### Trustworthy geometric neural operators
+Representative examples include [Spherical Fourier Neural Operators (SFNO)](https://arxiv.org/abs/2306.03838) for stable dynamics on the sphere, [neural operators with localized integral and differential kernels](https://arxiv.org/abs/2402.16845) for multiscale structure, [principled approaches for extending neural architectures to function spaces](https://arxiv.org/abs/2506.10973), and [FourCastNet 3](https://arxiv.org/abs/2507.12144), which combines spherical signal-processing primitives with end-to-end probabilistic ensemble training. These ideas connect to classical numerical analysis—resolution invariance, controlled spectra, calibrated uncertainty—and are supported in practice by libraries such as [torch-harmonics](https://github.com/NVIDIA/torch-harmonics) and [NeuralOperator](https://github.com/NeuralOperator/neuraloperator).
 
-I am especially interested in operator-learning architectures that respect the geometry and physics of the domain—not as an afterthought, but in the design of the model class. On the sphere, this line of work includes:
-
-- [**Spherical Fourier Neural Operators (SFNO)**](https://arxiv.org/abs/2306.03838) — spectral operators on the sphere for stable global dynamics ([ICML](https://openreview.net/forum?id=TwsJ9IOZDx), [NVIDIA blog](https://developer.nvidia.com/blog/modeling-earths-atmosphere-with-spherical-fourier-neural-operators/))
-- [**Neural operators with localized integral and differential kernels**](https://arxiv.org/abs/2402.16845) — combining global spectral structure with local kernels for multiscale PDEs ([ICML 2024](https://arxiv.org/abs/2402.16845))
-- [**Attention on the Sphere**](https://arxiv.org/abs/2505.11157) — attention mechanisms adapted to spherical geometry ([NeurIPS 2025](https://arxiv.org/abs/2505.11157))
-- [**Principled approaches for extending neural architectures to function spaces**](https://arxiv.org/abs/2506.10973) — a unified view of how standard layers lift to operators on function spaces
-
-These methods share a goal: models that generalize across resolution and grid, behave predictably outside the training distribution, and connect to classical numerical analysis. Related themes include mixed-precision guarantees for neural operators, codomain attention for multiphysics PDEs, and libraries such as [torch-harmonics](https://github.com/NVIDIA/torch-harmonics) and [NeuralOperator](https://github.com/NeuralOperator/neuraloperator) that make geometric operators practical at scale.
-
-### AI weather and climate at scale
-
-Building on SFNO, our group has pushed learned global models toward operational climate and ensemble forecasting:
-
-- [**ACE**](https://arxiv.org/abs/2310.02074) — a fast, skillful learned global atmospheric model for climate prediction
-- [**Huge Ensembles**](https://doi.org/10.5194/gmd-18-5575-2025) — design and analysis of very large ensemble hindcasts with SFNO-based models ([Part 1](https://doi.org/10.5194/gmd-18-5575-2025), [Part 2](https://doi.org/10.5194/gmd-18-5605-2025))
-- [**FourCastNet 3**](https://arxiv.org/abs/2507.12144) — a geometric approach to probabilistic ML weather forecasting at scale, enabling fast and accurate large ensembles ([paper](https://arxiv.org/abs/2507.12144), [NVIDIA blog](https://developer.nvidia.com/blog/fourcastnet-3-enables-fast-and-accurate-large-ensemble-weather-forecasting-with-scalable-geometric-ml/))
+The same geometric operator viewpoint has carried into operational climate and weather modeling. SFNO-based methods underpin learned global models and large ensembles, including [ACE](https://arxiv.org/abs/2310.02074) for climate prediction, the [Huge Ensembles](https://doi.org/10.5194/gmd-18-5575-2025) hindcast studies ([Part 1](https://doi.org/10.5194/gmd-18-5575-2025), [Part 2](https://doi.org/10.5194/gmd-18-5605-2025)), and [FourCastNet 3](https://arxiv.org/abs/2507.12144) for fast, skillful probabilistic medium-range forecasting. The video below shows 15 FourCastNet 3 ensemble members from a rollout trained with [Makani](https://github.com/NVIDIA/makani); in the [paper](https://arxiv.org/abs/2507.12144), each 15-day global forecast is generated in about 60 seconds on a single NVIDIA H100 GPU, so an ensemble of this size is feasible on one GPU in minutes rather than the hours required by conventional systems.
 
 ![FourCastNet 3 ensemble rollout trained with Makani]({{ '/assets/img/research/fcn3_ens15.gif' | relative_url }})
-
-*FourCastNet 3 ensemble rollout (15 members), trained with [Makani](https://github.com/NVIDIA/makani).*
-
-<div class="publications">
-{% bibliography -f {{ site.scholar.bibliography }} --group_by none -q @*[key^=bonev2025fourcastnet3]* %}
-{% bibliography -f {{ site.scholar.bibliography }} --group_by none -q @*[key^=mahesh2025huge1]* %}
-{% bibliography -f {{ site.scholar.bibliography }} --group_by none -q @*[key^=mahesh2025huge2]* %}
-{% bibliography -f {{ site.scholar.bibliography }} --group_by none -q @*[key^=wattmeyer2023ace]* %}
-{% bibliography -f {{ site.scholar.bibliography }} --group_by none -q @*[key^=bonev2023sfno]* %}
-{% bibliography -f {{ site.scholar.bibliography }} --group_by none -q @*[key^=bonev2025attention]* %}
-{% bibliography -f {{ site.scholar.bibliography }} --group_by none -q @*[key^=liu2024localno]* %}
-{% bibliography -f {{ site.scholar.bibliography }} --group_by none -q @*[key^=berner2025principled]* %}
-</div>
 
 I believe numerical methods and machine learning will keep converging: ideas from traditional numerics—stability, preconditioning, multiscale structure—are showing up in learned models, and ML is feeding back into how we build solvers and discretizations.
 

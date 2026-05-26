@@ -187,6 +187,36 @@ body.sticky-bottom-footer {
   }
 }
 
+// About page: photo aligned with name and subtitle
+.about-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+
+  &__intro {
+    flex: 1 1 12rem;
+    min-width: 0;
+  }
+
+  .profile.about-header__profile {
+    flex: 0 0 auto;
+    width: 9rem;
+    max-width: 28%;
+    margin: 0;
+
+    @media (min-width: 576px) {
+      width: 11rem;
+      max-width: 22%;
+    }
+  }
+
+  &--left {
+    flex-direction: row-reverse;
+  }
+}
+
 // TODO: redefine content layout.
 
 

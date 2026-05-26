@@ -4,16 +4,15 @@ layout: default
 
 <!-- about.html -->
       <div class="post">
-        <header class="post-header">
-          <h1 class="post-title">
-            {% if site.title == "blank" -%}<span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }} {{ site.last_name }}{%- else -%}{{ site.title }}{%- endif %}
-          </h1>
-          <p class="desc">{{ page.subtitle }}</p>
-        </header>
-
-        <article>
+        <header class="post-header{% if page.profile %} about-header{% if page.profile.align == 'left' %} about-header--left{% endif %}{% endif %}">
+          <div class="about-header__intro">
+            <h1 class="post-title">
+              {% if site.title == "blank" -%}<span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }} {{ site.last_name }}{%- else -%}{{ site.title }}{%- endif %}
+            </h1>
+            <p class="desc">{{ page.subtitle }}</p>
+          </div>
           {% if page.profile -%}
-          <div class="profile float-{%- if page.profile.align == 'left' -%}left{%- else -%}right{%- endif -%}">
+          <div class="profile about-header__profile">
             {%- if page.profile.image %}
               {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
 
@@ -36,7 +35,9 @@ layout: default
             {%- endif %}
           </div>
           {%- endif %}
+        </header>
 
+        <article>
           <div class="clearfix">
             {{ content }}
           </div>

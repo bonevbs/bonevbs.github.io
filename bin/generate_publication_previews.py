@@ -3,7 +3,7 @@
 Generate publication thumbnails for al-folio (preview={...} in papers.bib).
 
 Uses only the `pdf={...}` field from each BibTeX entry (http(s) URL or site path like `/files/thesis.pdf`).
-Picks the page with the most embedded figures among the first 24 pages (PyMuPDF), else page 1 (or page 2 if page 1 is blank).
+Picks the first page that contains an embedded figure (PyMuPDF), else page 1.
 Renders the full page, scaled to fit without cropping.
 
 Usage:
@@ -41,7 +41,10 @@ UA = "ai-folio-preview-generator/1.0"
 MIN_FIGURE_WIDTH = 120
 MIN_FIGURE_HEIGHT = 80
 MIN_FIGURE_PIXELS = MIN_FIGURE_WIDTH * MIN_FIGURE_HEIGHT
-MAX_PAGES_SCAN = 24
+# Minimum drawn size on the page (PDF points; 72 pt ≈ 1 inch).
+MIN_FIGURE_ON_PAGE_WIDTH = 150
+MIN_FIGURE_ON_PAGE_HEIGHT = 100
+MAX_PAGES_SCAN = 12
 
 
 def _http_get(url: str, timeout: int = 60) -> bytes:
@@ -208,32 +211,36 @@ def render_pdf_page(pdf: Path, page: int, out_png: Path) -> bool:
     return False
 
 
-def count_figures_on_page(doc, page) -> int:
-    """Count sizeable embedded images on a page (unique xrefs)."""
+def _embedded_image_large_enough(doc, xref: int) -> bool:
     import fitz
 
-    seen: set[int] = set()
-    count = 0
-    for img in page.get_images(full=True):
-        xref = img[0]
-        if xref in seen:
-            continue
-        seen.add(xref)
-        try:
-            pix = fitz.Pixmap(doc, xref)
-            if (
-                pix.width >= MIN_FIGURE_WIDTH
-                and pix.height >= MIN_FIGURE_HEIGHT
-                and pix.width * pix.height >= MIN_FIGURE_PIXELS
-            ):
-                count += 1
-        except Exception:
-            continue
-    return count
+    try:
+        pix = fitz.Pixmap(doc, xref)
+    except Exception:
+        return False
+    return (
+        pix.width >= MIN_FIGURE_WIDTH
+        and pix.height >= MIN_FIGURE_HEIGHT
+        and pix.width * pix.height >= MIN_FIGURE_PIXELS
+    )
 
 
-def page_with_most_figures(pdf: Path) -> int | None:
-    """Return 1-based page index with the most sizeable embedded images, or None."""
+def _qualifies_as_figure(doc, page, xref: int) -> bool:
+    try:
+        rects = page.get_image_rects(xref)
+    except Exception:
+        rects = []
+    if rects:
+        return any(
+            r.width >= MIN_FIGURE_ON_PAGE_WIDTH and r.height >= MIN_FIGURE_ON_PAGE_HEIGHT
+            for r in rects
+        )
+    # Some PDFs omit placement rects; fall back to embedded pixel size.
+    return _embedded_image_large_enough(doc, xref)
+
+
+def first_page_with_figure(pdf: Path) -> int | None:
+    """Return 1-based page index of the first page with a sizeable figure, or None."""
     try:
         import fitz  # PyMuPDF
     except ImportError:
@@ -242,52 +249,27 @@ def page_with_most_figures(pdf: Path) -> int | None:
     doc = fitz.open(pdf)
     try:
         limit = min(MAX_PAGES_SCAN, doc.page_count)
-        best_page: int | None = None
-        best_count = 0
         for pno in range(limit):
-            n = count_figures_on_page(doc, doc[pno])
-            if n > best_count:
-                best_count = n
-                best_page = pno + 1
-        return best_page
+            page = doc[pno]
+            seen: set[int] = set()
+            for img in page.get_images(full=True):
+                xref = img[0]
+                if xref in seen:
+                    continue
+                seen.add(xref)
+                if _qualifies_as_figure(doc, page, xref):
+                    return pno + 1
     finally:
         doc.close()
+    return None
 
 
-def choose_thumbnail_page(pdf_path: Path, tmpdir: Path) -> tuple[int, str]:
+def choose_thumbnail_page(pdf_path: Path) -> tuple[int, str]:
     """Pick page to render. Returns (page_number, reason_tag)."""
-    figure_page = page_with_most_figures(pdf_path)
+    figure_page = first_page_with_figure(pdf_path)
     if figure_page is not None:
         return figure_page, "figure-page"
-
-    for page in (1, 2):
-        page_png = tmpdir / f"probe{page}.png"
-        if not render_pdf_page(pdf_path, page, page_png):
-            continue
-        if page == 1 and page_mostly_blank(page_png):
-            continue
-        return page, "first-page"
-
-    return 1, "first-page-fallback"
-
-
-def page_mostly_blank(png: Path, threshold: float = 0.92) -> bool:
-    conv = _convert_cmd()
-    if not conv:
-        return False
-    r = subprocess.run(
-        [*conv, str(png), "-colorspace", "Gray", "-format", "%[mean]", "info:"],
-        capture_output=True,
-        text=True,
-    )
-    if r.returncode != 0:
-        return False
-    try:
-        # mean is 0–65535 for Q16; high mean ≈ white page
-        mean = float(r.stdout.strip()) / 65535.0
-        return mean >= threshold
-    except ValueError:
-        return False
+    return 1, "first-page"
 
 
 def generate_preview(entry: dict, out: Path, dry_run: bool) -> str:
@@ -310,7 +292,7 @@ def generate_preview(entry: dict, out: Path, dry_run: bool) -> str:
             if not download_pdf(pdf_src, pdf_path):
                 return ""
 
-        page, reason = choose_thumbnail_page(pdf_path, tmpdir)
+        page, reason = choose_thumbnail_page(pdf_path)
         page_png = tmpdir / "thumb.png"
         if render_pdf_page(pdf_path, page, page_png):
             shutil.copy2(page_png, raw)
