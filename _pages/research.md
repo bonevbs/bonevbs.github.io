@@ -9,8 +9,6 @@ wide_media: true
 
 I work at the interface of scientific computing, numerical analysis, and machine learning. My training is in classical **numerical methods**; I am interested in how modern ML can be used reliably in science and engineering—where predictions must be accurate, efficient, and interpretable beyond the training set.
 
-A full publication list is on [Google Scholar](https://scholar.google.com/citations?user=sYo-KS4AAAAJ).
-
 ## AI for Science and Engineering
 
 Scientific machine learning is reshaping how we model complex physical systems. In weather and climate, learned models now compete with operational forecast systems; in other domains, neural operators learn maps between function spaces from data or hybrid data–physics setups. Much of my work aims to develop AI-for-science methods from first principles: architectures and training objectives that respect geometry, stability, and uncertainty, rather than treating these as afterthoughts at deployment time.
@@ -21,11 +19,11 @@ The same geometric operator viewpoint has carried into operational climate and w
 
 ![FourCastNet 3 ensemble rollout trained with Makani]({{ '/assets/img/research/fcn3_ens15.gif' | relative_url }})
 
-I believe numerical methods and machine learning will keep converging: ideas from traditional numerics—stability, preconditioning, multiscale structure—are showing up in learned models, and ML is feeding back into how we build solvers and discretizations.
-
 ## Numerical Methods
 
-My background is in **algorithms for wave problems**: numerical PDE solvers and numerical linear algebra for large sparse systems. During my [PhD]({{ '/files/thesis_compressed.pdf' | relative_url }}), I worked on [approximate fast direct solvers](https://github.com/bonevbs/HierarchicalSolvers.jl) for Helmholtz-type problems ([SIAM paper](https://epubs.siam.org/doi/10.1137/20M1365958)) and [discontinuous Galerkin methods](https://doi.org/10.1016/j.jcp.2018.02.008) for global tsunami modeling ([Ocean Modelling](https://doi.org/10.1016/j.ocemod.2019.101429)).
+My background is in numerical methods, with a focus on partial differential equations and numerical linear algebra. That training remains a source of inspiration for my ML work: stability, preconditioning, and multiscale structure show up in learned models, and ideas from ML feed back into how we build solvers and discretizations. I believe numerical methods and machine learning will ultimately form one cohesive field that integrates tools from both traditions.
+
+During my [PhD]({{ '/files/thesis_compressed.pdf' | relative_url }}), I worked on [approximate fast direct solvers](https://github.com/bonevbs/HierarchicalSolvers.jl) for Helmholtz-type problems ([SIAM paper](https://epubs.siam.org/doi/10.1137/20M1365958)) and [discontinuous Galerkin methods](https://doi.org/10.1016/j.jcp.2018.02.008) for global tsunami modeling ([Ocean Modelling](https://doi.org/10.1016/j.ocemod.2019.101429)). Here are some interesting samples:
 
 <div class="media-grid media-grid--2x3">
   <a href="{{ '/files/amr_showcase.mp4' | relative_url }}">
