@@ -31,7 +31,7 @@ pip install pymupdf
 python3 bin/generate_publication_previews.py
 ```
 
-Add a direct link in the bib entry: `pdf={https://…/paper.pdf}` or `pdf={/files/your.pdf}` for site-local files. The script only reads `pdf=` (no URL guessing from `eprint` / `html`). It uses the first page with an embedded figure (via PyMuPDF), otherwise page 1 (or page 2 if page 1 is blank). The full page is scaled to fit without cropping.
+Add a direct link in the bib entry: `pdf={https://…/paper.pdf}` or `pdf={/files/your.pdf}` for site-local files. The script only reads `pdf=` (no URL guessing from `eprint` / `html`). It scans the first 24 pages and picks the one with the most embedded figures (via PyMuPDF), otherwise page 1 (or page 2 if page 1 is blank). The full page is scaled to fit without cropping.
 
 **Clear and regenerate** (existing `{bibkey}.png` files are skipped unless you force):
 

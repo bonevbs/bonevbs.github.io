@@ -3,7 +3,7 @@
 Generate publication thumbnails for al-folio (preview={...} in papers.bib).
 
 Uses only the `pdf={...}` field from each BibTeX entry (http(s) URL or site path like `/files/thesis.pdf`).
-Picks the first page that contains an embedded figure (PyMuPDF), else page 1 (or page 2 if page 1 is blank).
+Picks the page with the most embedded figures among the first 24 pages (PyMuPDF), else page 1 (or page 2 if page 1 is blank).
 Renders the full page, scaled to fit without cropping.
 
 Usage:
@@ -41,7 +41,7 @@ UA = "ai-folio-preview-generator/1.0"
 MIN_FIGURE_WIDTH = 120
 MIN_FIGURE_HEIGHT = 80
 MIN_FIGURE_PIXELS = MIN_FIGURE_WIDTH * MIN_FIGURE_HEIGHT
-MAX_PAGES_SCAN = 12
+MAX_PAGES_SCAN = 24
 
 
 def _http_get(url: str, timeout: int = 60) -> bytes:
@@ -208,8 +208,32 @@ def render_pdf_page(pdf: Path, page: int, out_png: Path) -> bool:
     return False
 
 
-def first_page_with_figure(pdf: Path) -> int | None:
-    """Return 1-based page index of the first page with a sizeable embedded image, or None."""
+def count_figures_on_page(doc, page) -> int:
+    """Count sizeable embedded images on a page (unique xrefs)."""
+    import fitz
+
+    seen: set[int] = set()
+    count = 0
+    for img in page.get_images(full=True):
+        xref = img[0]
+        if xref in seen:
+            continue
+        seen.add(xref)
+        try:
+            pix = fitz.Pixmap(doc, xref)
+            if (
+                pix.width >= MIN_FIGURE_WIDTH
+                and pix.height >= MIN_FIGURE_HEIGHT
+                and pix.width * pix.height >= MIN_FIGURE_PIXELS
+            ):
+                count += 1
+        except Exception:
+            continue
+    return count
+
+
+def page_with_most_figures(pdf: Path) -> int | None:
+    """Return 1-based page index with the most sizeable embedded images, or None."""
     try:
         import fitz  # PyMuPDF
     except ImportError:
@@ -218,28 +242,21 @@ def first_page_with_figure(pdf: Path) -> int | None:
     doc = fitz.open(pdf)
     try:
         limit = min(MAX_PAGES_SCAN, doc.page_count)
+        best_page: int | None = None
+        best_count = 0
         for pno in range(limit):
-            page = doc[pno]
-            for img in page.get_images(full=True):
-                xref = img[0]
-                try:
-                    pix = fitz.Pixmap(doc, xref)
-                    if (
-                        pix.width >= MIN_FIGURE_WIDTH
-                        and pix.height >= MIN_FIGURE_HEIGHT
-                        and pix.width * pix.height >= MIN_FIGURE_PIXELS
-                    ):
-                        return pno + 1
-                except Exception:
-                    continue
+            n = count_figures_on_page(doc, doc[pno])
+            if n > best_count:
+                best_count = n
+                best_page = pno + 1
+        return best_page
     finally:
         doc.close()
-    return None
 
 
 def choose_thumbnail_page(pdf_path: Path, tmpdir: Path) -> tuple[int, str]:
     """Pick page to render. Returns (page_number, reason_tag)."""
-    figure_page = first_page_with_figure(pdf_path)
+    figure_page = page_with_most_figures(pdf_path)
     if figure_page is not None:
         return figure_page, "figure-page"
 
