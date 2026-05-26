@@ -27,11 +27,11 @@ Co-author links: add entries to [`_data/coauthors.yml`](_data/coauthors.yml) key
 
 ```bash
 sudo apt-get install -y poppler-utils ghostscript imagemagick   # once
-pip install pymupdf
+pip install pymupdf Pillow
 python3 bin/generate_publication_previews.py
 ```
 
-Add a direct link in the bib entry: `pdf={https://…/paper.pdf}` or `pdf={/files/your.pdf}` for site-local files. The script only reads `pdf=` (no URL guessing from `eprint` / `html`). It uses the first page where a figure is drawn large enough on the page (via PyMuPDF), otherwise page 1. The full page is scaled to fit without cropping.
+Add a direct link in the bib entry: `pdf={https://…/paper.pdf}` or `pdf={/files/your.pdf}` for site-local files. The script only reads `pdf=` (no URL guessing from `eprint` / `html`). It picks the first page with a large on-page figure, else the first page with a “Figure 1” caption, else the page with the largest embedded image, else page 1. All thumbnails are letterboxed to 200×280.
 
 **Clear and regenerate** (existing `{bibkey}.png` files are skipped unless you force):
 

@@ -21,9 +21,9 @@ Much of this work has been applied to learned global weather and climate systems
 
 ## Numerical Methods
 
-My background is in numerical methods, with a focus on partial differential equations and numerical linear algebra. That training remains a source of inspiration for my ML work: stability, preconditioning, and multiscale structure show up in learned models, and ideas from ML feed back into how we build solvers and discretizations. I believe numerical methods and machine learning will ultimately form one cohesive field that integrates tools from both traditions.
+My background is in numerical methods, with a focus on partial differential equations and numerical linear algebra. That training remains a source of inspiration for my ML work: stability, preconditioning, and multiscale structure show up in learned models, and ideas from ML feed back into how we build solvers and discretizations. I believe numerical methods and machine learning will ultimately form one cohesive field that integrates methods from both domains.
 
-During my [PhD]({{ '/files/thesis_compressed.pdf' | relative_url }}), I worked on [approximate fast direct solvers](https://github.com/bonevbs/HierarchicalSolvers.jl) for Helmholtz-type problems ([SIAM paper](https://epubs.siam.org/doi/10.1137/20M1365958)) and [discontinuous Galerkin methods](https://doi.org/10.1016/j.jcp.2018.02.008) for global tsunami modeling ([Ocean Modelling](https://doi.org/10.1016/j.ocemod.2019.101429)). Here are some interesting samples:
+During my [PhD]({{ '/files/thesis_compressed.pdf' | relative_url }}), I worked on [approximate fast direct solvers](https://github.com/bonevbs/HierarchicalSolvers.jl) for Helmholtz-type problems ([SIAM paper](https://epubs.siam.org/doi/10.1137/20M1365958)) and [discontinuous Galerkin methods](https://doi.org/10.1016/j.jcp.2018.02.008) for global tsunami modeling ([Ocean Modelling](https://doi.org/10.1016/j.ocemod.2019.101429)). Here are some interesting examples:
 
 <div class="media-grid media-grid--2x3">
   <a href="{{ '/files/amr_showcase.mp4' | relative_url }}">

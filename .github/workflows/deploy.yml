@@ -53,7 +53,7 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y poppler-utils ghostscript imagemagick
-        pip3 install pymupdf
+        pip3 install pymupdf Pillow
         EXTRA=""
         if [ "${{ github.event.inputs.clear_preview_cache }}" = "true" ]; then
           EXTRA="--clear"

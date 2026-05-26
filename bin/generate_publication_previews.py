@@ -3,17 +3,17 @@
 Generate publication thumbnails for al-folio (preview={...} in papers.bib).
 
 Uses only the `pdf={...}` field from each BibTeX entry (http(s) URL or site path like `/files/thesis.pdf`).
-Picks the first page with a figure drawn large enough on the page (PyMuPDF), else page 1.
-Renders the full page, scaled to fit without cropping.
+Picks the first page with a large on-page figure, else the first page with a
+"Figure 1" caption, else the page with the largest embedded image, else page 1.
+Renders every thumbnail to a fixed 200×280 canvas (letterboxed).
 
 Usage:
   python3 bin/generate_publication_previews.py [--dry-run] [--force] [--clear] [--update-bib]
   python3 bin/generate_publication_previews.py --keys bonev2025fourcastnet3
 
-Requires: network for downloads. For PDF rendering, one of:
-  pdftoppm (poppler-utils), or gs (ghostscript).
-Optional: `pip install pymupdf` (recommended — detects figure pages)
-Image resize: ImageMagick `convert` or `magick` (optional; copies raw PNG if missing).
+Requires: network for downloads.
+Recommended: `pip install pymupdf Pillow` (page picking + rendering).
+Fallback rendering: pdftoppm (poppler-utils) or gs, plus ImageMagick for resize.
 
 Runs automatically in GitHub Actions before `jekyll build` (see .github/workflows/deploy.yml).
 Locally: `python3 bin/generate_publication_previews.py`
@@ -34,13 +34,18 @@ ROOT = Path(__file__).resolve().parents[1]
 BIB = ROOT / "_bibliography" / "papers.bib"
 OUT = ROOT / "assets" / "img" / "publication_preview"
 MANIFEST = ROOT / "_data" / "generated_previews.yml"
-# Max width × height; entire page visible (no crop). Matches publication list CSS.
-PREVIEW_MAX = "200x280"
+# Output size; matches publication list CSS.
+PREVIEW_W = 200
+PREVIEW_H = 280
+PREVIEW_MAX = f"{PREVIEW_W}x{PREVIEW_H}"
 UA = "ai-folio-preview-generator/1.0"
-# Minimum drawn figure size on the page (PDF points; 72 pt ≈ 1 inch).
-MIN_FIGURE_ON_PAGE_WIDTH = 150
-MIN_FIGURE_ON_PAGE_HEIGHT = 100
-MAX_PAGES_SCAN = 12
+MAX_PAGES_SCAN = 24
+# Figure must be a substantial part of the page (not logos/icons).
+MIN_FIGURE_WIDTH_FRAC = 0.22
+MIN_FIGURE_HEIGHT_FRAC = 0.12
+MIN_FIGURE_AREA_FRAC = 0.04
+BODY_MARGIN_Y = 0.07
+FIGURE_ONE_RE = re.compile(r"\b(?:Figure|Fig\.?)\s+1\b", re.IGNORECASE)
 
 
 def _http_get(url: str, timeout: int = 60) -> bytes:
@@ -207,8 +212,12 @@ def render_pdf_page(pdf: Path, page: int, out_png: Path) -> bool:
     return False
 
 
-def page_has_large_figure(page) -> bool:
-    """True if the page draws any embedded image above the minimum on-page size."""
+def _rect_in_body(rect, page_rect) -> bool:
+    cy = (rect.y0 + rect.y1) / 2
+    return BODY_MARGIN_Y * page_rect.height < cy < (1 - BODY_MARGIN_Y) * page_rect.height
+
+
+def _iter_image_rects(page):
     seen: set[int] = set()
     for img in page.get_images(full=True):
         xref = img[0]
@@ -216,42 +225,99 @@ def page_has_large_figure(page) -> bool:
             continue
         seen.add(xref)
         try:
-            rects = page.get_image_rects(xref)
+            yield from page.get_image_rects(xref)
         except Exception:
             continue
-        for rect in rects:
-            if (
-                rect.width >= MIN_FIGURE_ON_PAGE_WIDTH
-                and rect.height >= MIN_FIGURE_ON_PAGE_HEIGHT
-            ):
-                return True
+
+
+def page_has_large_figure(page) -> bool:
+    """True if the page draws a substantial figure in the body (not header/footer)."""
+    pw, ph = page.rect.width, page.rect.height
+    page_rect = page.rect
+    for rect in _iter_image_rects(page):
+        if not _rect_in_body(rect, page_rect):
+            continue
+        if (
+            rect.width >= MIN_FIGURE_WIDTH_FRAC * pw
+            and rect.height >= MIN_FIGURE_HEIGHT_FRAC * ph
+            and rect.width * rect.height >= MIN_FIGURE_AREA_FRAC * pw * ph
+        ):
+            return True
     return False
 
 
-def first_page_with_large_figure(pdf: Path) -> int | None:
-    """Return 1-based index of the first page with a large enough on-page figure."""
-    try:
-        import fitz  # PyMuPDF
-    except ImportError:
-        return None
-
-    doc = fitz.open(pdf)
-    try:
-        limit = min(MAX_PAGES_SCAN, doc.page_count)
-        for pno in range(limit):
-            if page_has_large_figure(doc[pno]):
-                return pno + 1
-    finally:
-        doc.close()
+def first_page_with_large_figure(doc) -> int | None:
+    limit = min(MAX_PAGES_SCAN, doc.page_count)
+    for pno in range(limit):
+        if page_has_large_figure(doc[pno]):
+            return pno + 1
     return None
 
 
-def choose_thumbnail_page(pdf_path: Path) -> tuple[int, str]:
+def first_page_with_figure1_caption(doc) -> int | None:
+    """First non-title page mentioning Figure 1 (helps vector-only PDFs)."""
+    limit = min(MAX_PAGES_SCAN, doc.page_count)
+    for pno in range(1, limit):
+        if FIGURE_ONE_RE.search(doc[pno].get_text() or ""):
+            return pno + 1
+    return None
+
+
+def page_with_largest_embedded_image(doc) -> int | None:
+    limit = min(MAX_PAGES_SCAN, doc.page_count)
+    best_page: int | None = None
+    best_area = 0.0
+    for pno in range(limit):
+        page = doc[pno]
+        page_area = page.rect.width * page.rect.height
+        for rect in _iter_image_rects(page):
+            area = rect.width * rect.height
+            if area >= 0.02 * page_area and area > best_area:
+                best_area = area
+                best_page = pno + 1
+    return best_page
+
+
+def choose_thumbnail_page(doc) -> tuple[int, str]:
     """Pick page to render. Returns (page_number, reason_tag)."""
-    figure_page = first_page_with_large_figure(pdf_path)
+    figure_page = first_page_with_large_figure(doc)
     if figure_page is not None:
         return figure_page, "figure-page"
+    caption_page = first_page_with_figure1_caption(doc)
+    if caption_page is not None:
+        return caption_page, "figure-1"
+    largest = page_with_largest_embedded_image(doc)
+    if largest is not None:
+        return largest, "largest-image"
     return 1, "first-page"
+
+
+def render_page_normalized(doc, page: int, dest: Path) -> bool:
+    """Render a PDF page to a fixed PREVIEW_W×PREVIEW_H PNG."""
+    import fitz
+
+    if page < 1 or page > doc.page_count:
+        return False
+    pg = doc[page - 1]
+    pw, ph = pg.rect.width, pg.rect.height
+    scale = min(PREVIEW_W / pw, PREVIEW_H / ph)
+    pix = pg.get_pixmap(matrix=fitz.Matrix(scale, scale), alpha=False)
+
+    try:
+        from PIL import Image
+    except ImportError:
+        tmp = dest.with_suffix(".raw.png")
+        pix.save(tmp)
+        resize_png(tmp, dest)
+        tmp.unlink(missing_ok=True)
+        return dest.is_file()
+
+    img = Image.frombytes("RGB", (pix.width, pix.height), pix.samples)
+    canvas = Image.new("RGB", (PREVIEW_W, PREVIEW_H), (255, 255, 255))
+    canvas.paste(img, ((PREVIEW_W - img.width) // 2, (PREVIEW_H - img.height) // 2))
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    canvas.save(dest, "PNG")
+    return True
 
 
 def generate_preview(entry: dict, out: Path, dry_run: bool) -> str:
@@ -263,7 +329,6 @@ def generate_preview(entry: dict, out: Path, dry_run: bool) -> str:
 
     with tempfile.TemporaryDirectory(prefix="folio-preview-") as tmp:
         tmpdir = Path(tmp)
-        raw = tmpdir / "raw.png"
         pdf_path = tmpdir / "paper.pdf"
 
         if isinstance(pdf_src, Path):
@@ -274,11 +339,22 @@ def generate_preview(entry: dict, out: Path, dry_run: bool) -> str:
             if not download_pdf(pdf_src, pdf_path):
                 return ""
 
-        page, reason = choose_thumbnail_page(pdf_path)
+        page, reason = 1, "first-page"
+        try:
+            import fitz
+
+            doc = fitz.open(pdf_path)
+            page, reason = choose_thumbnail_page(doc)
+            if render_page_normalized(doc, page, out):
+                doc.close()
+                return f"{reason}-{page}"
+            doc.close()
+        except ImportError:
+            pass
+
         page_png = tmpdir / "thumb.png"
         if render_pdf_page(pdf_path, page, page_png):
-            shutil.copy2(page_png, raw)
-            resize_png(raw, out)
+            resize_png(page_png, out)
             return f"{reason}-{page}"
 
     return ""
