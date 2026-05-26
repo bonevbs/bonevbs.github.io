@@ -17,7 +17,7 @@ Scientific machine learning is reshaping how we model complex physical systems. 
 
 My recent work emphasizes ML methods for science and engineering, including AI weather and climate models. [Spherical Fourier Neural Operators](https://arxiv.org/abs/2306.03838) generalize Fourier Neural Operators to spherical geometry for global atmospheric dynamics. See the [NVIDIA blog post](https://developer.nvidia.com/blog/modeling-earths-atmosphere-with-spherical-fourier-neural-operators/) and [ICML paper](https://openreview.net/forum?id=TwsJ9IOZDx). Related directions include the **numerics of ML methods**, **geometric machine learning** on spheres and other manifolds, and **uncertainty quantification** for operational use.
 
-![FourCastNet 3 ensemble rollout trained with Makani](https://raw.githubusercontent.com/NVIDIA/makani/main/images/fcn3_ens15.gif)
+![FourCastNet 3 ensemble rollout trained with Makani]({{ '/assets/img/research/fcn3_ens15.gif' | relative_url }})
 
 I believe numerical methods and machine learning will keep converging: ideas from traditional numerics—stability, preconditioning, multiscale structure—are showing up in learned models, and ML is feeding back into how we build solvers and discretizations.
 
