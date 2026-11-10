@@ -110,6 +110,13 @@ def resolve_pdf(block: str) -> str | Path | None:
     return None
 
 
+def arxiv_pdf_url(block: str) -> str | None:
+    """PDF URL from the arxiv= field, used when the pdf= host refuses downloads
+    (e.g. openreview.net answers 403 to scripts)."""
+    arxiv_id = parse_field(block, "arxiv")
+    return f"https://arxiv.org/pdf/{arxiv_id}" if arxiv_id else None
+
+
 def parse_bib(path: Path, only_missing: bool, keys: set[str] | None) -> list[dict]:
     text = path.read_text(encoding="utf-8")
     entries = []
@@ -123,10 +130,10 @@ def parse_bib(path: Path, only_missing: bool, keys: set[str] | None) -> list[dic
         out_png = OUT / f"{key}.png"
         if only_missing and out_png.is_file():
             continue
-        pdf = resolve_pdf(block)
-        if not pdf:
+        sources = [s for s in (resolve_pdf(block), arxiv_pdf_url(block)) if s]
+        if not sources:
             continue
-        entries.append({"key": key, "pdf": pdf})
+        entries.append({"key": key, "pdf": sources[0], "fallbacks": sources[1:]})
     return entries
 
 
@@ -335,8 +342,11 @@ def generate_preview(entry: dict, out: Path, dry_run: bool) -> str:
             print(f"  local PDF {pdf_src.relative_to(ROOT)}")
             shutil.copy2(pdf_src, pdf_path)
         else:
-            print("  downloading PDF …")
-            if not download_pdf(pdf_src, pdf_path):
+            for url in [pdf_src, *entry.get("fallbacks", [])]:
+                print(f"  downloading PDF {url} …")
+                if download_pdf(url, pdf_path):
+                    break
+            else:
                 return ""
 
         page, reason = 1, "first-page"
