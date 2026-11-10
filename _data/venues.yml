@@ -31,3 +31,12 @@
 "EPFL":
   url: https://www.epfl.ch/
   color: "#117a42"
+"ApJ":
+  url: https://iopscience.iop.org/journal/0004-637X
+  color: "#117a42"
+"NMI":
+  url: https://www.nature.com/natmachintell/
+  color: "#117a42"
+"JMLR":
+  url: https://jmlr.org/
+  color: "#117a42"
