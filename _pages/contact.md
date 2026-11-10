@@ -6,17 +6,18 @@ nav: true
 nav_order: 6
 ---
 
-<div class="social">
-  <div class="contact-icons">
-    {% include social.html %}
-  </div>
-</div>
-
+{% assign email_parts = site.email | split: "@" -%}
 **Boris Bonev**<br>
+<span class="obfuscated-email" data-email-user="{{ email_parts[0] }}" data-email-domain="{{ email_parts[1] }}">{{ email_parts[0] }} [at] {{ email_parts[1] }}</span><br>
 CMAP, École Polytechnique<br>
 Institut Polytechnique de Paris<br>
-91120 Palaiseau, France<br>
-{% assign email_parts = site.email | split: "@" %}<span class="obfuscated-email" data-email-user="{{ email_parts[0] }}" data-email-domain="{{ email_parts[1] }}">{{ email_parts[0] }} [at] {{ email_parts[1] }}</span>
+91120 Palaiseau, France
+
+<div class="social social-inline">
+  <div class="contact-icons">
+    {% include social.html hide_email=true hide_rss=true %}
+  </div>
+</div>
 
 ---
 

@@ -371,6 +371,20 @@ blockquote {
   .contact-note {
     font-size: 0.8rem;
   }
+
+  // Left-aligned row that sits under a contact block (see _pages/contact.md)
+  &.social-inline {
+    text-align: left;
+    margin-bottom: 1rem;
+
+    .contact-icons {
+      font-size: 1.5rem;
+
+      a {
+        margin-right: 0.6rem;
+      }
+    }
+  }
 }
 
 .wechat-modal {
