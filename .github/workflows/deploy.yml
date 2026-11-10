@@ -25,11 +25,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout 🛎️
-      uses: actions/checkout@v3
+      uses: actions/checkout@v5
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '3.2.2'
+        ruby-version: '3.2'
         bundler-cache: true
     - name: Update _config.yml ⚙️
       uses: fjogeleit/yaml-update-action@v0.13.1
@@ -40,7 +40,7 @@ jobs:
         value: ${{ github.repository }}
     - name: Cache publication previews
       if: github.event.inputs.clear_preview_cache != 'true'
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: |
           assets/img/publication_preview
