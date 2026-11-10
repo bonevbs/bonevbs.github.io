@@ -15,7 +15,8 @@ nav_order: 6
 **Boris Bonev**<br>
 CMAP, École Polytechnique<br>
 Institut Polytechnique de Paris<br>
-91120 Palaiseau, France
+91120 Palaiseau, France<br>
+{% assign email_parts = site.email | split: "@" %}<span class="obfuscated-email" data-email-user="{{ email_parts[0] }}" data-email-domain="{{ email_parts[1] }}">{{ email_parts[0] }} [at] {{ email_parts[1] }}</span>
 
 ---
 
