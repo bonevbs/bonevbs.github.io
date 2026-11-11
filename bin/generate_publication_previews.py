@@ -3,8 +3,7 @@
 Generate publication thumbnails for al-folio (preview={...} in papers.bib).
 
 Uses only the `pdf={...}` field from each BibTeX entry (http(s) URL or site path like `/files/thesis.pdf`).
-Picks the first page with a large on-page figure, else the first page with a
-"Figure 1" caption, else the page with the largest embedded image, else page 1.
+Picks the first page with a large on-page figure, else page 1.
 Renders every thumbnail to a fixed 200×280 canvas (letterboxed).
 
 Usage:
@@ -45,7 +44,6 @@ MIN_FIGURE_WIDTH_FRAC = 0.22
 MIN_FIGURE_HEIGHT_FRAC = 0.12
 MIN_FIGURE_AREA_FRAC = 0.04
 BODY_MARGIN_Y = 0.07
-FIGURE_ONE_RE = re.compile(r"\b(?:Figure|Fig\.?)\s+1\b", re.IGNORECASE)
 
 
 def _http_get(url: str, timeout: int = 60) -> bytes:
@@ -261,41 +259,13 @@ def first_page_with_large_figure(doc) -> int | None:
     return None
 
 
-def first_page_with_figure1_caption(doc) -> int | None:
-    """First non-title page mentioning Figure 1 (helps vector-only PDFs)."""
-    limit = min(MAX_PAGES_SCAN, doc.page_count)
-    for pno in range(1, limit):
-        if FIGURE_ONE_RE.search(doc[pno].get_text() or ""):
-            return pno + 1
-    return None
-
-
-def page_with_largest_embedded_image(doc) -> int | None:
-    limit = min(MAX_PAGES_SCAN, doc.page_count)
-    best_page: int | None = None
-    best_area = 0.0
-    for pno in range(limit):
-        page = doc[pno]
-        page_area = page.rect.width * page.rect.height
-        for rect in _iter_image_rects(page):
-            area = rect.width * rect.height
-            if area >= 0.02 * page_area and area > best_area:
-                best_area = area
-                best_page = pno + 1
-    return best_page
 
 
 def choose_thumbnail_page(doc) -> tuple[int, str]:
-    """Pick page to render. Returns (page_number, reason_tag)."""
+    """Pick page to render: first page with a figure, else page 1."""
     figure_page = first_page_with_large_figure(doc)
     if figure_page is not None:
         return figure_page, "figure-page"
-    caption_page = first_page_with_figure1_caption(doc)
-    if caption_page is not None:
-        return caption_page, "figure-1"
-    largest = page_with_largest_embedded_image(doc)
-    if largest is not None:
-        return largest, "largest-image"
     return 1, "first-page"
 
 
